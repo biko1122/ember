@@ -2,6 +2,8 @@ import { PageHeader } from '@/components/PageHeader/PageHeader'
 import { Button } from '@/components/Button/Button'
 import { Tag } from '@/components/Tag/Tag'
 import { EmptyState } from '@/components/EmptyState/EmptyState'
+import { LoadingRegion, Skeleton } from '@/components/Skeleton/Skeleton'
+import { formatPoints } from '@/components/Loyalty/Loyalty'
 import { useOrders } from '@/hooks/useOrders'
 import { useReorder } from '@/hooks/useReorder'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
@@ -13,7 +15,7 @@ import styles from './Orders.module.css'
 
 /** Past orders, newest first. */
 export function Orders() {
-  const { orders } = useOrders()
+  const { orders, isLoading, error } = useOrders()
 
   useDocumentTitle('My orders', 'Look back at what you have ordered and reorder in one tap.')
 
@@ -26,7 +28,21 @@ export function Orders() {
       />
 
       <div className={`page-container ${styles.page}`}>
-        {orders.length === 0 ? (
+        {isLoading ? (
+          <LoadingRegion label="Loading your orders" className={styles.list}>
+            {Array.from({ length: 2 }, (_, index) => (
+              <Skeleton key={index} shape="block" height="14rem" />
+            ))}
+          </LoadingRegion>
+        ) : error ? (
+          <EmptyState
+            icon="alert"
+            title="We could not load your orders"
+            description={error}
+            actionLabel="Browse the menu"
+            actionTo="/menu"
+          />
+        ) : orders.length === 0 ? (
           <EmptyState
             icon="bag"
             title="No orders yet"
@@ -66,6 +82,11 @@ function OrderCard({ order }) {
             {orderTypeConfig.label}
           </Tag>
           <Tag tone={progress.isComplete ? 'success' : 'primary'}>{progress.statusLabel}</Tag>
+          {order.pointsEarned > 0 && (
+            <Tag tone="warm" icon="gift">
+              +{formatPoints(order.pointsEarned)} pts
+            </Tag>
+          )}
         </div>
       </header>
 

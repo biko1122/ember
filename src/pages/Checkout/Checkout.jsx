@@ -4,6 +4,7 @@ import { PageHeader } from '@/components/PageHeader/PageHeader'
 import { CheckoutStepper } from '@/components/CheckoutStepper/CheckoutStepper'
 import { CartSummary } from '@/components/CartSummary/CartSummary'
 import { Button } from '@/components/Button/Button'
+import { Icon } from '@/components/Icon/Icon'
 import { OrderTypeStep } from '@/pages/Checkout/steps/OrderTypeStep'
 import { CustomerDetailsStep } from '@/pages/Checkout/steps/CustomerDetailsStep'
 import { FulfilmentStep } from '@/pages/Checkout/steps/FulfilmentStep'
@@ -11,6 +12,7 @@ import { PaymentStep } from '@/pages/Checkout/steps/PaymentStep'
 import { ReviewStep } from '@/pages/Checkout/steps/ReviewStep'
 import { useCart } from '@/context/CartContext'
 import { useAuth } from '@/context/AuthContext'
+import { useLoyalty } from '@/context/LoyaltyContext'
 import { useOrders } from '@/hooks/useOrders'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import { ORDER_TYPES, getOrderType } from '@/data/orderTypes'
@@ -34,12 +36,14 @@ export function Checkout() {
   const { lines, totals, orderType, branchId, promo, isEmpty, setBranchId, clearCart } = useCart()
   const { user, saveAddress } = useAuth()
   const { placeOrder } = useOrders()
+  const { isMember, previewPointsForOrder, earnFromOrder } = useLoyalty()
 
   useDocumentTitle('Checkout', 'Confirm your details and place your order.')
 
   const [currentStepId, setCurrentStepId] = useState(STEPS[0].id)
   const [errors, setErrors] = useState({})
   const [isPlacingOrder, setIsPlacingOrder] = useState(false)
+  const [placeOrderError, setPlaceOrderError] = useState(null)
 
   const [form, setForm] = useState(() => ({
     // Step 2 — who the order is for
@@ -114,14 +118,18 @@ export function Checkout() {
   )
 
   /**
-   * DEMO NOTE: this saves the order to localStorage and shows a confirmation.
-   * Nothing is sent to a kitchen and no payment is taken. Replace the body of
-   * this function with an API call when you add a backend.
+   * DEMO NOTE: this saves the order to this browser and shows a confirmation.
+   * Nothing is sent to a kitchen and no payment is taken — see
+   * services/ordersService.js.
    */
-  const handlePlaceOrder = () => {
-    setIsPlacingOrder(true)
+  const handlePlaceOrder = async () => {
+    // Guard against a double click landing two orders.
+    if (isPlacingOrder) return
 
-    const order = placeOrder({
+    setIsPlacingOrder(true)
+    setPlaceOrderError(null)
+
+    const result = await placeOrder({
       lines,
       totals,
       orderType,
@@ -131,14 +139,26 @@ export function Checkout() {
       tableNumber: orderType === ORDER_TYPES.DINE_IN ? form.tableNumber : null,
       paymentMethod: form.paymentMethod,
       promoCode: promo?.code ?? null,
+      // Recorded on the order so the confirmation and the history agree, even
+      // if the earn rate changes later.
+      pointsEarned: isMember ? previewPointsForOrder(totals) : 0,
     })
+
+    if (result.error) {
+      setPlaceOrderError(result.error)
+      setIsPlacingOrder(false)
+      return
+    }
 
     if (form.saveAddress && orderTypeConfig.requiresAddress) {
       saveAddress({ label: form.area, ...deliveryAddress })
     }
 
+    // Points post after the order is safely saved, and never block it.
+    await earnFromOrder(result.order)
+
     clearCart()
-    navigate(`/orders/${order.orderNumber}`, { replace: true })
+    navigate(`/orders/${result.order.orderNumber}`, { replace: true })
   }
 
   // Nothing to check out — send people back to the basket. The order is
@@ -196,6 +216,21 @@ export function Checkout() {
               />
             )}
           </div>
+
+          {placeOrderError && (
+            <p className={styles.placeOrderError} role="alert">
+              <Icon name="alert" size={17} />
+              {placeOrderError}
+            </p>
+          )}
+
+          {currentStepId === 'review' && isMember && previewPointsForOrder(totals) > 0 && (
+            <p className={styles.pointsPreview}>
+              <Icon name="gift" size={17} />
+              This order earns you{' '}
+              <strong>{previewPointsForOrder(totals).toLocaleString('en-GB')} points</strong>.
+            </p>
+          )}
 
           <div className={styles.stepActions}>
             {currentIndex > 0 && (

@@ -25,7 +25,7 @@
 </defs>
 <rect width="1200" height="750" fill="url(#ground)"/>
 <ellipse cx="600" cy="375" rx="552" ry="330" fill="url(#keyLight)"/>
-<g transform="translate(600 375) scale(1.02)"><ellipse cx="0" cy="208" rx="170" ry="34" fill="url(#dishShadow)"/><path d="M-58 -110 L58 -110 L58 -160 q0 -20 -20 -20 L-38 -180 q-20 0 -20 20 z" fill="hsl(196 30% 92% / 0.28)"/><rect x="-44" y="-206" width="88" height="34" rx="10" fill="hsl(200 60% 52%)"/><path d="M-96 -112 q0 -34 38 -46 L58 -158 q38 12 38 46 L96 168 q0 26 -26 26 L-70 194 q-26 0 -26 -26 z" fill="hsl(196 40% 88% / 0.3)"/><path d="M-96 -30 L96 -30 L96 96 L-96 96 z" fill="hsl(200 62% 50%)" opacity="0.9"/><circle cx="0" cy="34" r="34" fill="hsl(36 18% 96%)" opacity="0.9"/><path d="M-72 -100 q-10 40 -10 130 l0 140" stroke="hsl(0 0% 100% / 0.35)" stroke-width="14" fill="none" stroke-linecap="round"/></g>
+<g transform="translate(600 375) scale(1.14)"><ellipse cx="0" cy="208" rx="170" ry="34" fill="url(#dishShadow)"/><path d="M-58 -110 L58 -110 L58 -160 q0 -20 -20 -20 L-38 -180 q-20 0 -20 20 z" fill="hsl(196 30% 92% / 0.28)"/><rect x="-44" y="-206" width="88" height="34" rx="10" fill="hsl(200 60% 52%)"/><path d="M-96 -112 q0 -34 38 -46 L58 -158 q38 12 38 46 L96 168 q0 26 -26 26 L-70 194 q-26 0 -26 -26 z" fill="hsl(196 40% 88% / 0.3)"/><path d="M-96 -30 L96 -30 L96 96 L-96 96 z" fill="hsl(200 62% 50%)" opacity="0.9"/><circle cx="0" cy="34" r="34" fill="hsl(36 18% 96%)" opacity="0.9"/><path d="M-72 -100 q-10 40 -10 130 l0 140" stroke="hsl(0 0% 100% / 0.35)" stroke-width="14" fill="none" stroke-linecap="round"/></g>
 <rect width="1200" height="750" fill="url(#topSheen)"/>
 <rect width="1200" height="750" fill="url(#vignette)"/>
 </svg>

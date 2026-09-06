@@ -13,12 +13,55 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 // Egyptian mobile numbers: 01 followed by 9 digits, optionally +20 prefixed.
 const PHONE_PATTERN = /^(?:\+?20)?0?1[0125]\d{8}$/
 
+/** What a password has to clear before an account can be created. */
+export const PASSWORD_RULES = {
+  minLength: 8,
+  description: 'At least 8 characters, with a letter and a number.',
+}
+
 export function isValidEmail(value) {
   return EMAIL_PATTERN.test(value.trim())
 }
 
 export function isValidPhone(value) {
   return PHONE_PATTERN.test(value.replace(/[\s-]/g, ''))
+}
+
+/** The message for a password that fails the rules, or null when it passes. */
+export function getPasswordError(password) {
+  if (!password) return 'Choose a password.'
+  if (password.length < PASSWORD_RULES.minLength) {
+    return `Use at least ${PASSWORD_RULES.minLength} characters.`
+  }
+  if (!/[a-zA-Z]/.test(password)) return 'Include at least one letter.'
+  if (!/\d/.test(password)) return 'Include at least one number.'
+  return null
+}
+
+/**
+ * Rough strength, for the meter under the sign-up password field.
+ * Deliberately simple and honest: it counts length and variety, and it is a
+ * hint to the customer rather than a gate — `getPasswordError` is the gate.
+ */
+export function scorePassword(password = '') {
+  let score = 0
+  if (password.length >= 8) score += 1
+  if (password.length >= 12) score += 1
+  if (/[a-z]/.test(password) && /[A-Z]/.test(password)) score += 1
+  if (/\d/.test(password) && /[^\w\s]/.test(password)) score += 1
+
+  // A short password never looks good, however varied it is.
+  if (password.length < 8) score = Math.min(score, 1)
+
+  const levels = [
+    { level: 'weak', label: 'Weak', advice: 'add a few more characters' },
+    { level: 'weak', label: 'Weak', advice: 'add a few more characters' },
+    { level: 'fair', label: 'Fair', advice: 'mix in capitals or a symbol' },
+    { level: 'good', label: 'Good', advice: 'add a symbol to finish it off' },
+    { level: 'strong', label: 'Strong', advice: null },
+  ]
+
+  return { score, ...levels[score] }
 }
 
 export function validateLogin({ identifier, password }) {
@@ -55,18 +98,50 @@ export function validateSignup(values) {
     errors.phone = 'Enter a valid Egyptian mobile number, e.g. 01012345678.'
   }
 
-  if (!values.password) {
-    errors.password = 'Choose a password.'
-  } else if (values.password.length < 8) {
-    errors.password = 'Use at least 8 characters.'
-  }
+  const passwordError = getPasswordError(values.password)
+  if (passwordError) errors.password = passwordError
 
-  if (values.confirmPassword !== values.password) {
+  if (!values.confirmPassword) {
+    errors.confirmPassword = 'Type your password again to confirm it.'
+  } else if (values.confirmPassword !== values.password) {
     errors.confirmPassword = 'Passwords do not match.'
   }
 
   if (!values.acceptedTerms) {
     errors.acceptedTerms = 'Please accept the Terms & Conditions to continue.'
+  }
+
+  return errors
+}
+
+/** The account page's change-password form. */
+export function validatePasswordChange({ currentPassword, newPassword, confirmPassword }) {
+  const errors = {}
+
+  if (!currentPassword) errors.currentPassword = 'Enter your current password.'
+
+  const passwordError = getPasswordError(newPassword)
+  if (passwordError) {
+    errors.newPassword = passwordError
+  } else if (newPassword === currentPassword) {
+    errors.newPassword = 'Choose a password you have not used here before.'
+  }
+
+  if (confirmPassword !== newPassword) {
+    errors.confirmPassword = 'Passwords do not match.'
+  }
+
+  return errors
+}
+
+/** The "forgot your password" form. */
+export function validatePasswordReset({ email }) {
+  const errors = {}
+
+  if (!email.trim()) {
+    errors.email = 'Enter the email on your account.'
+  } else if (!isValidEmail(email)) {
+    errors.email = 'Enter a valid email address.'
   }
 
   return errors

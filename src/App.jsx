@@ -9,6 +9,7 @@ import { Home } from '@/pages/Home/Home'
 import { Menu } from '@/pages/Menu/Menu'
 import { ProductDetails } from '@/pages/ProductDetails/ProductDetails'
 import { Offers } from '@/pages/Offers/Offers'
+import { Rewards } from '@/pages/Rewards/Rewards'
 import { About } from '@/pages/About/About'
 import { Branches } from '@/pages/Branches/Branches'
 import { Cart } from '@/pages/Cart/Cart'
@@ -40,6 +41,7 @@ export function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/menu/:itemId" element={<ProductDetails />} />
           <Route path="/offers" element={<Offers />} />
+          <Route path="/rewards" element={<Rewards />} />
           <Route path="/about" element={<About />} />
           <Route path="/branches" element={<Branches />} />
 

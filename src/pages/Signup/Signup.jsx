@@ -2,11 +2,15 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthLayout } from '@/components/AuthLayout/AuthLayout'
 import { FormField, CheckboxField } from '@/components/FormField/FormField'
+import { PasswordField } from '@/components/PasswordField/PasswordField'
 import { Button } from '@/components/Button/Button'
+import { Icon } from '@/components/Icon/Icon'
 import { useAuth } from '@/context/AuthContext'
 import { useToast } from '@/context/ToastContext'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
-import { validateSignup } from '@/utils/validation'
+import { validateSignup, PASSWORD_RULES } from '@/utils/validation'
+import { loyaltySettings } from '@/config/restaurant'
+import { formatPoints } from '@/components/Loyalty/Loyalty'
 import styles from './Signup.module.css'
 
 const EMPTY_FORM = {
@@ -19,16 +23,26 @@ const EMPTY_FORM = {
   acceptedTerms: false,
 }
 
+/**
+ * Create an account.
+ *
+ * DEMO NOTE: the account is written to this browser by
+ * services/authService.js. No email is verified and nothing is sent anywhere.
+ */
 export function Signup() {
   const navigate = useNavigate()
   const { signup } = useAuth()
   const { showToast } = useToast()
 
-  useDocumentTitle('Create an account', 'Create an EMBER account to order faster next time.')
+  useDocumentTitle(
+    'Create an account',
+    `Join Ember Rewards and start with ${loyaltySettings.joiningBonus} points.`,
+  )
 
   const [form, setForm] = useState(EMPTY_FORM)
   const [errors, setErrors] = useState({})
   const [formError, setFormError] = useState(null)
+  const [status, setStatus] = useState('idle') // idle | submitting | success
 
   const updateField = (name, value) => {
     setForm((current) => ({ ...current, [name]: value }))
@@ -36,8 +50,9 @@ export function Signup() {
     setFormError(null)
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
+    if (status !== 'idle') return
 
     const validationErrors = validateSignup(form)
     if (Object.keys(validationErrors).length > 0) {
@@ -45,20 +60,27 @@ export function Signup() {
       return
     }
 
-    const result = signup(form)
+    setStatus('submitting')
+    setFormError(null)
+
+    const result = await signup(form)
+
     if (result.error) {
       setFormError(result.error)
+      setErrors(result.fieldErrors ?? {})
+      setStatus('idle')
       return
     }
 
+    setStatus('success')
     showToast(`Welcome to the table, ${result.user.firstName}`)
-    navigate('/account', { replace: true })
+    setTimeout(() => navigate('/account', { replace: true }), 650)
   }
 
   return (
     <AuthLayout
       title="Create your account"
-      subtitle="Save your details, keep your order history, and reorder your usual in seconds."
+      subtitle="Save your details, keep your order history, and start earning on every order."
       image="/assets/images/restaurant/restaurant-dining.svg"
       imageAlt="Guests eating in one of our dining rooms"
       footer={
@@ -67,10 +89,26 @@ export function Signup() {
         </p>
       }
     >
+      <p className={styles.bonus}>
+        <Icon name="gift" size={18} />
+        <span>
+          <strong>{formatPoints(loyaltySettings.joiningBonus)} points</strong> land in your account
+          the moment you join — that is a free portion of fries and a drink.
+        </span>
+      </p>
+
       <form className={styles.form} onSubmit={handleSubmit} noValidate>
         {formError && (
           <p className={styles.formError} role="alert">
+            <Icon name="alert" size={17} />
             {formError}
+          </p>
+        )}
+
+        {status === 'success' && (
+          <p className={styles.formSuccess} role="status">
+            <Icon name="check" size={17} strokeWidth={2.4} />
+            Account created — setting up your rewards.
           </p>
         )}
 
@@ -119,22 +157,21 @@ export function Signup() {
           required
         />
 
-        <FormField
+        <PasswordField
           label="Password"
           name="password"
-          type="password"
           value={form.password}
           onChange={updateField}
           error={errors.password}
-          hint="At least 8 characters."
+          hint={PASSWORD_RULES.description}
           autoComplete="new-password"
+          showStrength
           required
         />
 
-        <FormField
+        <PasswordField
           label="Confirm password"
           name="confirmPassword"
-          type="password"
           value={form.confirmPassword}
           onChange={updateField}
           error={errors.confirmPassword}
@@ -152,12 +189,13 @@ export function Signup() {
           <Link to="/about#privacy">Privacy Policy</Link>.
         </CheckboxField>
 
-        <Button type="submit" size="lg" fullWidth>
-          Create account
+        <Button type="submit" size="lg" fullWidth isLoading={status === 'submitting'}>
+          {status === 'success' ? 'Account created' : 'Create account'}
         </Button>
 
         <p className={styles.demoHint}>
-          Demo account: your details are stored in this browser only and never sent anywhere.
+          Prototype: your account is stored in this browser only and never sent anywhere. Real
+          sign-up arrives with the backend.
         </p>
       </form>
     </AuthLayout>

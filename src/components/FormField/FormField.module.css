@@ -64,6 +64,24 @@ select.control {
   box-shadow: 0 0 0 4px var(--color-danger-soft);
 }
 
+/* A control with something pinned inside its right edge (the password eye). */
+.controlWrap {
+  position: relative;
+  display: flex;
+}
+
+.controlWrap .control {
+  padding-right: 3.25rem;
+}
+
+.endSlot {
+  position: absolute;
+  top: 50%;
+  right: var(--space-2);
+  display: flex;
+  transform: translateY(-50%);
+}
+
 .hint {
   font-size: var(--text-xs);
   color: var(--color-muted);

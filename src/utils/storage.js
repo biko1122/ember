@@ -18,6 +18,8 @@ export const STORAGE_KEYS = {
   orders: `${PREFIX}.orders`,
   favorites: `${PREFIX}.favorites`,
   addresses: `${PREFIX}.addresses`,
+  /** Ember Rewards ledgers, keyed by account id. */
+  loyalty: `${PREFIX}.loyalty`,
 }
 
 export function readStorage(key, fallback) {

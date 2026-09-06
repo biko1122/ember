@@ -1,8 +1,10 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Button } from '@/components/Button/Button'
 import { Icon } from '@/components/Icon/Icon'
 import { Tag } from '@/components/Tag/Tag'
 import { EmptyState } from '@/components/EmptyState/EmptyState'
+import { LoadingRegion, Skeleton } from '@/components/Skeleton/Skeleton'
+import { formatPoints } from '@/components/Loyalty/Loyalty'
 import { OrderStatusTimeline } from '@/components/OrderStatusTimeline/OrderStatusTimeline'
 import { useOrders } from '@/hooks/useOrders'
 import { useReorder } from '@/hooks/useReorder'
@@ -22,10 +24,28 @@ import styles from './OrderConfirmation.module.css'
  */
 export function OrderConfirmation() {
   const { orderNumber } = useParams()
-  const { getOrder } = useOrders()
+  const { getOrder, isLoading } = useOrders()
   const order = getOrder(orderNumber)
 
   useDocumentTitle(order ? `Order ${order.orderNumber}` : 'Order not found')
+
+  // The history is read asynchronously, so wait for it before deciding the
+  // order does not exist — otherwise every visit flashes "not found" first.
+  if (isLoading) {
+    return (
+      <LoadingRegion label="Loading your order" className={`page-container ${styles.page}`}>
+        <div className={styles.loadingHeader}>
+          <Skeleton shape="circle" width="64px" />
+          <Skeleton shape="title" width="16rem" height="2.5rem" />
+          <Skeleton width="22rem" />
+        </div>
+        <div className={styles.layout}>
+          <Skeleton shape="block" height="18rem" />
+          <Skeleton shape="block" height="18rem" />
+        </div>
+      </LoadingRegion>
+    )
+  }
 
   if (!order) {
     return (
@@ -71,6 +91,16 @@ function OrderView({ order }) {
             ? `Thank you, ${order.customer.fullName.split(' ')[0]} — order ${order.orderNumber} is with our kitchen.`
             : `Placed ${formatOrderDate(order.placedAt)}`}
         </p>
+
+        {isFreshOrder && order.pointsEarned > 0 && (
+          <p className={styles.pointsEarned}>
+            <Icon name="gift" size={18} />
+            You earned <strong>{formatPoints(order.pointsEarned)} points</strong> on this order.{' '}
+            <Link to="/rewards" className={styles.pointsLink}>
+              See your rewards
+            </Link>
+          </p>
+        )}
 
         {isFreshOrder && (
           <p className={styles.estimate}>

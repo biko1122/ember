@@ -5,21 +5,27 @@ import { App } from '@/App'
 import { AuthProvider } from '@/context/AuthContext'
 import { CartProvider } from '@/context/CartContext'
 import { FavoritesProvider } from '@/context/FavoritesContext'
+import { LoyaltyProvider } from '@/context/LoyaltyContext'
 import { ToastProvider } from '@/context/ToastContext'
+import { ErrorBoundary } from '@/components/ErrorBoundary/ErrorBoundary'
 import '@/styles/global.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <ToastProvider>
-        <AuthProvider>
-          <CartProvider>
-            <FavoritesProvider>
-              <App />
-            </FavoritesProvider>
-          </CartProvider>
-        </AuthProvider>
-      </ToastProvider>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <ToastProvider>
+          <AuthProvider>
+            <LoyaltyProvider>
+              <CartProvider>
+                <FavoritesProvider>
+                  <App />
+                </FavoritesProvider>
+              </CartProvider>
+            </LoyaltyProvider>
+          </AuthProvider>
+        </ToastProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   </StrictMode>,
 )

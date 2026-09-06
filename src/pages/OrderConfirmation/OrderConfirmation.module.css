@@ -188,3 +188,40 @@
     grid-column: 1 / -1;
   }
 }
+
+/* Points earned on this order -------------------------------------------- */
+.pointsEarned {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--color-secondary);
+  background-color: var(--color-secondary-soft);
+  border: 1px solid rgba(255, 194, 77, 0.3);
+  border-radius: var(--radius-pill);
+  animation: rise-in 400ms ease backwards 200ms;
+}
+
+.pointsEarned strong {
+  color: var(--color-ink);
+}
+
+.pointsLink {
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Loading placeholder ----------------------------------------------------- */
+.loadingHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}

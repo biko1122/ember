@@ -6,8 +6,12 @@ import styles from './FormField.module.css'
  * Every form on the site is built from these, so labels, focus rings, error
  * colours and spacing stay identical throughout.
  *
- *   as       'input' | 'textarea' | 'select'
- *   options  for selects: [{ value, label }]
+ *   as        'input' | 'textarea' | 'select'
+ *   options   for selects: [{ value, label }]
+ *   endSlot   a control pinned inside the right edge of the input — used by
+ *             PasswordField for its show/hide button
+ *   footer    extra content under the field, above the hint (the password
+ *             strength meter lives here)
  */
 export function FormField({
   label,
@@ -24,10 +28,15 @@ export function FormField({
   autoComplete,
   rows = 3,
   className = '',
+  endSlot = null,
+  footer = null,
+  ...rest
 }) {
   const id = `field-${name}`
   const errorId = `${id}-error`
   const hintId = `${id}-hint`
+
+  const describedBy = [error ? errorId : null, hint ? hintId : null].filter(Boolean).join(' ')
 
   const sharedProps = {
     id,
@@ -38,8 +47,9 @@ export function FormField({
     autoComplete,
     className: styles.control,
     'aria-invalid': error ? 'true' : undefined,
-    'aria-describedby': error ? errorId : hint ? hintId : undefined,
+    'aria-describedby': describedBy || undefined,
     onChange: (event) => onChange(name, event.target.value),
+    ...rest,
   }
 
   return (
@@ -62,9 +72,19 @@ export function FormField({
         </select>
       )}
 
-      {as === 'input' && <input {...sharedProps} type={type} />}
+      {as === 'input' &&
+        (endSlot ? (
+          <div className={styles.controlWrap}>
+            <input {...sharedProps} type={type} />
+            <span className={styles.endSlot}>{endSlot}</span>
+          </div>
+        ) : (
+          <input {...sharedProps} type={type} />
+        ))}
 
-      {hint && !error && (
+      {footer}
+
+      {hint && (
         <p id={hintId} className={styles.hint}>
           {hint}
         </p>

@@ -74,14 +74,14 @@ const DISHES = {
 
 /** How much room each dish needs, relative to a 1200 x 750 card. */
 const DISH_SCALE = {
-  pizza: 0.92,
-  mealTray: 0.9,
-  familyBox: 0.86,
-  bucket: 1,
-  sundae: 1,
-  iceCream: 1,
-  drink: 1.02,
-  default: 1.06,
+  pizza: 1.02,
+  mealTray: 1,
+  familyBox: 0.96,
+  bucket: 1.12,
+  sundae: 1.12,
+  iceCream: 1.12,
+  drink: 1.14,
+  default: 1.2,
 }
 
 /**

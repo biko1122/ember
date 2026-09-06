@@ -7,12 +7,14 @@ export const primaryNavLinks = [
   { label: 'Home', to: '/' },
   { label: 'Menu', to: '/menu' },
   { label: 'Offers', to: '/offers' },
+  { label: 'Rewards', to: '/rewards' },
   { label: 'About', to: '/about' },
   { label: 'Locations', to: '/branches' },
 ]
 
 export const customerNavLinks = [
   { label: 'My account', to: '/account' },
+  { label: 'Ember Rewards', to: '/rewards' },
   { label: 'My orders', to: '/orders' },
   { label: 'Log in', to: '/login' },
   { label: 'Create account', to: '/signup' },
