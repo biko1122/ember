@@ -1,0 +1,190 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding-block: var(--space-7);
+}
+
+.sectionTitle {
+  margin-bottom: var(--space-5);
+  font-size: var(--text-2xl);
+}
+
+/* Story ------------------------------------------------------------------ */
+.story {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.storyImage {
+  border-radius: var(--radius-lg);
+}
+
+.storyText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.storyText h2 {
+  font-size: var(--text-2xl);
+}
+
+.storyText p {
+  color: var(--color-muted);
+}
+
+/* Values ----------------------------------------------------------------- */
+.valueGrid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.value {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.valueIcon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: var(--space-1);
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.valueTitle {
+  font-size: var(--text-lg);
+}
+
+.valueText {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+/* Timeline --------------------------------------------------------------- */
+.milestones {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.milestone {
+  padding-top: var(--space-4);
+  border-top: 2px solid var(--color-border);
+}
+
+.milestoneYear {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.milestoneText {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+/* Gallery ---------------------------------------------------------------- */
+.gallery {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.galleryImage {
+  border-radius: var(--radius-lg);
+}
+
+/* Contact ---------------------------------------------------------------- */
+.contact {
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-alt);
+}
+
+.contactText {
+  max-width: 48ch;
+  color: var(--color-muted);
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-base);
+}
+
+.contactItem svg {
+  color: var(--color-primary);
+}
+
+.contactItem a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+/* Legal ------------------------------------------------------------------ */
+.legal {
+  max-width: 70ch;
+  scroll-margin-top: calc(var(--navbar-height) + var(--space-5));
+}
+
+.legal p {
+  color: var(--color-muted);
+}
+
+.legalTitle {
+  margin-bottom: var(--space-3);
+  font-size: var(--text-xl);
+}
+
+@media (min-width: 700px) {
+  .valueGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .milestones {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1000px) {
+  .story {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-7);
+  }
+
+  .valueGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .milestones {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .contact {
+    grid-template-columns: 1.4fr 1fr;
+    align-items: center;
+  }
+}

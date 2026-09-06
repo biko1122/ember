@@ -1,0 +1,76 @@
+.stepper {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: var(--space-2);
+}
+
+.stepper::-webkit-scrollbar {
+  display: none;
+}
+
+.step {
+  flex: 1;
+  min-width: max-content;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast);
+}
+
+.trigger:not(:disabled):hover {
+  background-color: var(--color-surface-alt);
+}
+
+.trigger:disabled {
+  cursor: default;
+}
+
+.marker {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-muted);
+  background-color: var(--color-surface);
+}
+
+.label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.step[data-state='done'] .marker {
+  border-color: var(--color-success);
+  background-color: var(--color-success);
+  color: var(--color-on-primary);
+}
+
+.step[data-state='done'] .label {
+  color: var(--color-text);
+}
+
+.step[data-state='current'] .marker {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.step[data-state='current'] .label {
+  color: var(--color-ink);
+}

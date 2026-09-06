@@ -1,0 +1,51 @@
+.layout {
+  display: grid;
+  gap: var(--space-5);
+  padding-block: var(--space-6) var(--space-7);
+  align-items: start;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+.stepPanel {
+  padding: var(--space-5);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  animation: rise-in var(--transition-base);
+}
+
+.stepActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+/* When there is no Back button, push Continue to the right. */
+.stepActions > *:only-child {
+  margin-left: auto;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+@media (min-width: 960px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: var(--space-6);
+  }
+
+  .sidebar {
+    position: sticky;
+    top: calc(var(--navbar-height) + var(--space-5));
+  }
+}

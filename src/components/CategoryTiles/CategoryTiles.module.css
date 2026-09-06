@@ -1,0 +1,77 @@
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+/* Photo-filled tile with the name sitting on a gradient at the bottom. */
+.tile {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  transition: border-color var(--transition-base), transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.tile:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-primary-line);
+  box-shadow: var(--shadow-md);
+}
+
+.image {
+  width: 100%;
+  transition: transform 500ms ease;
+}
+
+.tile:hover .image {
+  transform: scale(1.08);
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--scrim-soft);
+  pointer-events: none;
+}
+
+.name {
+  position: absolute;
+  left: var(--space-3);
+  right: var(--space-3);
+  bottom: var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-ink);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+@media (min-width: 560px) {
+  .tiles {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .name {
+    font-size: var(--text-base);
+  }
+}
+
+@media (min-width: 900px) {
+  .tiles {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .name {
+    left: var(--space-4);
+    right: var(--space-4);
+    bottom: var(--space-4);
+    font-size: var(--text-lg);
+  }
+}

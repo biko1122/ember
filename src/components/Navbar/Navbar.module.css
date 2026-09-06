@@ -1,0 +1,192 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--transition-base), border-color var(--transition-base),
+    backdrop-filter var(--transition-base);
+}
+
+/* Transparent over the hero, frosted once the page moves. */
+.navbar[data-scrolled='true'] {
+  background-color: rgba(16, 14, 13, 0.82);
+  backdrop-filter: blur(16px);
+  border-bottom-color: var(--color-border);
+}
+
+/* Inner pages have no hero behind the bar, so it is always solid there. */
+.navbar[data-solid='true'] {
+  background-color: var(--color-background);
+  border-bottom-color: var(--color-border);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: var(--navbar-height);
+}
+
+/* Hamburger — mobile only ------------------------------------------------ */
+.hamburger {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-left: calc(var(--space-2) * -1);
+  border-radius: var(--radius-md);
+  color: var(--color-ink);
+  transition: background-color var(--transition-fast);
+}
+
+.hamburger:hover {
+  background-color: var(--color-surface-alt);
+}
+
+/* Desktop links ---------------------------------------------------------- */
+.links {
+  display: none;
+  align-items: center;
+  gap: var(--space-1);
+  margin-left: var(--space-5);
+}
+
+.link {
+  position: relative;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.72);
+  transition: color var(--transition-fast);
+}
+
+.link:hover {
+  color: var(--color-ink);
+}
+
+.linkActive {
+  color: var(--color-ink);
+}
+
+.linkActive::after {
+  content: '';
+  position: absolute;
+  left: var(--space-3);
+  right: var(--space-3);
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--color-primary);
+  box-shadow: 0 0 12px var(--color-primary);
+}
+
+/* Right-hand actions ----------------------------------------------------- */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: auto;
+}
+
+.orderTypeChip {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-ink);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.orderTypeChip svg:first-child {
+  color: var(--color-primary);
+}
+
+.orderTypeChip:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-soft);
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-ink);
+  transition: background-color var(--transition-fast);
+}
+
+.iconButton:hover {
+  background-color: var(--color-surface-alt);
+}
+
+.accountLabel {
+  display: none;
+  max-width: 12ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Cart button + count badge --------------------------------------------- */
+.cartButton {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-pill);
+  color: var(--color-ink);
+  background-color: var(--color-surface-alt);
+  transition: background-color var(--transition-fast);
+}
+
+.cartButton:hover {
+  background-color: var(--color-surface-high);
+}
+
+.cartBadge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 20px;
+  height: 20px;
+  padding-inline: 5px;
+  border: 2px solid var(--color-background);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 17px;
+  text-align: center;
+  animation: pop 320ms ease;
+}
+
+/* Order-type modal content ---------------------------------------------- */
+.orderTypeModalBody {
+  padding: var(--space-6) var(--space-5) var(--space-5);
+}
+
+.orderTypeModalTitle {
+  margin-bottom: var(--space-4);
+  font-size: var(--text-xl);
+}
+
+/* Breakpoints ------------------------------------------------------------ */
+@media (min-width: 600px) {
+  .accountLabel { display: inline; }
+}
+
+@media (min-width: 920px) {
+  .hamburger { display: none; }
+  .links { display: flex; }
+  .orderTypeChip { display: inline-flex; }
+}

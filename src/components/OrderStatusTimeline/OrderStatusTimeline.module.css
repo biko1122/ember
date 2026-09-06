@@ -1,0 +1,65 @@
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-block: var(--space-3);
+}
+
+/* Connecting line between markers. */
+.stage:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 13px;
+  top: 34px;
+  bottom: -6px;
+  width: 2px;
+  background-color: var(--color-border);
+}
+
+.stage[data-state='done']:not(:last-child)::before {
+  background-color: var(--color-success);
+}
+
+.marker {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-surface);
+  color: var(--color-on-primary);
+}
+
+.label {
+  font-size: var(--text-base);
+  color: var(--color-muted);
+}
+
+.stage[data-state='done'] .marker {
+  border-color: var(--color-success);
+  background-color: var(--color-success);
+}
+
+.stage[data-state='done'] .label {
+  color: var(--color-text);
+}
+
+.stage[data-state='current'] .marker {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+  box-shadow: 0 0 0 5px var(--color-primary-soft);
+}
+
+.stage[data-state='current'] .label {
+  font-weight: 700;
+  color: var(--color-ink);
+}

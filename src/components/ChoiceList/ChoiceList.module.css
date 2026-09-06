@@ -1,0 +1,106 @@
+.list {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.option:hover {
+  border-color: var(--color-primary);
+}
+
+.option[data-disabled='true'] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.option:has(.input:checked) {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-soft);
+}
+
+.option:has(.input:focus-visible) {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* The native radio is hidden; the tick on the right shows the state. */
+.input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-alt);
+  color: var(--color-ink);
+}
+
+.option:has(.input:checked) .icon {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.description {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.check {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-left: auto;
+  flex-shrink: 0;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  color: transparent;
+  background-color: var(--color-surface);
+}
+
+.option:has(.input:checked) .check {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+@media (min-width: 640px) {
+  .list[data-columns='2'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .list[data-columns='3'] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

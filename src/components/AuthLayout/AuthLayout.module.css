@@ -1,0 +1,96 @@
+.layout {
+  display: grid;
+  min-height: calc(100vh - var(--navbar-height));
+}
+
+/* Photography panel — hidden on small screens. */
+.aside {
+  position: relative;
+  display: none;
+  overflow: hidden;
+  background-color: var(--color-surface);
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  opacity: 0.55;
+}
+
+.asideOverlay {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  height: 100%;
+  padding: var(--space-7);
+  background: var(--scrim-strong);
+}
+
+.asideText {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.formSide {
+  display: grid;
+  place-items: center;
+  padding: var(--space-6) var(--space-4) var(--space-8);
+}
+
+.formInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  width: 100%;
+  max-width: 26rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.title {
+  font-size: var(--text-3xl);
+}
+
+.subtitle {
+  color: var(--color-muted);
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.guestLink {
+  align-self: center;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-muted);
+  border-bottom: 1px solid var(--color-border);
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.guestLink:hover {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+@media (min-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .aside {
+    display: block;
+  }
+}

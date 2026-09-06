@@ -1,0 +1,40 @@
+.selector {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-surface);
+  overflow: hidden;
+}
+
+.step {
+  display: grid;
+  place-items: center;
+  color: var(--color-ink);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.step:hover:not(:disabled) {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+}
+
+.step:disabled {
+  color: var(--color-border);
+  cursor: not-allowed;
+}
+
+.value {
+  min-width: 2ch;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sizes ------------------------------------------------------------------ */
+.md .step { width: 40px; height: 40px; }
+.md .value { font-size: var(--text-base); padding-inline: var(--space-1); }
+
+.sm .step { width: 32px; height: 32px; }
+.sm .value { font-size: var(--text-sm); }

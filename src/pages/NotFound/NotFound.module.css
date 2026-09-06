@@ -1,0 +1,33 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding-block: var(--space-9);
+  text-align: center;
+}
+
+.code {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 14vw, 8rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-primary);
+}
+
+.title {
+  font-size: var(--text-3xl);
+}
+
+.description {
+  max-width: 46ch;
+  color: var(--color-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}

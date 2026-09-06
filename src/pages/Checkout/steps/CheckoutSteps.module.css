@@ -1,0 +1,120 @@
+/* Shared styling for all five checkout steps. */
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.title {
+  font-size: var(--text-xl);
+}
+
+.intro {
+  margin-top: calc(var(--space-2) * -1);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.fields {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.fieldRow {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.error {
+  font-size: var(--text-sm);
+  color: var(--color-danger);
+}
+
+.demoNotice {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-alt);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.demoNotice svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Review step ------------------------------------------------------------ */
+.reviewSection {
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.reviewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.reviewTitle {
+  font-size: var(--text-base);
+}
+
+.editButton {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.editButton:hover {
+  text-decoration: underline;
+}
+
+.reviewBody {
+  font-size: var(--text-sm);
+  line-height: 1.8;
+  color: var(--color-muted);
+}
+
+.reviewLines {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.reviewLine {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.reviewLineName {
+  color: var(--color-text);
+}
+
+.reviewLineOptions {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+}
+
+.reviewLinePrice {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+  .fieldRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fieldRowThirds {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

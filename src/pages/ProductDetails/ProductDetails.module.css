@@ -1,0 +1,157 @@
+.page {
+  padding-block: var(--space-5) var(--space-7);
+}
+
+.notFound {
+  padding-block: var(--space-8);
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.breadcrumb a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  color: var(--color-text);
+}
+
+.layout {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.mediaWrap {
+  position: relative;
+}
+
+.image {
+  border-radius: var(--radius-lg);
+}
+
+.discountBadge {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  font-size: var(--text-sm);
+  padding: var(--space-1) var(--space-3);
+}
+
+.favorite {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 44px;
+  height: 44px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.tags:empty {
+  display: none;
+}
+
+.name {
+  font-size: var(--text-3xl);
+}
+
+.description {
+  font-size: var(--text-lg);
+  color: var(--color-muted);
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.price {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.oldPrice {
+  font-size: var(--text-lg);
+  color: var(--color-muted);
+  text-decoration: line-through;
+}
+
+.calories {
+  margin-left: auto;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.addRow {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-3);
+  padding-top: var(--space-2);
+}
+
+.addRow > *:first-child {
+  align-self: flex-start;
+}
+
+@media (min-width: 520px) {
+  .addRow {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.note {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.note svg {
+  flex-shrink: 0;
+}
+
+.related {
+  padding-block: var(--space-6) var(--space-7);
+}
+
+@media (min-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-7);
+    align-items: start;
+  }
+
+  /* Keep the photo in view while the options list scrolls. */
+  .mediaColumn {
+    position: sticky;
+    top: calc(var(--navbar-height) + var(--space-5));
+  }
+}

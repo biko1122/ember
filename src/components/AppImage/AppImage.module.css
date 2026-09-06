@@ -1,0 +1,38 @@
+.frame {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-surface-alt);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fade-in var(--transition-base);
+}
+
+/* Shown until the real photo is added. A warm, softly lit panel rather than a
+   "missing file" pattern, so the page still looks deliberate while you are
+   collecting photography. See ASSETS.md. */
+.placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.16);
+  background-color: var(--color-surface-alt);
+  background-image:
+    radial-gradient(120% 90% at 30% 15%, rgba(255, 92, 31, 0.16) 0%, transparent 60%),
+    radial-gradient(90% 80% at 85% 90%, rgba(255, 194, 77, 0.1) 0%, transparent 55%);
+}
+
+.placeholder svg {
+  filter: drop-shadow(0 0 18px rgba(255, 92, 31, 0.35));
+}
+
+/* Aspect ratios ---------------------------------------------------------- */
+.square { aspect-ratio: 1 / 1; }
+.wide { aspect-ratio: 16 / 10; }
+.portrait { aspect-ratio: 3 / 4; }
+.hero { aspect-ratio: 4 / 3; }
+.none { aspect-ratio: auto; height: 100%; }

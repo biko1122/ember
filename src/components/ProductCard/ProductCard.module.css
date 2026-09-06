@@ -1,0 +1,170 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-primary-line);
+  box-shadow: var(--shadow-md);
+}
+
+/* Image, and everything that sits on top of it --------------------------- */
+.media {
+  position: relative;
+  overflow: hidden;
+}
+
+.imageLink {
+  display: block;
+}
+
+.image {
+  transition: transform 500ms ease;
+}
+
+.card:hover .image {
+  transform: scale(1.06);
+}
+
+/* Fades the photo into the card body so there is no hard seam. */
+.media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(16, 14, 13, 0.25) 0%, transparent 35%),
+    linear-gradient(0deg, var(--color-surface) 0%, transparent 24%);
+  transition: opacity var(--transition-base);
+}
+
+.discountBadge {
+  position: absolute;
+  z-index: 1;
+  top: var(--space-3);
+  left: var(--space-3);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-sm);
+  box-shadow: 0 4px 14px rgba(255, 92, 31, 0.35);
+}
+
+.favorite {
+  position: absolute;
+  z-index: 1;
+  top: var(--space-3);
+  right: var(--space-3);
+}
+
+/* Tags overlay the photo so product names line up across a grid row. */
+.tags {
+  position: absolute;
+  z-index: 1;
+  left: var(--space-3);
+  bottom: var(--space-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  max-width: calc(100% - var(--space-6));
+}
+
+.tags:empty {
+  display: none;
+}
+
+/* Text ------------------------------------------------------------------- */
+.body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-4) var(--space-5);
+}
+
+.name {
+  font-size: var(--text-lg);
+  line-height: 1.25;
+}
+
+/* The whole tile looks clickable, but only this link is in the tab order. */
+.nameLink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.card:hover .nameLink {
+  color: var(--color-primary);
+}
+
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: auto;
+  padding-top: var(--space-4);
+}
+
+.prices {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.price {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.oldPrice {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  text-decoration: line-through;
+}
+
+/* Sits above the card-wide link so it stays clickable. */
+.addButton {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-on-primary);
+  background-color: var(--color-primary);
+  transition: background-color var(--transition-fast), transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.addButton:hover {
+  background-color: var(--color-primary-dark);
+  box-shadow: 0 6px 18px rgba(255, 92, 31, 0.35);
+}
+
+.addButton:active {
+  transform: scale(0.94);
+}

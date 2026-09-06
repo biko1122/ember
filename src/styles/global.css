@@ -1,0 +1,279 @@
+/* ==========================================================================
+   EMBER — global stylesheet
+   1. Design tokens   (change the whole theme from the :root block below)
+   2. Reset
+   3. Base elements
+   4. Layout helpers
+   5. Shared animations
+   ========================================================================== */
+
+/* 1. DESIGN TOKENS ------------------------------------------------------- */
+:root {
+  /* Tells the browser to render scrollbars, selects and date pickers dark. */
+  color-scheme: dark;
+
+  /* Brand -----------------------------------------------------------------
+     On a dark background the accent has to be brighter than it would be on
+     white, and hover goes *lighter* rather than darker.                     */
+  --color-primary: #ff5c1f;
+  --color-primary-dark: #ff7c48;
+  --color-primary-soft: rgba(255, 92, 31, 0.14);
+  --color-primary-line: rgba(255, 92, 31, 0.42);
+  /* Text sitting on top of a solid --color-primary fill. */
+  --color-on-primary: #1a1008;
+
+  --color-secondary: #ffc24d;
+  --color-secondary-soft: rgba(255, 194, 77, 0.14);
+
+  /* Neutrals — warm, so the greys never look blue next to food photography */
+  --color-background: #100e0d;
+  /* Below the page — used by the footer so the site has a visible base. */
+  --color-surface-deep: #0b0a09;
+  --color-surface: #191614;
+  --color-surface-alt: #221e1b;
+  --color-surface-high: #2c2623;
+  --color-ink: #ffffff;
+  --color-text: #e8e3dd;
+  --color-muted: #a49c94;
+  --color-border: #2e2825;
+  --color-border-strong: #453d37;
+
+  /* Inverted chip / button — light block on the dark page */
+  --color-inverse-surface: #f7f3ee;
+  --color-inverse-surface-hover: #ffffff;
+  --color-inverse-text: #100e0d;
+
+  /* Feedback */
+  --color-success: #59d99a;
+  --color-success-soft: rgba(89, 217, 154, 0.14);
+  --color-danger: #ff7568;
+  --color-danger-soft: rgba(255, 117, 104, 0.14);
+  --color-info: #6cb0ff;
+
+  /* Scrims used over photography so overlaid text stays readable */
+  --scrim-strong: linear-gradient(
+    180deg,
+    rgba(16, 14, 13, 0.15) 0%,
+    rgba(16, 14, 13, 0.75) 55%,
+    rgba(16, 14, 13, 0.96) 100%
+  );
+  --scrim-soft: linear-gradient(180deg, rgba(16, 14, 13, 0) 40%, rgba(16, 14, 13, 0.88) 100%);
+
+  /* Typography */
+  --font-display: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: clamp(2rem, 4vw, 2.5rem);
+  --text-4xl: clamp(2.75rem, 7vw, 4.75rem);
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* Shape */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  /* Elevation — on dark, depth comes from darker shadows plus a lit top edge */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.6);
+  --glow-primary: 0 0 0 1px var(--color-primary-line), 0 12px 32px rgba(255, 92, 31, 0.18);
+
+  /* Motion */
+  --transition-fast: 140ms ease;
+  --transition-base: 220ms ease;
+
+  /* Layout */
+  --page-width: 1240px;
+  --navbar-height: 76px;
+
+  --z-sticky: 100;
+  --z-drawer: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+}
+
+/* 2. RESET --------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 3. BASE ELEMENTS ------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--text-4xl); }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-xl); }
+
+p { text-wrap: pretty; }
+
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+/* 4. LAYOUT HELPERS ------------------------------------------------------ */
+.page-container {
+  width: 100%;
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    padding-inline: var(--space-6);
+  }
+}
+
+/* Visible to screen readers only — used for form labels and icon buttons. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Skip link revealed on keyboard focus. */
+.skip-link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: var(--z-toast);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  transform: translateY(-200%);
+  transition: transform var(--transition-fast);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* 5. SHARED ANIMATIONS --------------------------------------------------- */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Respect users who prefer less motion. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

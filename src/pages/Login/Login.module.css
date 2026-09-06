@@ -1,0 +1,45 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.formError {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background-color: var(--color-danger-soft);
+  font-size: var(--text-sm);
+  color: var(--color-danger);
+}
+
+.forgotLink {
+  align-self: flex-end;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.forgotLink:hover {
+  text-decoration: underline;
+}
+
+.switchPrompt {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.switchPrompt a {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.switchPrompt a:hover {
+  text-decoration: underline;
+}
+
+.demoHint {
+  font-size: var(--text-xs);
+  line-height: 1.7;
+  color: var(--color-muted);
+}
