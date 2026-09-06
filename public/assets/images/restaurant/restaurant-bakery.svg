@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+<defs>
+<radialGradient id="ground" cx="50%" cy="32%" r="84%">
+<stop offset="0%" stop-color="hsl(30.37 33% 17%)"/>
+<stop offset="58%" stop-color="hsl(30.37 26% 10%)"/>
+<stop offset="100%" stop-color="hsl(30.37 22% 6%)"/>
+</radialGradient>
+<radialGradient id="keyLight" cx="50%" cy="44%" r="50%">
+<stop offset="0%" stop-color="hsl(26 96% 58% / 0.16)"/>
+<stop offset="55%" stop-color="hsl(20 92% 46% / 0.054400000000000004)"/>
+<stop offset="100%" stop-color="hsl(20 90% 40% / 0)"/>
+</radialGradient>
+<radialGradient id="dishShadow" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="hsl(30.37 60% 3% / 0.6)"/>
+<stop offset="100%" stop-color="hsl(30.37 60% 3% / 0)"/>
+</radialGradient>
+<radialGradient id="vignette" cx="50%" cy="46%" r="72%">
+<stop offset="52%" stop-color="hsl(30.37 40% 4% / 0)"/>
+<stop offset="100%" stop-color="hsl(30.37 40% 4% / 0.62)"/>
+</radialGradient>
+<linearGradient id="topSheen" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="hsl(38 100% 72% / 0.11)"/>
+<stop offset="45%" stop-color="hsl(38 100% 72% / 0)"/>
+</linearGradient>
+</defs>
+<rect width="800" height="800" fill="url(#ground)"/>
+<ellipse cx="400" cy="400" rx="368" ry="352" fill="url(#keyLight)"/>
+<rect width="800" height="544" fill="hsl(24 26% 13%)"/><rect y="544" width="800" height="256" fill="hsl(24 22% 9%)"/><rect y="538" width="800" height="12" fill="hsl(34 60% 50% / 0.22)"/><g fill="hsl(30 40% 40% / 0.16)"><rect x="0" y="65.28" width="14" height="478.72"/><rect x="46" y="65.28" width="14" height="478.72"/><rect x="92" y="65.28" width="14" height="478.72"/><rect x="138" y="65.28" width="14" height="478.72"/><rect x="184" y="65.28" width="14" height="478.72"/><rect x="230" y="65.28" width="14" height="478.72"/><rect x="276" y="65.28" width="14" height="478.72"/><rect x="322" y="65.28" width="14" height="478.72"/><rect x="368" y="65.28" width="14" height="478.72"/><rect x="414" y="65.28" width="14" height="478.72"/><rect x="460" y="65.28" width="14" height="478.72"/><rect x="506" y="65.28" width="14" height="478.72"/><rect x="552" y="65.28" width="14" height="478.72"/><rect x="598" y="65.28" width="14" height="478.72"/><rect x="644" y="65.28" width="14" height="478.72"/><rect x="690" y="65.28" width="14" height="478.72"/><rect x="736" y="65.28" width="14" height="478.72"/><rect x="782" y="65.28" width="14" height="478.72"/></g><rect y="544" width="800" height="128" fill="hsl(34 70% 50% / 0.06)"/><g>
+<path d="M133.33 0 L133.33 106.01" stroke="hsl(30 30% 60% / 0.5)" stroke-width="3"/>
+<path d="M91.33 132.01 q42 -52 84 0 z" fill="hsl(20 44% 24%)"/>
+<ellipse cx="133.33" cy="132.01" rx="42" ry="9" fill="hsl(42 96% 72%)"/>
+<path d="M-16.67 472.01 L91.33 132.01 L175.33 132.01 L283.33 472.01 z" fill="hsl(38 96% 62% / 0.11104433637112379)"/>
+</g><g>
+<path d="M400 0 L400 146.47" stroke="hsl(30 30% 60% / 0.5)" stroke-width="3"/>
+<path d="M358 172.47 q42 -52 84 0 z" fill="hsl(20 44% 24%)"/>
+<ellipse cx="400" cy="172.47" rx="42" ry="9" fill="hsl(42 96% 72%)"/>
+<path d="M250 512.47 L358 172.47 L442 172.47 L550 512.47 z" fill="hsl(38 96% 62% / 0.10256613310892135)"/>
+</g><g>
+<path d="M666.67 0 L666.67 117.3" stroke="hsl(30 30% 60% / 0.5)" stroke-width="3"/>
+<path d="M624.67 143.3 q42 -52 84 0 z" fill="hsl(20 44% 24%)"/>
+<ellipse cx="666.67" cy="143.3" rx="42" ry="9" fill="hsl(42 96% 72%)"/>
+<path d="M516.67 483.3 L624.67 143.3 L708.67 143.3 L816.67 483.3 z" fill="hsl(38 96% 62% / 0.10363789349794389)"/>
+</g><rect x="0" y="595.2" width="800" height="204.8" fill="hsl(26 30% 19%)"/><rect x="0" y="595.2" width="800" height="16" fill="hsl(32 40% 32%)"/><rect x="120" y="547.2" width="560" height="17.6" rx="5" fill="hsl(28 8% 30%)"/><ellipse cx="136" cy="534.4" rx="28.8" ry="17.6" fill="hsl(32 66% 57.83%)"/><ellipse cx="129.6" cy="528" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><ellipse cx="224" cy="534.4" rx="28.8" ry="17.6" fill="hsl(32 66% 54.85%)"/><ellipse cx="217.6" cy="528" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><ellipse cx="312" cy="534.4" rx="28.8" ry="17.6" fill="hsl(32 66% 50.36%)"/><ellipse cx="305.6" cy="528" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><ellipse cx="400" cy="534.4" rx="28.8" ry="17.6" fill="hsl(32 66% 56.7%)"/><ellipse cx="393.6" cy="528" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><ellipse cx="488" cy="534.4" rx="28.8" ry="17.6" fill="hsl(32 66% 52.36%)"/><ellipse cx="481.6" cy="528" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><ellipse cx="576" cy="534.4" rx="28.8" ry="17.6" fill="hsl(32 66% 52.65%)"/><ellipse cx="569.6" cy="528" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><ellipse cx="664" cy="534.4" rx="28.8" ry="17.6" fill="hsl(32 66% 49.52%)"/><ellipse cx="657.6" cy="528" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><rect x="120" y="487.2" width="560" height="17.6" rx="5" fill="hsl(28 8% 30%)"/><ellipse cx="136" cy="474.4" rx="28.8" ry="17.6" fill="hsl(32 66% 47.87%)"/><ellipse cx="129.6" cy="468" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><ellipse cx="224" cy="474.4" rx="28.8" ry="17.6" fill="hsl(32 66% 56.04%)"/><ellipse cx="217.6" cy="468" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><ellipse cx="312" cy="474.4" rx="28.8" ry="17.6" fill="hsl(32 66% 54.37%)"/><ellipse cx="305.6" cy="468" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><ellipse cx="400" cy="474.4" rx="28.8" ry="17.6" fill="hsl(32 66% 46.68%)"/><ellipse cx="393.6" cy="468" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><ellipse cx="488" cy="474.4" rx="28.8" ry="17.6" fill="hsl(32 66% 48.27%)"/><ellipse cx="481.6" cy="468" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><ellipse cx="576" cy="474.4" rx="28.8" ry="17.6" fill="hsl(32 66% 53.83%)"/><ellipse cx="569.6" cy="468" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><ellipse cx="664" cy="474.4" rx="28.8" ry="17.6" fill="hsl(32 66% 55.69%)"/><ellipse cx="657.6" cy="468" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><rect x="120" y="427.2" width="560" height="17.6" rx="5" fill="hsl(28 8% 30%)"/><ellipse cx="136" cy="414.4" rx="28.8" ry="17.6" fill="hsl(32 66% 52.43%)"/><ellipse cx="129.6" cy="408" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><ellipse cx="224" cy="414.4" rx="28.8" ry="17.6" fill="hsl(32 66% 53.85%)"/><ellipse cx="217.6" cy="408" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><ellipse cx="312" cy="414.4" rx="28.8" ry="17.6" fill="hsl(32 66% 56.83%)"/><ellipse cx="305.6" cy="408" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><ellipse cx="400" cy="414.4" rx="28.8" ry="17.6" fill="hsl(32 66% 54.07%)"/><ellipse cx="393.6" cy="408" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><ellipse cx="488" cy="414.4" rx="28.8" ry="17.6" fill="hsl(32 66% 51.56%)"/><ellipse cx="481.6" cy="408" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><ellipse cx="576" cy="414.4" rx="28.8" ry="17.6" fill="hsl(32 66% 55.28%)"/><ellipse cx="569.6" cy="408" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><ellipse cx="664" cy="414.4" rx="28.8" ry="17.6" fill="hsl(32 66% 51%)"/><ellipse cx="657.6" cy="408" rx="16" ry="7.2" fill="hsl(42 92% 76% / 0.45)"/><g transform="translate(656 579.2) scale(1.12)" fill="hsl(20 30% 6% / 0.7)">
+<circle cx="0" cy="-92.57" r="34"/>
+<path d="M-46 0 q0 -58 46 -58 q46 0 46 58 z"/>
+</g>
+<rect width="800" height="800" fill="url(#topSheen)"/>
+<rect width="800" height="800" fill="url(#vignette)"/>
+</svg>

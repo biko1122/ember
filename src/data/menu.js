@@ -138,7 +138,7 @@ export const menuItems = [
       'Two buttermilk-fried chicken fillets, melted cheddar, crisp lettuce and our ember sauce in a toasted brioche bun.',
     price: 189,
     oldPrice: 219,
-    image: '/assets/images/products/burger-double-stack.jpg',
+    image: '/assets/images/products/burger-double-stack.svg',
     calories: 820,
     featured: true,
     popular: true,
@@ -151,7 +151,7 @@ export const menuItems = [
     description:
       'A 150g flame-grilled beef patty with tomato, pickles, onion and house burger sauce. The one we started with.',
     price: 145,
-    image: '/assets/images/products/burger-classic.jpg',
+    image: '/assets/images/products/burger-classic.svg',
     calories: 640,
     popular: true,
     customizations: [burgerExtras()],
@@ -163,7 +163,7 @@ export const menuItems = [
     description:
       'Char-grilled beef, smoked beef bacon, crispy onions and a slow-cooked BBQ glaze on a sesame bun.',
     price: 199,
-    image: '/assets/images/products/burger-smoky-bbq.jpg',
+    image: '/assets/images/products/burger-smoky-bbq.svg',
     calories: 780,
     featured: true,
     customizations: [burgerExtras()],
@@ -175,7 +175,7 @@ export const menuItems = [
     description:
       'Chicken fillet tossed in chilli crumb with pepper jack, jalapenos and a cooling herb mayo.',
     price: 175,
-    image: '/assets/images/products/burger-fiery-crunch.jpg',
+    image: '/assets/images/products/burger-fiery-crunch.svg',
     calories: 710,
     spicy: true,
     customizations: [spiceGroup(), burgerExtras()],
@@ -187,7 +187,7 @@ export const menuItems = [
     description:
       'Beef patty with buttered field mushrooms, nutty Swiss cheese and a truffle-touched mayo.',
     price: 205,
-    image: '/assets/images/products/burger-mushroom-swiss.jpg',
+    image: '/assets/images/products/burger-mushroom-swiss.svg',
     calories: 750,
     customizations: [burgerExtras()],
   },
@@ -198,7 +198,7 @@ export const menuItems = [
     description:
       'Grilled halloumi, roasted peppers, rocket and sun-dried tomato pesto. Fully vegetarian.',
     price: 165,
-    image: '/assets/images/products/burger-halloumi.jpg',
+    image: '/assets/images/products/burger-halloumi.svg',
     calories: 590,
     vegetarian: true,
     customizations: [burgerExtras()],
@@ -210,7 +210,7 @@ export const menuItems = [
     description:
       'Double 120g patties, aged cheddar, caramelised onion jam and smoked garlic aioli. The kitchen’s own pick.',
     price: 245,
-    image: '/assets/images/products/burger-signature.jpg',
+    image: '/assets/images/products/burger-signature.svg',
     calories: 910,
     featured: true,
     customizations: [burgerExtras()],
@@ -224,7 +224,7 @@ export const menuItems = [
     description:
       'Five hand-breaded chicken tenders, marinated overnight and fried till golden. Served with a dip of your choice.',
     price: 155,
-    image: '/assets/images/products/chicken-crispy-strips.jpg',
+    image: '/assets/images/products/chicken-crispy-strips.svg',
     calories: 620,
     popular: true,
     customizations: [dipGroup()],
@@ -237,7 +237,7 @@ export const menuItems = [
       'Eight wings glazed in our chilli-honey butter and finished with toasted sesame.',
     price: 175,
     oldPrice: 195,
-    image: '/assets/images/products/chicken-hot-wings.jpg',
+    image: '/assets/images/products/chicken-hot-wings.svg',
     calories: 690,
     spicy: true,
     featured: true,
@@ -250,7 +250,7 @@ export const menuItems = [
     description:
       'Bite-sized pieces of seasoned chicken, endlessly snackable, with a dip on the side.',
     price: 110,
-    image: '/assets/images/products/chicken-popcorn.jpg',
+    image: '/assets/images/products/chicken-popcorn.svg',
     calories: 480,
     customizations: [sizeGroup(45), dipGroup()],
   },
@@ -261,7 +261,7 @@ export const menuItems = [
     description:
       'Quarter chicken marinated in lemon, thyme and smoked paprika, grilled over an open flame.',
     price: 165,
-    image: '/assets/images/products/chicken-grilled-quarter.jpg',
+    image: '/assets/images/products/chicken-grilled-quarter.svg',
     calories: 430,
     customizations: [dipGroup()],
   },
@@ -272,7 +272,7 @@ export const menuItems = [
     description:
       'Four whole breast fillets in our signature crumb — the centrepiece of any table.',
     price: 235,
-    image: '/assets/images/products/chicken-crispy-fillets.jpg',
+    image: '/assets/images/products/chicken-crispy-fillets.svg',
     calories: 880,
     featured: true,
     customizations: [spiceGroup(), dipGroup()],
@@ -284,7 +284,7 @@ export const menuItems = [
     description:
       'Eight pieces of bone-in fried chicken seasoned with our eleven-spice rub. Feeds three to four.',
     price: 395,
-    image: '/assets/images/products/chicken-bucket-8.jpg',
+    image: '/assets/images/products/chicken-bucket-8.svg',
     calories: 1840,
     popular: true,
     customizations: [spiceGroup(), dipGroup()],
@@ -298,7 +298,7 @@ export const menuItems = [
     description:
       'Four crispy tenders with your choice of side, a drink and a dip. Lunch, handled.',
     price: 215,
-    image: '/assets/images/products/meal-crispy-strips.jpg',
+    image: '/assets/images/products/meal-crispy-strips.svg',
     calories: 980,
     featured: true,
     popular: true,
@@ -311,7 +311,7 @@ export const menuItems = [
     description:
       'The Classic Flame Burger with a side and a drink of your choosing.',
     price: 225,
-    image: '/assets/images/products/meal-burger-combo.jpg',
+    image: '/assets/images/products/meal-burger-combo.svg',
     calories: 1120,
     customizations: [mealSideGroup(), mealDrinkGroup(), burgerExtras()],
   },
@@ -322,7 +322,7 @@ export const menuItems = [
     description:
       'Grilled quarter chicken with a side, a drink and warm flatbread.',
     price: 245,
-    image: '/assets/images/products/meal-grilled-chicken.jpg',
+    image: '/assets/images/products/meal-grilled-chicken.svg',
     calories: 860,
     customizations: [mealSideGroup(), mealDrinkGroup()],
   },
@@ -333,7 +333,7 @@ export const menuItems = [
     description:
       'Six chilli-honey wings, a side, a drink and a cooling blue cheese dip.',
     price: 235,
-    image: '/assets/images/products/meal-wings.jpg',
+    image: '/assets/images/products/meal-wings.svg',
     calories: 1020,
     spicy: true,
     customizations: [spiceGroup(), mealSideGroup(), mealDrinkGroup()],
@@ -346,7 +346,7 @@ export const menuItems = [
       'Our best-selling burger with a side and a drink. The full experience.',
     price: 275,
     oldPrice: 305,
-    image: '/assets/images/products/meal-double-stack.jpg',
+    image: '/assets/images/products/meal-double-stack.svg',
     calories: 1280,
     featured: true,
     customizations: [mealSideGroup(), mealDrinkGroup(), burgerExtras()],
@@ -358,7 +358,7 @@ export const menuItems = [
     description:
       'Two pieces of bone-in fried chicken with a side, a bun and a drink.',
     price: 205,
-    image: '/assets/images/products/meal-two-piece.jpg',
+    image: '/assets/images/products/meal-two-piece.svg',
     calories: 940,
     popular: true,
     customizations: [spiceGroup(), mealSideGroup(), mealDrinkGroup()],
@@ -370,7 +370,7 @@ export const menuItems = [
     description:
       'The Garden Halloumi Burger with a side and a drink. Vegetarian the whole way through.',
     price: 235,
-    image: '/assets/images/products/meal-veggie.jpg',
+    image: '/assets/images/products/meal-veggie.svg',
     calories: 890,
     vegetarian: true,
     customizations: [mealSideGroup(), mealDrinkGroup()],
@@ -384,7 +384,7 @@ export const menuItems = [
     description:
       'San Marzano tomato, fresh mozzarella and basil on a 48-hour fermented base.',
     price: 175,
-    image: '/assets/images/products/pizza-margherita.jpg',
+    image: '/assets/images/products/pizza-margherita.svg',
     calories: 820,
     vegetarian: true,
     customizations: [pizzaSizeGroup(), pizzaToppings()],
@@ -396,7 +396,7 @@ export const menuItems = [
     description:
       'A generous double layer of beef pepperoni that curls and crisps in the stone oven.',
     price: 215,
-    image: '/assets/images/products/pizza-pepperoni.jpg',
+    image: '/assets/images/products/pizza-pepperoni.svg',
     calories: 980,
     popular: true,
     featured: true,
@@ -409,7 +409,7 @@ export const menuItems = [
     description:
       'Grilled chicken, red onion, sweetcorn and a smoky BBQ base under melted mozzarella.',
     price: 225,
-    image: '/assets/images/products/pizza-bbq-chicken.jpg',
+    image: '/assets/images/products/pizza-bbq-chicken.svg',
     calories: 1010,
     customizations: [pizzaSizeGroup(), pizzaToppings()],
   },
@@ -420,7 +420,7 @@ export const menuItems = [
     description:
       'Mozzarella, aged cheddar, blue cheese and parmesan with a drizzle of honey.',
     price: 235,
-    image: '/assets/images/products/pizza-four-cheese.jpg',
+    image: '/assets/images/products/pizza-four-cheese.svg',
     calories: 1080,
     vegetarian: true,
     customizations: [pizzaSizeGroup(), pizzaToppings()],
@@ -432,7 +432,7 @@ export const menuItems = [
     description:
       'Seasoned minced beef, green chilli, red onion and a chilli oil finish.',
     price: 245,
-    image: '/assets/images/products/pizza-spicy-beef.jpg',
+    image: '/assets/images/products/pizza-spicy-beef.svg',
     calories: 1120,
     spicy: true,
     customizations: [pizzaSizeGroup(), pizzaToppings()],
@@ -446,7 +446,7 @@ export const menuItems = [
     description:
       'A single crispy fillet with pickles and ember sauce in a soft potato roll.',
     price: 125,
-    image: '/assets/images/products/sandwich-crispy-chicken.jpg',
+    image: '/assets/images/products/sandwich-crispy-chicken.svg',
     calories: 540,
     popular: true,
     customizations: [burgerExtras()],
@@ -458,7 +458,7 @@ export const menuItems = [
     description:
       'Grilled chicken strips, lettuce, tomato and garlic yoghurt rolled in a warm tortilla.',
     price: 115,
-    image: '/assets/images/products/sandwich-grilled-wrap.jpg',
+    image: '/assets/images/products/sandwich-grilled-wrap.svg',
     calories: 470,
     customizations: [dipGroup()],
   },
@@ -469,7 +469,7 @@ export const menuItems = [
     description:
       'Chilli-brined fillet, slaw and jalapeno mayo. Order it as hot as you dare.',
     price: 139,
-    image: '/assets/images/products/sandwich-fiery-chicken.jpg',
+    image: '/assets/images/products/sandwich-fiery-chicken.svg',
     calories: 580,
     spicy: true,
     featured: true,
@@ -482,7 +482,7 @@ export const menuItems = [
     description:
       'Thin-sliced steak, caramelised onion and molten cheddar pressed into a sourdough roll.',
     price: 189,
-    image: '/assets/images/products/sandwich-steak-melt.jpg',
+    image: '/assets/images/products/sandwich-steak-melt.svg',
     calories: 720,
     customizations: [burgerExtras()],
   },
@@ -493,7 +493,7 @@ export const menuItems = [
     description:
       'Triple-stacked toast with grilled chicken, beef bacon, egg, lettuce and tomato.',
     price: 155,
-    image: '/assets/images/products/sandwich-club.jpg',
+    image: '/assets/images/products/sandwich-club.svg',
     calories: 660,
   },
 
@@ -505,7 +505,7 @@ export const menuItems = [
     description:
       'Skin-on fries, double-cooked and dusted with our smoked seasoning salt.',
     price: 55,
-    image: '/assets/images/products/side-fries.jpg',
+    image: '/assets/images/products/side-fries.svg',
     calories: 340,
     popular: true,
     vegetarian: true,
@@ -518,7 +518,7 @@ export const menuItems = [
     description:
       'Ember fries under a blanket of cheese sauce, spring onion and crispy onions.',
     price: 89,
-    image: '/assets/images/products/side-loaded-fries.jpg',
+    image: '/assets/images/products/side-loaded-fries.svg',
     calories: 620,
     featured: true,
     vegetarian: true,
@@ -530,7 +530,7 @@ export const menuItems = [
     category: 'sides',
     description: 'Thick-cut sweet onion in a light, shatteringly crisp batter.',
     price: 65,
-    image: '/assets/images/products/side-onion-rings.jpg',
+    image: '/assets/images/products/side-onion-rings.svg',
     calories: 410,
     vegetarian: true,
     customizations: [dipGroup()],
@@ -541,7 +541,7 @@ export const menuItems = [
     category: 'sides',
     description: 'Shredded cabbage and carrot in a light, tangy buttermilk dressing.',
     price: 45,
-    image: '/assets/images/products/side-coleslaw.jpg',
+    image: '/assets/images/products/side-coleslaw.svg',
     calories: 180,
     vegetarian: true,
   },
@@ -551,7 +551,7 @@ export const menuItems = [
     category: 'sides',
     description: 'Buttery mash under a ladle of rich roast gravy.',
     price: 55,
-    image: '/assets/images/products/side-mashed-potato.jpg',
+    image: '/assets/images/products/side-mashed-potato.svg',
     calories: 260,
     vegetarian: true,
   },
@@ -561,7 +561,7 @@ export const menuItems = [
     category: 'sides',
     description: 'Stone-baked flatbread brushed with garlic butter and parsley.',
     price: 60,
-    image: '/assets/images/products/side-garlic-bread.jpg',
+    image: '/assets/images/products/side-garlic-bread.svg',
     calories: 380,
     vegetarian: true,
     customizations: [
@@ -586,7 +586,7 @@ export const menuItems = [
     description:
       'Dark chocolate pudding with a liquid centre, served warm with vanilla ice cream.',
     price: 95,
-    image: '/assets/images/products/dessert-chocolate-cake.jpg',
+    image: '/assets/images/products/dessert-chocolate-cake.svg',
     calories: 520,
     featured: true,
     popular: true,
@@ -598,7 +598,7 @@ export const menuItems = [
     category: 'desserts',
     description: 'New York style cheesecake on a biscuit base with a berry compote.',
     price: 89,
-    image: '/assets/images/products/dessert-cheesecake.jpg',
+    image: '/assets/images/products/dessert-cheesecake.svg',
     calories: 470,
     vegetarian: true,
   },
@@ -610,7 +610,7 @@ export const menuItems = [
       'Warm fudge brownie, two scoops of ice cream, toasted pecans and chocolate sauce.',
     price: 110,
     oldPrice: 130,
-    image: '/assets/images/products/dessert-brownie-sundae.jpg',
+    image: '/assets/images/products/dessert-brownie-sundae.svg',
     calories: 640,
     vegetarian: true,
   },
@@ -621,7 +621,7 @@ export const menuItems = [
     description:
       'Six warm cookie bites with melting chocolate chunks. Made to share, rarely shared.',
     price: 75,
-    image: '/assets/images/products/dessert-cookie.jpg',
+    image: '/assets/images/products/dessert-cookie.svg',
     calories: 420,
     vegetarian: true,
   },
@@ -631,7 +631,7 @@ export const menuItems = [
     category: 'desserts',
     description: 'Classic vanilla soft serve in a crisp wafer cone.',
     price: 35,
-    image: '/assets/images/products/dessert-ice-cream.jpg',
+    image: '/assets/images/products/dessert-ice-cream.svg',
     calories: 210,
     vegetarian: true,
     customizations: [
@@ -657,7 +657,7 @@ export const menuItems = [
     category: 'drinks',
     description: 'Ice-cold classic cola, served over crushed ice.',
     price: 35,
-    image: '/assets/images/products/drink-cola.jpg',
+    image: '/assets/images/products/drink-cola.svg',
     calories: 140,
     customizations: [sizeGroup(12)],
   },
@@ -667,7 +667,7 @@ export const menuItems = [
     category: 'drinks',
     description: 'Sparkling orange with a squeeze of fresh juice.',
     price: 35,
-    image: '/assets/images/products/drink-orange.jpg',
+    image: '/assets/images/products/drink-orange.svg',
     calories: 150,
     customizations: [sizeGroup(12)],
   },
@@ -677,7 +677,7 @@ export const menuItems = [
     category: 'drinks',
     description: 'Fresh lemon blended with mint leaves and a little honey.',
     price: 55,
-    image: '/assets/images/products/drink-lemon-mint.jpg',
+    image: '/assets/images/products/drink-lemon-mint.svg',
     calories: 120,
     featured: true,
     popular: true,
@@ -688,7 +688,7 @@ export const menuItems = [
     category: 'drinks',
     description: 'Sweet mango blended with yoghurt and a pinch of cardamom.',
     price: 70,
-    image: '/assets/images/products/drink-mango-smoothie.jpg',
+    image: '/assets/images/products/drink-mango-smoothie.svg',
     calories: 260,
   },
   {
@@ -697,7 +697,7 @@ export const menuItems = [
     category: 'drinks',
     description: 'Cold-brewed black tea with peach and a slice of lemon.',
     price: 45,
-    image: '/assets/images/products/drink-iced-tea.jpg',
+    image: '/assets/images/products/drink-iced-tea.svg',
     calories: 110,
     customizations: [sizeGroup(12)],
   },
@@ -707,7 +707,7 @@ export const menuItems = [
     category: 'drinks',
     description: 'Chilled 600ml bottle.',
     price: 20,
-    image: '/assets/images/products/drink-water.jpg',
+    image: '/assets/images/products/drink-water.svg',
     calories: 0,
   },
   {
@@ -716,7 +716,7 @@ export const menuItems = [
     category: 'drinks',
     description: 'Double espresso poured over cold milk and ice.',
     price: 65,
-    image: '/assets/images/products/drink-coffee.jpg',
+    image: '/assets/images/products/drink-coffee.svg',
     calories: 130,
     customizations: [
       {
@@ -742,7 +742,7 @@ export const menuItems = [
       '10 pieces of fried chicken, 4 regular fries, 2 coleslaw, 4 buns and a 1.25L drink. Feeds 4 to 5.',
     price: 795,
     oldPrice: 899,
-    image: '/assets/images/products/family-feast-bucket.jpg',
+    image: '/assets/images/products/family-feast-bucket.svg',
     calories: 4200,
     featured: true,
     popular: true,
@@ -769,7 +769,7 @@ export const menuItems = [
     description:
       '4 burgers of your choice, 4 regular fries, 8 hot wings and 4 drinks. Feeds 4.',
     price: 685,
-    image: '/assets/images/products/family-burger-box.jpg',
+    image: '/assets/images/products/family-burger-box.svg',
     calories: 3600,
     featured: true,
     customizations: [
@@ -793,7 +793,7 @@ export const menuItems = [
     description:
       'Grilled chicken quarters, beef skewers, flatbread, rice and three dips on one big platter. Feeds 4.',
     price: 745,
-    image: '/assets/images/products/family-mixed-grill.jpg',
+    image: '/assets/images/products/family-mixed-grill.svg',
     calories: 3100,
   },
   {
@@ -804,7 +804,7 @@ export const menuItems = [
       '2 large pizzas, garlic flatbread, 8 wings and a 1.25L drink. Feeds 4 to 5.',
     price: 645,
     oldPrice: 720,
-    image: '/assets/images/products/family-pizza-night.jpg',
+    image: '/assets/images/products/family-pizza-night.svg',
     calories: 3800,
     customizations: [
       {

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs>
+<radialGradient id="ground" cx="50%" cy="32%" r="84%">
+<stop offset="0%" stop-color="hsl(342.96 33% 17%)"/>
+<stop offset="58%" stop-color="hsl(342.96 26% 10%)"/>
+<stop offset="100%" stop-color="hsl(342.96 22% 6%)"/>
+</radialGradient>
+<radialGradient id="keyLight" cx="50%" cy="44%" r="50%">
+<stop offset="0%" stop-color="hsl(26 96% 58% / 0.34)"/>
+<stop offset="55%" stop-color="hsl(20 92% 46% / 0.11560000000000002)"/>
+<stop offset="100%" stop-color="hsl(20 90% 40% / 0)"/>
+</radialGradient>
+<radialGradient id="dishShadow" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="hsl(342.96 60% 3% / 0.6)"/>
+<stop offset="100%" stop-color="hsl(342.96 60% 3% / 0)"/>
+</radialGradient>
+<radialGradient id="vignette" cx="50%" cy="46%" r="72%">
+<stop offset="52%" stop-color="hsl(342.96 40% 4% / 0)"/>
+<stop offset="100%" stop-color="hsl(342.96 40% 4% / 0.62)"/>
+</radialGradient>
+<linearGradient id="topSheen" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="hsl(38 100% 72% / 0.11)"/>
+<stop offset="45%" stop-color="hsl(38 100% 72% / 0)"/>
+</linearGradient>
+</defs>
+<rect width="1200" height="750" fill="url(#ground)"/>
+<ellipse cx="600" cy="375" rx="552" ry="330" fill="url(#keyLight)"/>
+<g transform="translate(600 375) scale(1)"><ellipse cx="0" cy="198" rx="160" ry="34" fill="url(#dishShadow)"/><path d="M-104 -18 L104 -18 L0 210 z" fill="hsl(32 66% 50%)"/><g stroke="hsl(26 60% 30% / 0.5)" stroke-width="5"><path d="M-90 -18 L-36 110"/><path d="M-104 -18 L104 -18" opacity="0.4"/><path d="M-60 -18 L-24 140"/><path d="M-104 16 L104 16" opacity="0.4"/><path d="M-30 -18 L-12 170"/><path d="M-104 50 L104 50" opacity="0.4"/><path d="M0 -18 L0 200"/><path d="M-104 84 L104 84" opacity="0.4"/><path d="M30 -18 L12 170"/><path d="M-104 118 L104 118" opacity="0.4"/><path d="M60 -18 L24 140"/><path d="M-104 152 L104 152" opacity="0.4"/><path d="M90 -18 L36 110"/><path d="M-104 186 L104 186" opacity="0.4"/></g><path d="M-104 -18 L-40 -18 L-6 200 z" fill="hsl(0 0% 100% / 0.14)"/><circle cx="-52" cy="-64" r="82" fill="hsl(30 44% 84%)"/><circle cx="54" cy="-72" r="78" fill="hsl(20 58% 44%)"/><circle cx="0" cy="-136" r="74" fill="hsl(342 52% 76%)"/><path d="M-124 -74 q46 40 124 40 q78 0 124 -40 q-14 44 -124 44 q-110 0 -124 -44 z" fill="hsl(24 62% 30%)" opacity="0.6"/></g>
+<rect width="1200" height="750" fill="url(#topSheen)"/>
+<rect width="1200" height="750" fill="url(#vignette)"/>
+</svg>

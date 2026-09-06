@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs>
+<radialGradient id="ground" cx="50%" cy="32%" r="84%">
+<stop offset="0%" stop-color="hsl(19.32 33% 17%)"/>
+<stop offset="58%" stop-color="hsl(19.32 26% 10%)"/>
+<stop offset="100%" stop-color="hsl(19.32 22% 6%)"/>
+</radialGradient>
+<radialGradient id="keyLight" cx="50%" cy="44%" r="50%">
+<stop offset="0%" stop-color="hsl(26 96% 58% / 0.34)"/>
+<stop offset="55%" stop-color="hsl(20 92% 46% / 0.11560000000000002)"/>
+<stop offset="100%" stop-color="hsl(20 90% 40% / 0)"/>
+</radialGradient>
+<radialGradient id="dishShadow" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="hsl(19.32 60% 3% / 0.6)"/>
+<stop offset="100%" stop-color="hsl(19.32 60% 3% / 0)"/>
+</radialGradient>
+<radialGradient id="vignette" cx="50%" cy="46%" r="72%">
+<stop offset="52%" stop-color="hsl(19.32 40% 4% / 0)"/>
+<stop offset="100%" stop-color="hsl(19.32 40% 4% / 0.62)"/>
+</radialGradient>
+<linearGradient id="topSheen" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="hsl(38 100% 72% / 0.11)"/>
+<stop offset="45%" stop-color="hsl(38 100% 72% / 0)"/>
+</linearGradient>
+</defs>
+<rect width="1200" height="750" fill="url(#ground)"/>
+<ellipse cx="600" cy="375" rx="552" ry="330" fill="url(#keyLight)"/>
+<g transform="translate(600 375) scale(1.06)"><ellipse cx="0" cy="168" rx="290" ry="50" fill="url(#dishShadow)"/><ellipse cx="0" cy="164.5" rx="290" ry="92.8" fill="hsl(24 34% 15%)"/><ellipse cx="0" cy="150" rx="290" ry="92.8" fill="hsl(26 38% 26%)"/><ellipse cx="-8.73" cy="150" rx="97.57" ry="69.6" fill="none" stroke="hsl(26 40% 20% / 0.4)" stroke-width="3"/><ellipse cx="-137.32" cy="150" rx="83.65" ry="69.6" fill="none" stroke="hsl(26 40% 20% / 0.4)" stroke-width="3"/><ellipse cx="147.38" cy="150" rx="129.25" ry="69.6" fill="none" stroke="hsl(26 40% 20% / 0.4)" stroke-width="3"/><ellipse cx="-159.2" cy="150" rx="159.17" ry="69.6" fill="none" stroke="hsl(26 40% 20% / 0.4)" stroke-width="3"/><ellipse cx="-108.35" cy="150" rx="110.56" ry="69.6" fill="none" stroke="hsl(26 40% 20% / 0.4)" stroke-width="3"/><path d="M122.38 74C122.84 94.08 101.73 118.06 82.68 134.93C63.63 151.79 37.33 166.91 8.11 175.21C-21.11 183.51 -63.13 190.94 -92.64 184.75C-122.16 178.56 -153.15 156.52 -168.99 138.06C-184.84 119.6 -187.21 95.6 -187.7 74C-188.19 52.4 -188.97 24.43 -171.94 8.47C-154.91 -7.49 -115.41 -16.06 -85.52 -21.76C-55.63 -27.46 -20.17 -31.76 7.4 -25.72C34.98 -19.69 60.76 -2.18 79.92 14.44C99.09 31.06 121.92 53.92 122.38 74Z" fill="hsl(28 58% 40%)"/><path d="M96.76 62C95.19 77.96 67.99 95.13 50.44 107.65C32.89 120.17 14.39 131.01 -8.53 137.13C-31.45 143.26 -64.11 149 -87.1 144.41C-110.08 139.81 -129.49 123.28 -146.44 109.54C-163.39 95.81 -188.17 78.16 -188.82 62C-189.48 45.84 -167.22 26.53 -150.37 12.6C-133.52 -1.34 -112.21 -15.62 -87.71 -21.63C-63.21 -27.64 -27.96 -29.07 -3.37 -23.48C21.23 -17.89 43.17 -2.36 59.86 11.89C76.55 26.14 98.33 46.04 96.76 62Z" fill="hsl(30 66% 50%)"/><path d="M216.24 96C214.38 109.01 197 122.31 183.47 131.89C169.93 141.47 153.08 150.73 135.04 153.47C116.99 156.2 90.85 154.64 75.21 148.28C59.56 141.93 46.98 127.31 41.16 115.34C35.35 103.37 35.34 89.19 40.33 76.46C45.33 63.73 55.2 45.87 71.13 38.96C87.07 32.06 115.37 32.56 135.95 35.03C156.53 37.51 181.24 43.64 194.62 53.8C208.01 63.96 218.1 82.99 216.24 96Z" fill="hsl(28 60% 44%)"/><ellipse cx="196" cy="122" rx="30" ry="18" fill="hsl(40 26% 86%)" transform="rotate(24 196 122)"/><g stroke="hsl(20 62% 16% / 0.55)" stroke-width="9" stroke-linecap="round"><path d="M-200 46 l52 62"/><path d="M-148 38 l52 62"/><path d="M-96 30 l52 62"/><path d="M-44 38 l52 62"/><path d="M8 46 l52 62"/></g><path d="M39.72 62C37.68 71.97 29.57 80.3 16.28 88.97C2.99 97.63 -19.07 112.94 -40 113.98C-60.93 115.02 -95.19 103.88 -109.32 95.21C-123.44 86.55 -123.06 73.89 -124.76 62C-126.46 50.11 -133.65 32.96 -119.52 23.9C-105.39 14.84 -64.68 6.77 -40 7.64C-15.32 8.52 15.28 20.09 28.57 29.15C41.85 38.21 41.77 52.03 39.72 62Z" fill="hsl(40 92% 70% / 0.28)"/><g fill="none" stroke="#ffffff" stroke-linecap="round" opacity="0.14"><path d="M-77.35 -60c-27.9 -30.6 27.9 -56.1 0 -102" stroke-width="9.02"/><path d="M-20 -60c-29.12 -33.85 29.12 -62.06 0 -112.83" stroke-width="9.52"/><path d="M29.11 -60c-34.69 -41.01 34.69 -75.18 0 -136.69" stroke-width="9.92"/></g></g>
+<rect width="1200" height="750" fill="url(#topSheen)"/>
+<rect width="1200" height="750" fill="url(#vignette)"/>
+</svg>

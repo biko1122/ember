@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs>
+<radialGradient id="ground" cx="50%" cy="32%" r="84%">
+<stop offset="0%" stop-color="hsl(36.23 33% 17%)"/>
+<stop offset="58%" stop-color="hsl(36.23 26% 10%)"/>
+<stop offset="100%" stop-color="hsl(36.23 22% 6%)"/>
+</radialGradient>
+<radialGradient id="keyLight" cx="50%" cy="44%" r="50%">
+<stop offset="0%" stop-color="hsl(26 96% 58% / 0.34)"/>
+<stop offset="55%" stop-color="hsl(20 92% 46% / 0.11560000000000002)"/>
+<stop offset="100%" stop-color="hsl(20 90% 40% / 0)"/>
+</radialGradient>
+<radialGradient id="dishShadow" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="hsl(36.23 60% 3% / 0.6)"/>
+<stop offset="100%" stop-color="hsl(36.23 60% 3% / 0)"/>
+</radialGradient>
+<radialGradient id="vignette" cx="50%" cy="46%" r="72%">
+<stop offset="52%" stop-color="hsl(36.23 40% 4% / 0)"/>
+<stop offset="100%" stop-color="hsl(36.23 40% 4% / 0.62)"/>
+</radialGradient>
+<linearGradient id="topSheen" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="hsl(38 100% 72% / 0.11)"/>
+<stop offset="45%" stop-color="hsl(38 100% 72% / 0)"/>
+</linearGradient>
+</defs>
+<rect width="1200" height="750" fill="url(#ground)"/>
+<ellipse cx="600" cy="375" rx="552" ry="330" fill="url(#keyLight)"/>
+<g transform="translate(600 375) scale(1.06)"><defs><linearGradient id="bunSheen" x1="0.2" y1="0" x2="0.8" y2="1"><stop offset="0%" stop-color="hsl(44 100% 78% / 0.7)"/><stop offset="60%" stop-color="hsl(44 100% 78% / 0)"/></linearGradient></defs><ellipse cx="0" cy="196" rx="250" ry="46" fill="url(#dishShadow)"/><path d="M-162 120 h324 a26 26 0 0 1 26 26 v10 a26 26 0 0 1 -26 26 h-324 a26 26 0 0 1 -26 -26 v-10 a26 26 0 0 1 26 -26 z" fill="hsl(31 62% 52%)"/><path d="M-178 120 h356 a10 10 0 0 1 10 10 v0 a10 10 0 0 1 -10 10 h-356 a10 10 0 0 1 -10 -10 v0 a10 10 0 0 1 10 -10 z" fill="hsl(36 78% 66% / 0.5)"/><path d="M-168 62 h336 a14 14 0 0 1 14 14 v18 a14 14 0 0 1 -14 14 h-336 a14 14 0 0 1 -14 -14 v-18 a14 14 0 0 1 14 -14 z" fill="hsl(42 48% 74%)"/><g stroke="hsl(28 60% 36% / 0.7)" stroke-width="7" stroke-linecap="round"><path d="M-126 74 l26 24"/><path d="M-72 74 l26 24"/><path d="M-18 74 l26 24"/><path d="M36 74 l26 24"/><path d="M90 74 l26 24"/></g><path d="M-202 52 h404 v20 q-30 26 -62 6 q-34 30 -70 2 q-36 30 -72 0 q-32 22 -60 -8 z" fill="hsl(38 92% 56%)"/><path d="M-202 52 h404 v7 h-404 z" fill="hsl(46 100% 74% / 0.65)"/><g><ellipse cx="-110" cy="38" rx="62" ry="17" fill="hsl(6 74% 44%)"/><ellipse cx="-110" cy="35" rx="46" ry="11" fill="hsl(8 68% 56%)" opacity="0.8"/><ellipse cx="0" cy="38" rx="62" ry="17" fill="hsl(6 74% 44%)"/><ellipse cx="0" cy="35" rx="46" ry="11" fill="hsl(8 68% 56%)" opacity="0.8"/><ellipse cx="110" cy="38" rx="62" ry="17" fill="hsl(6 74% 44%)"/><ellipse cx="110" cy="35" rx="46" ry="11" fill="hsl(8 68% 56%)" opacity="0.8"/></g><path d="M-210 30q26.25 18.49 52.5 0q26.25 21.4 52.5 0q26.25 29.76 52.5 0q26.25 27.86 52.5 0q26.25 24.09 52.5 0q26.25 23.67 52.5 0q26.25 15.95 52.5 0q26.25 16.24 52.5 0L210 6.6L-210 6.6Z" fill="hsl(96 42% 40%)"/><path d="M-202 22q28.86 18.02 57.71 0q28.86 18.3 57.71 0q28.86 17.31 57.71 0q28.86 15.88 57.71 0q28.86 10.61 57.71 0q28.86 10.45 57.71 0q28.86 10.31 57.71 0L202 5.8L-202 5.8Z" fill="hsl(94 48% 50%)" opacity="0.85"/><path d="M-196 0 a196 132 0 0 1 392 0 z" fill="hsl(30 68% 50%)"/><path d="M-196 0 a196 132 0 0 1 392 0 z" fill="url(#bunSheen)" opacity="0.55"/><ellipse cx="-16.93" cy="-62.64" rx="8.52" ry="4.22" fill="#f7e2b4" opacity="0.85" transform="rotate(33.87 -16.93 -62.64)"/><ellipse cx="-23" cy="-64.28" rx="8.18" ry="3.69" fill="#f7e2b4" opacity="0.85" transform="rotate(-14.14 -23 -64.28)"/><ellipse cx="-65.92" cy="-27.99" rx="8.28" ry="4.38" fill="#f7e2b4" opacity="0.85" transform="rotate(-19.18 -65.92 -27.99)"/><ellipse cx="40.46" cy="-48.99" rx="8.96" ry="3.92" fill="#f7e2b4" opacity="0.85" transform="rotate(7.99 40.46 -48.99)"/><ellipse cx="-42.47" cy="-29.88" rx="7.22" ry="4.55" fill="#f7e2b4" opacity="0.85" transform="rotate(-22.04 -42.47 -29.88)"/><ellipse cx="-73.22" cy="-49.36" rx="8.34" ry="4.35" fill="#f7e2b4" opacity="0.85" transform="rotate(12.42 -73.22 -49.36)"/><ellipse cx="95.7" cy="-38.25" rx="6.86" ry="4.08" fill="#f7e2b4" opacity="0.85" transform="rotate(27.16 95.7 -38.25)"/><ellipse cx="21.13" cy="-59.81" rx="6.02" ry="4.31" fill="#f7e2b4" opacity="0.85" transform="rotate(-3.36 21.13 -59.81)"/><ellipse cx="87.28" cy="-53.99" rx="7.46" ry="3.6" fill="#f7e2b4" opacity="0.85" transform="rotate(15.51 87.28 -53.99)"/><ellipse cx="63.65" cy="-46.36" rx="6.86" ry="3.73" fill="#f7e2b4" opacity="0.85" transform="rotate(-5.27 63.65 -46.36)"/><ellipse cx="-26.89" cy="-68.59" rx="6.47" ry="3.97" fill="#f7e2b4" opacity="0.85" transform="rotate(33.41 -26.89 -68.59)"/><ellipse cx="-27.7" cy="-66.3" rx="6.18" ry="3.84" fill="#f7e2b4" opacity="0.85" transform="rotate(12.6 -27.7 -66.3)"/></g>
+<rect width="1200" height="750" fill="url(#topSheen)"/>
+<rect width="1200" height="750" fill="url(#vignette)"/>
+</svg>

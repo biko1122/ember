@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1600" width="1200" height="1600">
+<defs>
+<radialGradient id="ground" cx="50%" cy="32%" r="84%">
+<stop offset="0%" stop-color="hsl(26.44 33% 17%)"/>
+<stop offset="58%" stop-color="hsl(26.44 26% 10%)"/>
+<stop offset="100%" stop-color="hsl(26.44 22% 6%)"/>
+</radialGradient>
+<radialGradient id="keyLight" cx="50%" cy="44%" r="50%">
+<stop offset="0%" stop-color="hsl(26 96% 58% / 0.16)"/>
+<stop offset="55%" stop-color="hsl(20 92% 46% / 0.054400000000000004)"/>
+<stop offset="100%" stop-color="hsl(20 90% 40% / 0)"/>
+</radialGradient>
+<radialGradient id="dishShadow" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="hsl(26.44 60% 3% / 0.6)"/>
+<stop offset="100%" stop-color="hsl(26.44 60% 3% / 0)"/>
+</radialGradient>
+<radialGradient id="vignette" cx="50%" cy="46%" r="72%">
+<stop offset="52%" stop-color="hsl(26.44 40% 4% / 0)"/>
+<stop offset="100%" stop-color="hsl(26.44 40% 4% / 0.62)"/>
+</radialGradient>
+<linearGradient id="topSheen" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="hsl(38 100% 72% / 0.11)"/>
+<stop offset="45%" stop-color="hsl(38 100% 72% / 0)"/>
+</linearGradient>
+</defs>
+<rect width="1200" height="1600" fill="url(#ground)"/>
+<ellipse cx="600" cy="800" rx="552" ry="704" fill="url(#keyLight)"/>
+<rect width="1200" height="1088" fill="hsl(24 26% 13%)"/><rect y="1088" width="1200" height="512" fill="hsl(24 22% 9%)"/><rect y="1082" width="1200" height="12" fill="hsl(34 60% 50% / 0.22)"/><g fill="hsl(30 40% 40% / 0.16)"><rect x="0" y="130.56" width="14" height="957.44"/><rect x="46" y="130.56" width="14" height="957.44"/><rect x="92" y="130.56" width="14" height="957.44"/><rect x="138" y="130.56" width="14" height="957.44"/><rect x="184" y="130.56" width="14" height="957.44"/><rect x="230" y="130.56" width="14" height="957.44"/><rect x="276" y="130.56" width="14" height="957.44"/><rect x="322" y="130.56" width="14" height="957.44"/><rect x="368" y="130.56" width="14" height="957.44"/><rect x="414" y="130.56" width="14" height="957.44"/><rect x="460" y="130.56" width="14" height="957.44"/><rect x="506" y="130.56" width="14" height="957.44"/><rect x="552" y="130.56" width="14" height="957.44"/><rect x="598" y="130.56" width="14" height="957.44"/><rect x="644" y="130.56" width="14" height="957.44"/><rect x="690" y="130.56" width="14" height="957.44"/><rect x="736" y="130.56" width="14" height="957.44"/><rect x="782" y="130.56" width="14" height="957.44"/><rect x="828" y="130.56" width="14" height="957.44"/><rect x="874" y="130.56" width="14" height="957.44"/><rect x="920" y="130.56" width="14" height="957.44"/><rect x="966" y="130.56" width="14" height="957.44"/><rect x="1012" y="130.56" width="14" height="957.44"/><rect x="1058" y="130.56" width="14" height="957.44"/><rect x="1104" y="130.56" width="14" height="957.44"/><rect x="1150" y="130.56" width="14" height="957.44"/><rect x="1196" y="130.56" width="14" height="957.44"/></g><rect y="1088" width="1200" height="256" fill="hsl(34 70% 50% / 0.06)"/><g>
+<path d="M150 0 L150 319.99" stroke="hsl(30 30% 60% / 0.5)" stroke-width="3"/>
+<path d="M108 345.99 q42 -52 84 0 z" fill="hsl(20 44% 24%)"/>
+<ellipse cx="150" cy="345.99" rx="42" ry="9" fill="hsl(42 96% 72%)"/>
+<path d="M0 685.99 L108 345.99 L192 345.99 L300 685.99 z" fill="hsl(38 96% 62% / 0.12467333083506674)"/>
+</g><g>
+<path d="M450 0 L450 241.07" stroke="hsl(30 30% 60% / 0.5)" stroke-width="3"/>
+<path d="M408 267.07 q42 -52 84 0 z" fill="hsl(20 44% 24%)"/>
+<ellipse cx="450" cy="267.07" rx="42" ry="9" fill="hsl(42 96% 72%)"/>
+<path d="M300 607.07 L408 267.07 L492 267.07 L600 607.07 z" fill="hsl(38 96% 62% / 0.12438060458749534)"/>
+</g><g>
+<path d="M750 0 L750 385.45" stroke="hsl(30 30% 60% / 0.5)" stroke-width="3"/>
+<path d="M708 411.45 q42 -52 84 0 z" fill="hsl(20 44% 24%)"/>
+<ellipse cx="750" cy="411.45" rx="42" ry="9" fill="hsl(42 96% 72%)"/>
+<path d="M600 751.45 L708 411.45 L792 411.45 L900 751.45 z" fill="hsl(38 96% 62% / 0.10784775488078595)"/>
+</g><g>
+<path d="M1050 0 L1050 278.15" stroke="hsl(30 30% 60% / 0.5)" stroke-width="3"/>
+<path d="M1008 304.15 q42 -52 84 0 z" fill="hsl(20 44% 24%)"/>
+<ellipse cx="1050" cy="304.15" rx="42" ry="9" fill="hsl(42 96% 72%)"/>
+<path d="M900 644.15 L1008 304.15 L1092 304.15 L1200 644.15 z" fill="hsl(38 96% 62% / 0.1015011298749596)"/>
+</g><g transform="translate(98.28 1315.04) scale(2.33)" fill="hsl(20 30% 6% / 0.72)">
+<circle cx="0" cy="-94.65" r="34"/>
+<path d="M-46 0 q0 -58 46 -58 q46 0 46 58 z"/>
+</g><g transform="translate(289.11 1315.04) scale(2.23)" fill="hsl(20 30% 6% / 0.62)">
+<circle cx="0" cy="-99.73" r="34"/>
+<path d="M-46 0 q0 -58 46 -58 q46 0 46 58 z"/>
+</g><ellipse cx="193.7" cy="1348.89" rx="111.32" ry="23.85" fill="hsl(20 40% 4% / 0.5)"/><ellipse cx="193.7" cy="1340.89" rx="111.32" ry="25.84" fill="hsl(26 38% 26%)"/><rect x="183.76" y="1340.89" width="19.88" height="69.57" fill="hsl(24 30% 18%)"/><rect x="245.38" y="1311.07" width="13.91" height="29.82" rx="4" fill="hsl(38 40% 70%)"/><circle cx="252.34" cy="1305.1" r="8.95" fill="hsl(40 100% 70%)"/><circle cx="252.34" cy="1305.1" r="27.83" fill="hsl(38 100% 60% / 0.18)"/><g transform="translate(518.64 1267.71) scale(2.1)" fill="hsl(20 30% 6% / 0.72)">
+<circle cx="0" cy="-101.83" r="34"/>
+<path d="M-46 0 q0 -58 46 -58 q46 0 46 58 z"/>
+</g><g transform="translate(690.78 1267.71) scale(2.01)" fill="hsl(20 30% 6% / 0.62)">
+<circle cx="0" cy="-97.55" r="34"/>
+<path d="M-46 0 q0 -58 46 -58 q46 0 46 58 z"/>
+</g><ellipse cx="604.71" cy="1299.02" rx="100.41" ry="21.52" fill="hsl(20 40% 4% / 0.5)"/><ellipse cx="604.71" cy="1291.02" rx="100.41" ry="23.31" fill="hsl(26 38% 26%)"/><rect x="595.75" y="1291.02" width="17.93" height="62.76" fill="hsl(24 30% 18%)"/><rect x="651.33" y="1264.12" width="12.55" height="26.9" rx="4" fill="hsl(38 40% 70%)"/><circle cx="657.61" cy="1258.74" r="8.07" fill="hsl(40 100% 70%)"/><circle cx="657.61" cy="1258.74" r="25.1" fill="hsl(38 100% 60% / 0.18)"/><g transform="translate(895.96 1312.62) scale(2.32)" fill="hsl(20 30% 6% / 0.72)">
+<circle cx="0" cy="-90.11" r="34"/>
+<path d="M-46 0 q0 -58 46 -58 q46 0 46 58 z"/>
+</g><g transform="translate(1085.84 1312.62) scale(2.22)" fill="hsl(20 30% 6% / 0.62)">
+<circle cx="0" cy="-91.78" r="34"/>
+<path d="M-46 0 q0 -58 46 -58 q46 0 46 58 z"/>
+</g><ellipse cx="990.9" cy="1346.33" rx="110.76" ry="23.73" fill="hsl(20 40% 4% / 0.5)"/><ellipse cx="990.9" cy="1338.33" rx="110.76" ry="25.71" fill="hsl(26 38% 26%)"/><rect x="981.01" y="1338.33" width="19.78" height="69.22" fill="hsl(24 30% 18%)"/><rect x="1042.33" y="1308.66" width="13.84" height="29.67" rx="4" fill="hsl(38 40% 70%)"/><circle cx="1049.25" cy="1302.73" r="8.9" fill="hsl(40 100% 70%)"/><circle cx="1049.25" cy="1302.73" r="27.69" fill="hsl(38 100% 60% / 0.18)"/>
+<rect width="1200" height="1600" fill="url(#topSheen)"/>
+<rect width="1200" height="1600" fill="url(#vignette)"/>
+</svg>

@@ -23,7 +23,7 @@ export function Hero() {
     <section className={styles.hero} aria-labelledby="hero-title">
       <div className={styles.backdrop}>
         <AppImage
-          src="/assets/images/hero/hero-main.jpg"
+          src="/assets/images/hero/hero-main.svg"
           alt=""
           ratio="none"
           loading="eager"

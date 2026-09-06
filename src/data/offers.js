@@ -12,7 +12,7 @@ export const offers = [
     description:
       'Our 10-piece bucket with fries, coleslaw and a large drink — EGP 100 off, every Friday and Saturday.',
     badge: 'SAVE EGP 100',
-    image: '/assets/images/offers/offer-family-feast.jpg',
+    image: '/assets/images/offers/offer-family-feast.svg',
     ctaLabel: 'Order the bucket',
     linkTo: '/menu/family-feast-bucket',
   },
@@ -22,7 +22,7 @@ export const offers = [
     description:
       'Order any signature burger between 2pm and 5pm and the second one is on us.',
     badge: 'BUY 1 GET 1',
-    image: '/assets/images/offers/offer-bogo-burger.jpg',
+    image: '/assets/images/offers/offer-bogo-burger.svg',
     ctaLabel: 'Browse burgers',
     linkTo: '/menu?category=burgers',
   },
@@ -32,7 +32,7 @@ export const offers = [
     description:
       'New to EMBER? Use code EMBER10 at checkout and take 10% off anything on the menu.',
     badge: '10% OFF',
-    image: '/assets/images/offers/offer-first-order.jpg',
+    image: '/assets/images/offers/offer-first-order.svg',
     ctaLabel: 'Start ordering',
     linkTo: '/menu',
     promoCode: 'EMBER10',
@@ -43,7 +43,7 @@ export const offers = [
     description:
       'Spend EGP 350 or more and we will drop the delivery fee automatically. No code needed.',
     badge: 'FREE DELIVERY',
-    image: '/assets/images/offers/offer-free-delivery.jpg',
+    image: '/assets/images/offers/offer-free-delivery.svg',
     ctaLabel: 'Fill your basket',
     linkTo: '/menu',
   },
@@ -53,7 +53,7 @@ export const offers = [
     description:
       'Two large stone-baked pizzas, garlic flatbread, wings and a big drink for one flat price.',
     badge: 'SAVE EGP 75',
-    image: '/assets/images/offers/offer-pizza-night.jpg',
+    image: '/assets/images/offers/offer-pizza-night.svg',
     ctaLabel: 'See the bundle',
     linkTo: '/menu/family-pizza-night',
   },
@@ -63,7 +63,7 @@ export const offers = [
     description:
       'Any strips meal for EGP 50 less, weekdays before 4pm. Show a valid student ID in store.',
     badge: 'SAVE EGP 50',
-    image: '/assets/images/offers/offer-student-lunch.jpg',
+    image: '/assets/images/offers/offer-student-lunch.svg',
     ctaLabel: 'View meals',
     linkTo: '/menu?category=meals',
   },

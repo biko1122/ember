@@ -58,7 +58,7 @@ export function Login() {
     <AuthLayout
       title="Welcome back"
       subtitle="Log in to reorder in two taps and keep track of what you have ordered."
-      image="/assets/images/restaurant/restaurant-counter.jpg"
+      image="/assets/images/restaurant/restaurant-counter.svg"
       imageAlt="The order counter at one of our branches"
       footer={
         <>

@@ -16,7 +16,7 @@ export const branches = [
     hours: '10:00 AM – 2:00 AM',
     services: ['delivery', 'pickup', 'dine-in'],
     deliveryAreas: ['Zamalek', 'Downtown', 'Garden City', 'Agouza'],
-    image: '/assets/images/restaurant/branch-zamalek.jpg',
+    image: '/assets/images/restaurant/branch-zamalek.svg',
     mapUrl: 'https://www.openstreetmap.org/search?query=Zamalek%20Cairo',
   },
   {
@@ -27,7 +27,7 @@ export const branches = [
     hours: '10:00 AM – 3:00 AM',
     services: ['delivery', 'pickup', 'dine-in'],
     deliveryAreas: ['Fifth Settlement', 'Rehab', 'Madinaty', 'Katameya'],
-    image: '/assets/images/restaurant/branch-new-cairo.jpg',
+    image: '/assets/images/restaurant/branch-new-cairo.svg',
     mapUrl: 'https://www.openstreetmap.org/search?query=New%20Cairo',
   },
   {
@@ -38,7 +38,7 @@ export const branches = [
     hours: '11:00 AM – 1:00 AM',
     services: ['delivery', 'pickup', 'dine-in'],
     deliveryAreas: ['Maadi', 'Degla', 'Zahraa El Maadi', 'Basatin'],
-    image: '/assets/images/restaurant/branch-maadi.jpg',
+    image: '/assets/images/restaurant/branch-maadi.svg',
     mapUrl: 'https://www.openstreetmap.org/search?query=Maadi%20Cairo',
   },
   {
@@ -49,7 +49,7 @@ export const branches = [
     hours: '10:00 AM – 2:00 AM',
     services: ['delivery', 'pickup'],
     deliveryAreas: ['Sheikh Zayed', 'Beverly Hills', '6th of October', 'Dreamland'],
-    image: '/assets/images/restaurant/branch-sheikh-zayed.jpg',
+    image: '/assets/images/restaurant/branch-sheikh-zayed.svg',
     mapUrl: 'https://www.openstreetmap.org/search?query=Sheikh%20Zayed%20City',
   },
   {
@@ -60,7 +60,7 @@ export const branches = [
     hours: '10:00 AM – 1:00 AM',
     services: ['delivery', 'pickup', 'dine-in'],
     deliveryAreas: ['Heliopolis', 'Nasr City', 'Sheraton', 'Almaza'],
-    image: '/assets/images/restaurant/branch-heliopolis.jpg',
+    image: '/assets/images/restaurant/branch-heliopolis.svg',
     mapUrl: 'https://www.openstreetmap.org/search?query=Heliopolis%20Cairo',
   },
   {
@@ -71,7 +71,7 @@ export const branches = [
     hours: '11:00 AM – 2:00 AM',
     services: ['delivery', 'pickup', 'dine-in'],
     deliveryAreas: ['Stanley', 'Roushdy', 'San Stefano', 'Gleem'],
-    image: '/assets/images/restaurant/branch-alexandria.jpg',
+    image: '/assets/images/restaurant/branch-alexandria.svg',
     mapUrl: 'https://www.openstreetmap.org/search?query=Stanley%20Alexandria',
   },
 ]

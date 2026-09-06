@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+<defs>
+<radialGradient id="ground" cx="50%" cy="32%" r="84%">
+<stop offset="0%" stop-color="hsl(29.3 33% 17%)"/>
+<stop offset="58%" stop-color="hsl(29.3 26% 10%)"/>
+<stop offset="100%" stop-color="hsl(29.3 22% 6%)"/>
+</radialGradient>
+<radialGradient id="keyLight" cx="50%" cy="44%" r="50%">
+<stop offset="0%" stop-color="hsl(26 96% 58% / 0.16)"/>
+<stop offset="55%" stop-color="hsl(20 92% 46% / 0.054400000000000004)"/>
+<stop offset="100%" stop-color="hsl(20 90% 40% / 0)"/>
+</radialGradient>
+<radialGradient id="dishShadow" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="hsl(29.3 60% 3% / 0.6)"/>
+<stop offset="100%" stop-color="hsl(29.3 60% 3% / 0)"/>
+</radialGradient>
+<radialGradient id="vignette" cx="50%" cy="46%" r="72%">
+<stop offset="52%" stop-color="hsl(29.3 40% 4% / 0)"/>
+<stop offset="100%" stop-color="hsl(29.3 40% 4% / 0.62)"/>
+</radialGradient>
+<linearGradient id="topSheen" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="hsl(38 100% 72% / 0.11)"/>
+<stop offset="45%" stop-color="hsl(38 100% 72% / 0)"/>
+</linearGradient>
+</defs>
+<rect width="1200" height="750" fill="url(#ground)"/>
+<ellipse cx="600" cy="375" rx="552" ry="330" fill="url(#keyLight)"/>
+<rect width="1200" height="510" fill="hsl(24 26% 13%)"/><rect y="510" width="1200" height="240" fill="hsl(24 22% 9%)"/><rect y="504" width="1200" height="12" fill="hsl(34 60% 50% / 0.22)"/><g fill="hsl(30 40% 40% / 0.16)"><rect x="0" y="61.2" width="14" height="448.8"/><rect x="46" y="61.2" width="14" height="448.8"/><rect x="92" y="61.2" width="14" height="448.8"/><rect x="138" y="61.2" width="14" height="448.8"/><rect x="184" y="61.2" width="14" height="448.8"/><rect x="230" y="61.2" width="14" height="448.8"/><rect x="276" y="61.2" width="14" height="448.8"/><rect x="322" y="61.2" width="14" height="448.8"/><rect x="368" y="61.2" width="14" height="448.8"/><rect x="414" y="61.2" width="14" height="448.8"/><rect x="460" y="61.2" width="14" height="448.8"/><rect x="506" y="61.2" width="14" height="448.8"/><rect x="552" y="61.2" width="14" height="448.8"/><rect x="598" y="61.2" width="14" height="448.8"/><rect x="644" y="61.2" width="14" height="448.8"/><rect x="690" y="61.2" width="14" height="448.8"/><rect x="736" y="61.2" width="14" height="448.8"/><rect x="782" y="61.2" width="14" height="448.8"/><rect x="828" y="61.2" width="14" height="448.8"/><rect x="874" y="61.2" width="14" height="448.8"/><rect x="920" y="61.2" width="14" height="448.8"/><rect x="966" y="61.2" width="14" height="448.8"/><rect x="1012" y="61.2" width="14" height="448.8"/><rect x="1058" y="61.2" width="14" height="448.8"/><rect x="1104" y="61.2" width="14" height="448.8"/><rect x="1150" y="61.2" width="14" height="448.8"/><rect x="1196" y="61.2" width="14" height="448.8"/></g><rect y="510" width="1200" height="120" fill="hsl(34 70% 50% / 0.06)"/><g>
+<path d="M150 0 L150 138.23" stroke="hsl(30 30% 60% / 0.5)" stroke-width="3"/>
+<path d="M108 164.23 q42 -52 84 0 z" fill="hsl(20 44% 24%)"/>
+<ellipse cx="150" cy="164.23" rx="42" ry="9" fill="hsl(42 96% 72%)"/>
+<path d="M0 504.23 L108 164.23 L192 164.23 L300 504.23 z" fill="hsl(38 96% 62% / 0.12039717682637274)"/>
+</g><g>
+<path d="M450 0 L450 155.71" stroke="hsl(30 30% 60% / 0.5)" stroke-width="3"/>
+<path d="M408 181.71 q42 -52 84 0 z" fill="hsl(20 44% 24%)"/>
+<ellipse cx="450" cy="181.71" rx="42" ry="9" fill="hsl(42 96% 72%)"/>
+<path d="M300 521.71 L408 181.71 L492 181.71 L600 521.71 z" fill="hsl(38 96% 62% / 0.12167441037949175)"/>
+</g><g>
+<path d="M750 0 L750 161.3" stroke="hsl(30 30% 60% / 0.5)" stroke-width="3"/>
+<path d="M708 187.3 q42 -52 84 0 z" fill="hsl(20 44% 24%)"/>
+<ellipse cx="750" cy="187.3" rx="42" ry="9" fill="hsl(42 96% 72%)"/>
+<path d="M600 527.3 L708 187.3 L792 187.3 L900 527.3 z" fill="hsl(38 96% 62% / 0.08830597457475961)"/>
+</g><g>
+<path d="M1050 0 L1050 129.81" stroke="hsl(30 30% 60% / 0.5)" stroke-width="3"/>
+<path d="M1008 155.81 q42 -52 84 0 z" fill="hsl(20 44% 24%)"/>
+<ellipse cx="1050" cy="155.81" rx="42" ry="9" fill="hsl(42 96% 72%)"/>
+<path d="M900 495.81 L1008 155.81 L1092 155.81 L1200 495.81 z" fill="hsl(38 96% 62% / 0.12618470135610552)"/>
+</g><rect width="1200" height="345" fill="hsl(26 24% 11%)"/><rect y="345" width="1200" height="180" fill="hsl(24 20% 8%)"/><rect x="72" y="225" width="1056" height="285" fill="hsl(38 80% 56% / 0.14)"/><rect x="336" y="225" width="6" height="285" fill="hsl(24 18% 14%)"/><rect x="600" y="225" width="6" height="285" fill="hsl(24 18% 14%)"/><rect x="864" y="225" width="6" height="285" fill="hsl(24 18% 14%)"/><g transform="translate(240 495) scale(0.9)" fill="hsl(20 30% 6% / 0.55)">
+<circle cx="0" cy="-98.73" r="34"/>
+<path d="M-46 0 q0 -58 46 -58 q46 0 46 58 z"/>
+</g><g transform="translate(576 495) scale(0.9)" fill="hsl(20 30% 6% / 0.55)">
+<circle cx="0" cy="-99.84" r="34"/>
+<path d="M-46 0 q0 -58 46 -58 q46 0 46 58 z"/>
+</g><g transform="translate(912 495) scale(0.9)" fill="hsl(20 30% 6% / 0.55)">
+<circle cx="0" cy="-92.3" r="34"/>
+<path d="M-46 0 q0 -58 46 -58 q46 0 46 58 z"/>
+</g><rect x="48" y="105" width="1104" height="105" rx="10" fill="hsl(18 88% 50%)"/><rect x="48" y="105" width="1104" height="37.5" rx="10" fill="hsl(0 0% 100% / 0.16)"/><path d="M48 210 l122.67 0 l-61.33 45 z" fill="hsl(6 70% 46%)"/><path d="M170.67 210 l122.67 0 l-61.33 45 z" fill="hsl(36 20% 92%)"/><path d="M293.33 210 l122.67 0 l-61.33 45 z" fill="hsl(6 70% 46%)"/><path d="M416 210 l122.67 0 l-61.33 45 z" fill="hsl(36 20% 92%)"/><path d="M538.67 210 l122.67 0 l-61.33 45 z" fill="hsl(6 70% 46%)"/><path d="M661.33 210 l122.67 0 l-61.33 45 z" fill="hsl(36 20% 92%)"/><path d="M784 210 l122.67 0 l-61.33 45 z" fill="hsl(6 70% 46%)"/><path d="M906.67 210 l122.67 0 l-61.33 45 z" fill="hsl(36 20% 92%)"/><path d="M1029.33 210 l122.67 0 l-61.33 45 z" fill="hsl(6 70% 46%)"/><rect y="525" width="1200" height="225" fill="hsl(26 12% 12%)"/><rect y="525" width="1200" height="9" fill="hsl(38 60% 60% / 0.2)"/><ellipse cx="600" cy="555" rx="528" ry="45" fill="hsl(30 90% 55% / 0.12)"/>
+<rect width="1200" height="750" fill="url(#topSheen)"/>
+<rect width="1200" height="750" fill="url(#vignette)"/>
+</svg>

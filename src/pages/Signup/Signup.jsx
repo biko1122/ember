@@ -59,7 +59,7 @@ export function Signup() {
     <AuthLayout
       title="Create your account"
       subtitle="Save your details, keep your order history, and reorder your usual in seconds."
-      image="/assets/images/restaurant/restaurant-dining.jpg"
+      image="/assets/images/restaurant/restaurant-dining.svg"
       imageAlt="Guests eating in one of our dining rooms"
       footer={
         <p className={styles.switchPrompt}>

@@ -60,7 +60,7 @@ export function About() {
         {/* Story ---------------------------------------------------------- */}
         <section className={styles.story} aria-labelledby="story-title">
           <AppImage
-            src="/assets/images/restaurant/restaurant-interior.jpg"
+            src="/assets/images/restaurant/restaurant-interior.svg"
             alt="The dining room at our Zamalek branch"
             ratio="wide"
             className={styles.storyImage}
@@ -122,19 +122,19 @@ export function About() {
         {/* Gallery -------------------------------------------------------- */}
         <section className={styles.gallery} aria-label="Photos from our kitchens">
           <AppImage
-            src="/assets/images/restaurant/restaurant-grill.jpg"
+            src="/assets/images/restaurant/restaurant-grill.svg"
             alt="A cook working the open grill"
             ratio="square"
             className={styles.galleryImage}
           />
           <AppImage
-            src="/assets/images/restaurant/restaurant-team.jpg"
+            src="/assets/images/restaurant/restaurant-team.svg"
             alt="Our kitchen team before service"
             ratio="square"
             className={styles.galleryImage}
           />
           <AppImage
-            src="/assets/images/restaurant/restaurant-bakery.jpg"
+            src="/assets/images/restaurant/restaurant-bakery.svg"
             alt="Buns coming out of our bakery"
             ratio="square"
             className={styles.galleryImage}

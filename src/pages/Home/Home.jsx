@@ -107,7 +107,7 @@ export function Home() {
       <section className={styles.storyBand} aria-labelledby="story-title">
         <div className={`page-container ${styles.storyInner}`}>
           <AppImage
-            src="/assets/images/restaurant/restaurant-kitchen.jpg"
+            src="/assets/images/restaurant/restaurant-kitchen.svg"
             alt="The open kitchen at our Zamalek branch"
             ratio="wide"
             className={styles.storyImage}
