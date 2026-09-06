@@ -292,18 +292,38 @@ export function pizza(random, { topping = 'pepperoni', slicePulled = true } = {}
       `<ellipse cx="${n(cx)}" cy="${n(cy)}" rx="${n(between(random, 24, 34))}" ry="${n(between(random, 13, 18))}" fill="${hsl(104, 46, 34)}" transform="rotate(${n(between(random, -60, 60))} ${n(cx)} ${n(cy)})"/>`,
   }
 
-  const draw = toppings[topping] ?? toppings.pepperoni
-  for (let i = 0; i < 11; i += 1) {
-    const angle = random() * Math.PI * 2
-    const radius = Math.sqrt(random()) * r * 0.66
-    out += draw(Math.cos(angle) * radius, -8 + Math.sin(angle) * radius)
-  }
-  if (topping !== 'basil') {
-    for (let i = 0; i < 4; i += 1) {
-      const angle = random() * Math.PI * 2
-      const radius = Math.sqrt(random()) * r * 0.6
-      out += toppings.basil(Math.cos(angle) * radius, -8 + Math.sin(angle) * radius)
+  /**
+   * Scatter toppings without letting them pile up. Candidates that land too
+   * close to something already placed are rejected and retried — unconstrained
+   * random placement clumps badly and reads as a mistake rather than a pizza.
+   */
+  const placed = []
+  const scatter = (count, spread, minGap, draw) => {
+    let drawn = ''
+    for (let i = 0; i < count; i += 1) {
+      for (let attempt = 0; attempt < 24; attempt += 1) {
+        const angle = random() * Math.PI * 2
+        const radius = Math.sqrt(random()) * r * spread
+        const x = Math.cos(angle) * radius
+        const y = -8 + Math.sin(angle) * radius
+
+        const tooClose = placed.some(
+          ([px, py]) => Math.hypot(px - x, py - y) < minGap,
+        )
+        if (tooClose && attempt < 23) continue
+
+        placed.push([x, y])
+        drawn += draw(x, y)
+        break
+      }
     }
+    return drawn
+  }
+
+  const draw = toppings[topping] ?? toppings.pepperoni
+  out += scatter(11, 0.66, 86, draw)
+  if (topping !== 'basil') {
+    out += scatter(4, 0.6, 74, toppings.basil)
   }
 
   // Slice cuts.
