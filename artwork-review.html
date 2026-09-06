@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EMBER — artwork review</title>
+<!--
+  Open this file in a browser to see every generated image at once.
+
+  It is a review aid for choosing which slots to shoot first, not part of the
+  site. It lives outside public/ so it is never bundled, and it reads the same
+  files the site does. See ASSETS.md for how to swap one for a real photo.
+-->
+<style>
+  :root {
+    --bg: #100e0d; --surface: #191614; --border: #2e2825;
+    --ink: #fff; --text: #e8e3dd; --muted: #a49c94; --primary: #ff5c1f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 40px 24px 80px;
+    background: var(--bg); color: var(--text);
+    font: 15px/1.6 Inter, "Segoe UI", system-ui, sans-serif;
+  }
+  header { max-width: 1240px; margin: 0 auto 40px; }
+  h1 { font-size: 32px; margin: 0 0 8px; color: var(--ink); letter-spacing: -0.02em; }
+  .lede { color: var(--muted); max-width: 62ch; margin: 0; }
+  main { max-width: 1240px; margin: 0 auto; }
+  h2 {
+    margin: 48px 0 4px; font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--primary);
+  }
+  .count { color: var(--muted); font-size: 13px; margin: 0 0 16px; }
+  .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); }
+  figure { margin: 0; }
+  img {
+    display: block; width: 100%; border-radius: 12px;
+    background: var(--surface); border: 1px solid var(--border);
+  }
+  figcaption {
+    margin-top: 6px; font-size: 11px; color: var(--muted);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>EMBER — generated artwork</h1>
+  <p class="lede">
+    Every image the site ships with. These are illustrations drawn in the brand
+    palette, standing in until real photography exists. To replace one, drop a
+    photo into the same folder with the same base name and change the extension
+    in the matching <code>image</code> value in <code>src/data/</code>. Full
+    instructions are in ASSETS.md.
+  </p>
+</header>
+
+<main id="out"></main>
+
+<script>
+const SETS = {
+  'Products': ['products', ["burger-double-stack","burger-classic","burger-smoky-bbq","burger-fiery-crunch","burger-mushroom-swiss","burger-halloumi","burger-signature","chicken-crispy-strips","chicken-hot-wings","chicken-popcorn","chicken-grilled-quarter","chicken-crispy-fillets","chicken-bucket-8","meal-crispy-strips","meal-burger-combo","meal-grilled-chicken","meal-wings","meal-double-stack","meal-two-piece","meal-veggie","pizza-margherita","pizza-pepperoni","pizza-bbq-chicken","pizza-four-cheese","pizza-spicy-beef","sandwich-crispy-chicken","sandwich-grilled-wrap","sandwich-fiery-chicken","sandwich-steak-melt","sandwich-club","side-fries","side-loaded-fries","side-onion-rings","side-coleslaw","side-mashed-potato","side-garlic-bread","dessert-chocolate-cake","dessert-cheesecake","dessert-brownie-sundae","dessert-cookie","dessert-ice-cream","drink-cola","drink-orange","drink-lemon-mint","drink-mango-smoothie","drink-iced-tea","drink-water","drink-coffee","family-feast-bucket","family-burger-box","family-mixed-grill","family-pizza-night"]],
+  'Category tiles': ['categories', ["category-featured","category-meals","category-burgers","category-chicken","category-pizza","category-sandwiches","category-sides","category-desserts","category-drinks","category-family"]],
+  'Offer banners': ['offers', ["offer-family-feast","offer-bogo-burger","offer-first-order","offer-free-delivery","offer-pizza-night","offer-student-lunch"]],
+  'The restaurant': ['restaurant', ["restaurant-kitchen","restaurant-interior","restaurant-grill","restaurant-team","restaurant-bakery","restaurant-counter","restaurant-dining","branch-zamalek","branch-new-cairo","branch-maadi","branch-sheikh-zayed","branch-heliopolis","branch-alexandria"]],
+  'Hero': ['hero', ["hero-main"]],
+};
+
+document.getElementById('out').innerHTML = Object.entries(SETS).map(([title, [dir, names]]) => `
+  <section>
+    <h2>${title}</h2>
+    <p class="count">${names.length} image${names.length === 1 ? '' : 's'} — public/assets/images/${dir}/</p>
+    <div class="grid">
+      ${names.map((name) => `
+        <figure>
+          <img src="public/assets/images/${dir}/${name}.svg" alt="${name}" loading="lazy">
+          <figcaption>${name}.svg</figcaption>
+        </figure>`).join('')}
+    </div>
+  </section>`).join('');
+</script>
+</body>
+</html>
