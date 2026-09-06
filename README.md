@@ -7,10 +7,12 @@ the order afterwards.
 Built with **React + Vite + React Router**, plain modern **CSS Modules**, and
 local mock data. No backend, no database, no build tooling beyond Vite.
 
-> **This is a front-end demo.** No payment is processed, no order reaches a
-> kitchen, and "authentication" stores accounts in your browser. Every place
-> that pretends is marked with a `DEMO NOTE` comment in the code, and the UI
-> says so to the customer too. See [Connecting a backend](#connecting-a-backend).
+> **This is a front-end prototype for client review.** No payment is processed,
+> no order reaches a kitchen, "authentication" stores accounts in your browser,
+> and loyalty points are worked out in the browser too. Every place that
+> pretends is marked with a `DEMO NOTE` comment in the code, and the UI says so
+> to the customer as well. The backend, database and real authentication land
+> in a later phase — see [Connecting a backend](#connecting-a-backend).
 
 ---
 
@@ -52,6 +54,13 @@ ember/
 ├── vite.config.js              Vite + the "@" -> /src import alias
 ├── ASSETS.md                   Which images to add, and at what size
 │
+├── scripts/                    Build-time only, nothing imports these
+│   ├── generate-artwork.mjs    Writes all 82 images into public/
+│   ├── artwork-kit.mjs         Shared drawing primitives
+│   ├── artwork-dishes.mjs      The dish renderers
+│   ├── artwork-scenes.mjs      Rooms and offer banners
+│   └── generate-app-icon.mjs   The 512x512 home-screen icon
+│
 ├── public/
 │   ├── favicon.svg
 │   └── assets/
@@ -68,7 +77,8 @@ ember/
     ├── App.jsx                 Every route in one file
     │
     ├── config/
-    │   └── restaurant.js       Brand name, fees, contact, promo codes
+    │   └── restaurant.js       Brand name, fees, contact, promo codes,
+    │                           and the whole Ember Rewards economy
     │
     ├── data/                   All content. Edit these, not the components.
     │   ├── menu.js             Every product
@@ -79,9 +89,16 @@ ember/
     │   ├── paymentMethods.js   Mock payment options
     │   └── navigation.js       Navbar and footer links
     │
+    ├── services/               THE SEAM THE BACKEND REPLACES
+    │   ├── mockApi.js          Fake latency, ApiError, password digesting
+    │   ├── authService.js      Sign up, log in, profile, password
+    │   ├── ordersService.js    Place an order, read the history
+    │   └── loyaltyService.js   Read the ledger, earn and redeem points
+    │
     ├── context/                Shared state
     │   ├── CartContext.jsx     Basket, order type, branch, promo code
-    │   ├── AuthContext.jsx     Demo accounts and saved addresses
+    │   ├── AuthContext.jsx     Who is signed in
+    │   ├── LoyaltyContext.jsx  Points balance, tier, history, redeeming
     │   ├── FavoritesContext.jsx  Hearted items
     │   └── ToastContext.jsx    The little confirmation messages
     │
@@ -116,7 +133,7 @@ ember/
     │   └── ScrollToTop/  ProtectedRoute/
     │
     ├── pages/                  One folder per route
-    │   ├── Home/  Menu/  ProductDetails/  Offers/  About/  Branches/
+    │   ├── Home/  Menu/  ProductDetails/  Offers/  Rewards/  About/  Branches/
     │   ├── Cart/  Checkout/ (+ steps/)  OrderConfirmation/
     │   ├── Login/  Signup/  Account/  Orders/  NotFound/
     │
@@ -132,6 +149,7 @@ ember/
 | `/menu` | Full menu (`?category=burgers&q=cheese`) |
 | `/menu/:itemId` | Product details |
 | `/offers` | Deals and promo codes |
+| `/rewards` | Ember Rewards — how it works, the catalogue, your balance |
 | `/about` | Story, values, contact, privacy, terms |
 | `/branches` | Locations |
 | `/cart` | Basket |
@@ -157,14 +175,14 @@ Open `src/data/menu.js`, copy any object and edit it:
   category: 'burgers',               // must match an id in data/categories.js
   description: 'Twelve-hour smoked brisket with pickled onion and aioli.',
   price: 215,                        // EGP, a plain number
-  image: '/assets/images/products/burger-brisket.jpg',
+  image: '/assets/images/products/burger-brisket.svg',
   featured: true,                    // optional — homepage + "Featured" tab
   popular: true,                     // optional — shows a "Popular" tag
 }
 ```
 
-Then drop `burger-brisket.jpg` into `public/assets/images/products/`. That is
-the whole job — the menu page, search, homepage and category filters all pick
+Then drop `burger-brisket.svg` (or a `.jpg` photo, adjusting the extension
+above) into `public/assets/images/products/`. That is the whole job — the menu page, search, homepage and category filters all pick
 it up automatically.
 
 Optional extras: `oldPrice` (shows a struck-through price and a discount
@@ -205,7 +223,7 @@ the site is calculated from these.
 1. Add an entry to `src/data/categories.js`:
    ```js
    { id: 'salads', name: 'Salads', description: 'Fresh, crisp, not an afterthought.',
-     image: '/assets/images/categories/category-salads.jpg' }
+     image: '/assets/images/categories/category-salads.svg' }
    ```
 2. Set `category: 'salads'` on the items that belong to it.
 3. Add the thumbnail image.
@@ -286,27 +304,51 @@ dine-in picker at checkout.
 
 ## Connecting a backend
 
-The demo behaviour is deliberately confined to four files. Replace their
-insides and every component keeps working, because they all go through the
-returned functions rather than touching storage directly.
+**Everything pretend lives in `src/services/`.** Each function there already
+returns the shape the UI expects and throws `ApiError` on failure, so replacing
+a body with a `fetch` changes nothing above it — no context, page or component
+has to move.
 
 | Replace | What it does now | What to do instead |
 | --- | --- | --- |
-| `src/context/AuthContext.jsx` | `signup` / `login` / `logout` read and write a list of accounts in localStorage | Call your auth API. Keep returning `{ user }` or `{ error }` and nothing else changes. |
-| `src/hooks/useOrders.js` | `placeOrder` writes to localStorage and returns the order | `POST /orders`, return the created order. Load history with a `GET`. |
-| `src/utils/orders.js` → `getOrderProgress` | Works out the status from the time since the order was placed | Use the status your kitchen system reports. |
-| `src/data/menu.js` | Exports a static array | Fetch the menu and expose it through the same helper functions (`getItemById`, `getItemsByCategory`, …). |
+| `services/authService.js` | Reads and writes accounts in localStorage; digests passwords with SHA-256 | Call your auth API. Hash properly on the server (bcrypt/argon2) and issue a session. |
+| `services/ordersService.js` | Writes the order to localStorage | `POST /orders`, return the created order. Load history with a `GET`. |
+| `services/loyaltyService.js` | Keeps a points ledger per account in localStorage | `GET /loyalty`, `POST /loyalty/earn`, `POST /loyalty/redeem`. **The server must own the arithmetic.** |
+| `services/mockApi.js` | Fakes latency and errors | Delete it, or keep `ApiError` and `toDisplayError` — the UI depends on those two. |
+| `utils/orders.js` → `getOrderProgress` | Works out the status from the time since the order was placed | Use the status your kitchen system reports. |
+| `data/menu.js` | Exports a static array | Fetch the menu and expose it through the same helper functions (`getItemById`, …). |
 
-Two more places to revisit:
+### What must move server-side, not just get wired up
 
-- **Payment** — `src/data/paymentMethods.js` and `pages/Checkout/steps/PaymentStep.jsx`
-  currently state plainly that nothing is charged. Wire in a real provider and
-  remove the notice.
-- **Promo codes** — `config/restaurant.js` lists them client-side, which means
-  anyone can read them. Validate codes on the server.
+The prototype computes these in the browser because there is nowhere else to
+put them yet. They are **not** safe as they stand:
+
+- **Loyalty points.** `LoyaltyContext` derives the balance by summing the
+  ledger, and `loyaltyService.redeemReward` re-checks affordability against
+  that sum — the right rule, in the wrong place. A customer can edit their own
+  ledger in devtools. The server has to own earning, the balance and redemption.
+- **Order totals.** `utils/cart.js` prices the basket in the browser. The
+  server must recompute every total from its own menu and ignore what the
+  client sends.
+- **Promo codes.** `config/restaurant.js` lists them client-side, so anyone can
+  read them. Validate on the server.
+- **Payment.** `data/paymentMethods.js` and `steps/PaymentStep.jsx` say plainly
+  that nothing is charged. Wire in a provider and remove the notice.
+- **Passwords.** `mockApi.js` digests them with a bare SHA-256 so the demo does
+  not keep what someone typed. That is not password storage — the server needs
+  a salted, slow hash.
 
 `src/utils/storage.js` is the single place localStorage is touched, so it is
-easy to see everything that is currently persisted on the device.
+easy to see everything currently persisted on the device.
+
+### Changing the loyalty rules
+
+`src/config/restaurant.js` → `loyaltySettings` holds the entire economy: the
+earn rate, the joining bonus, what a point is worth, whether delivery fees
+earn, and the four tiers with their multipliers. Change `pointsPerEgp` there
+and the rewards page, the account page, the checkout preview and the order
+confirmation all follow — the number is not written down anywhere else. The
+reward catalogue itself is `src/data/loyalty.js`.
 
 ---
 
@@ -321,9 +363,12 @@ easy to see everything that is currently persisted on the device.
 - **Photography leads.** The hero runs full-bleed behind a transparent navbar,
   category tiles are photo-filled, and product cards fade the image into the
   card body. The site is built to show off good food pictures.
-- **Images degrade gracefully.** Every photo goes through `<AppImage>`, which
-  draws a warm lit panel when a file is missing — so the layout looks
-  intentional before you have added your own photography.
+- **Artwork, until there is photography.** Every image slot ships with a
+  generated illustration drawn in the brand palette by
+  `scripts/generate-artwork.mjs`, so the prototype never shows an empty box.
+  Each one is a drop-in replacement for a real photo at the same path — see
+  [ASSETS.md](./ASSETS.md). `<AppImage>` holds the aspect ratio, fades each
+  image in once decoded, and still draws a warm panel if a file is missing.
 - **Responsive by layout, not by shrinking.** The navbar collapses to a
   slide-in menu, the product grid steps 1 → 2 → 3 → 4 columns, checkout stacks,
   and the basket becomes a full-height drawer.
@@ -331,7 +376,12 @@ easy to see everything that is currently persisted on the device.
   with `aria-invalid` and linked error messages, visible focus rings, keyboard
   and Escape handling on the modal and drawers, and `prefers-reduced-motion`
   support.
-- **State lives where it is used.** Four small contexts (cart, auth,
+- **State lives where it is used.** Five small contexts (cart, auth, loyalty,
   favourites, toasts) and a handful of hooks — no state-management library.
+- **Nothing is faked in a component.** Every pretend call goes through
+  `src/services/`, which is why the loading, error and success states on screen
+  are real ones rather than decoration.
+- **The points balance is never stored.** It is summed from the ledger on every
+  render, so the number and the history that explains it cannot drift apart.
 
 See [ASSETS.md](./ASSETS.md) for the full list of images to add.

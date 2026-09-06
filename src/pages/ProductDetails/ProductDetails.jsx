@@ -68,7 +68,7 @@ function ProductDetailsContent({ item }) {
                 src={item.image}
                 alt={item.name}
                 ratio="hero"
-                loading="eager"
+                priority
                 className={styles.image}
               />
               {discount > 0 && (

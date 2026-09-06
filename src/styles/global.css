@@ -96,9 +96,13 @@
   --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.6);
   --glow-primary: 0 0 0 1px var(--color-primary-line), 0 12px 32px rgba(255, 92, 31, 0.18);
 
-  /* Motion */
+  /* Motion
+     `--ease-out` overshoots very slightly, which is what makes a panel feel
+     like it settles rather than stops. Keep durations short — everything on
+     this site should feel immediate. */
   --transition-fast: 140ms ease;
   --transition-base: 220ms ease;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* Layout */
   --page-width: 1240px;
@@ -199,6 +203,30 @@ p { text-wrap: pretty; }
   color: var(--color-on-primary);
 }
 
+/* Warm scrollbars, so the browser chrome does not sit cold against the page. */
+* {
+  scrollbar-color: var(--color-border-strong) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-border-strong);
+  border: 3px solid var(--color-background);
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-muted);
+}
+
 /* 4. LAYOUT HELPERS ------------------------------------------------------ */
 .page-container {
   width: 100%;
@@ -210,6 +238,25 @@ p { text-wrap: pretty; }
 @media (min-width: 768px) {
   .page-container {
     padding-inline: var(--space-6);
+  }
+}
+
+/**
+ * Page transition.
+ *
+ * Applied to <main> and keyed on the route, so each page rises in rather than
+ * snapping. Deliberately no fill-mode: the transform is dropped the moment the
+ * animation ends, so it never becomes a containing block for anything fixed.
+ * The drawer, mobile menu, modals and toasts all live outside <main> anyway.
+ */
+.page-enter {
+  animation: page-in 280ms var(--ease-out);
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
 }
 

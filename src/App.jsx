@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { Navbar } from '@/components/Navbar/Navbar'
 import { Footer } from '@/components/Footer/Footer'
 import { CartDrawer } from '@/components/CartDrawer/CartDrawer'
@@ -26,6 +26,8 @@ import { NotFound } from '@/pages/NotFound/NotFound'
  * Add a page by creating it in src/pages and adding one <Route> below.
  */
 export function App() {
+  const location = useLocation()
+
   return (
     <>
       <a className="skip-link" href="#main-content">
@@ -35,7 +37,8 @@ export function App() {
       <ScrollToTop />
       <Navbar />
 
-      <main id="main-content">
+      {/* Keyed on the path so each page replays its entry animation. */}
+      <main id="main-content" key={location.pathname} className="page-enter">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/menu" element={<Menu />} />

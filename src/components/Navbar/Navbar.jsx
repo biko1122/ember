@@ -7,6 +7,8 @@ import { OrderTypeSelector } from '@/components/OrderTypeSelector/OrderTypeSelec
 import { MobileMenu } from '@/components/Navbar/MobileMenu'
 import { useCart } from '@/context/CartContext'
 import { useAuth } from '@/context/AuthContext'
+import { useLoyalty } from '@/context/LoyaltyContext'
+import { formatPoints } from '@/components/Loyalty/Loyalty'
 import { primaryNavLinks } from '@/data/navigation'
 import { getOrderType } from '@/data/orderTypes'
 import styles from './Navbar.module.css'
@@ -22,6 +24,7 @@ export function Navbar() {
   const location = useLocation()
   const { itemCount, openCart, orderType } = useCart()
   const { user, isLoggedIn } = useAuth()
+  const { balance, isLoading: isLoyaltyLoading } = useLoyalty()
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isOrderTypeModalOpen, setIsOrderTypeModalOpen] = useState(false)
@@ -88,6 +91,14 @@ export function Navbar() {
               <span>{activeOrderType.label}</span>
               <Icon name="chevronDown" size={15} />
             </button>
+
+            {isLoggedIn && !isLoyaltyLoading && (
+              <NavLink to="/rewards" className={styles.pointsChip} title="Ember Rewards">
+                <Icon name="gift" size={16} />
+                <span>{formatPoints(balance)}</span>
+                <span className="visually-hidden">points</span>
+              </NavLink>
+            )}
 
             <NavLink to={isLoggedIn ? '/account' : '/login'} className={styles.iconButton}>
               <Icon name="user" size={21} />

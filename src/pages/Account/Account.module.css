@@ -9,6 +9,9 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+  /* A grid child defaults to min-content width. Without this the scrolling
+     tab strip below would stretch the column and push the page sideways. */
+  min-width: 0;
 }
 
 /* Who is signed in ------------------------------------------------------- */
@@ -317,6 +320,35 @@
   font-family: var(--font-display);
   font-weight: 700;
   color: var(--color-ink);
+}
+
+/* On a phone the section list becomes a scrolling tab strip. Stacked, it
+   pushed the actual content a whole screen down. */
+@media (max-width: 899px) {
+  .sectionList {
+    flex-direction: row;
+    gap: var(--space-2);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .sectionList::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Stop the tabs squashing to fit — they scroll instead. */
+  .sectionList > li {
+    flex-shrink: 0;
+  }
+
+  .sectionButton {
+    padding-inline: var(--space-4);
+    white-space: nowrap;
+  }
+
+  .badge {
+    margin-left: var(--space-1);
+  }
 }
 
 @media (min-width: 480px) {

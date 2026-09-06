@@ -26,7 +26,7 @@ export function Hero() {
           src="/assets/images/hero/hero-main.svg"
           alt=""
           ratio="none"
-          loading="eager"
+          priority
           className={styles.image}
         />
         <div className={styles.scrim} />

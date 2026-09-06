@@ -8,6 +8,10 @@ import { OfferCard } from '@/components/OfferCard/OfferCard'
 import { AppImage } from '@/components/AppImage/AppImage'
 import { Button } from '@/components/Button/Button'
 import { Icon } from '@/components/Icon/Icon'
+import { useAuth } from '@/context/AuthContext'
+import { useLoyalty } from '@/context/LoyaltyContext'
+import { formatPoints } from '@/components/Loyalty/Loyalty'
+import { loyaltySettings } from '@/config/restaurant'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import { getFeaturedItems, getPopularItems } from '@/data/menu'
 import { offers } from '@/data/offers'
@@ -35,6 +39,9 @@ const promises = [
 ]
 
 export function Home() {
+  const { isLoggedIn } = useAuth()
+  const { balance, nextReward, isLoading: isLoyaltyLoading } = useLoyalty()
+
   useDocumentTitle(
     null,
     `Order burgers, fried chicken, pizza and family meals from ${restaurant.name}. Delivery, pickup or dine in.`,
@@ -101,6 +108,43 @@ export function Home() {
             </li>
           ))}
         </ul>
+      </section>
+
+      {/* Rewards --------------------------------------------------------- */}
+      <section className={`page-container ${styles.section}`} aria-labelledby="rewards-title">
+        <div className={styles.rewardsBand}>
+          <div className={styles.rewardsText}>
+            <p className={styles.rewardsEyebrow}>
+              <Icon name="gift" size={15} />
+              {loyaltySettings.programName}
+            </p>
+
+            <h2 id="rewards-title" className={styles.rewardsTitle}>
+              {isLoggedIn && !isLoyaltyLoading
+                ? `You have ${formatPoints(balance)} points waiting`
+                : 'Every order earns you free food'}
+            </h2>
+
+            <p className={styles.rewardsBody}>
+              {isLoggedIn && !isLoyaltyLoading
+                ? nextReward
+                  ? `Just ${formatPoints(nextReward.cost - balance)} more points and ${nextReward.name.toLowerCase()} is yours.`
+                  : 'Every reward on the board is unlocked — go and spend them.'
+                : `Collect ${loyaltySettings.pointsPerEgp} point for every EGP you spend, and start with ${formatPoints(loyaltySettings.joiningBonus)} points just for joining.`}
+            </p>
+          </div>
+
+          <div className={styles.rewardsActions}>
+            <Button to="/rewards" iconAfter="arrowRight">
+              {isLoggedIn ? 'Spend my points' : 'See how it works'}
+            </Button>
+            {!isLoggedIn && (
+              <Link to="/signup" className={styles.rewardsLink}>
+                Join in 30 seconds
+              </Link>
+            )}
+          </div>
+        </div>
       </section>
 
       {/* Promises + story ------------------------------------------------ */}

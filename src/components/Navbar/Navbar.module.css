@@ -190,3 +190,31 @@
   .links { display: flex; }
   .orderTypeChip { display: inline-flex; }
 }
+
+/* Points balance, for signed-in members ---------------------------------- */
+.pointsChip {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-secondary);
+  background-color: var(--color-secondary-soft);
+  border: 1px solid rgba(255, 194, 77, 0.28);
+  border-radius: var(--radius-pill);
+  font-variant-numeric: tabular-nums;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.pointsChip:hover {
+  background-color: rgba(255, 194, 77, 0.2);
+  border-color: var(--color-secondary);
+}
+
+/* Only where there is room — the phone shows it in the slide-in menu. */
+@media (min-width: 1024px) {
+  .pointsChip {
+    display: inline-flex;
+  }
+}

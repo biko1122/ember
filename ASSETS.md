@@ -1,13 +1,27 @@
 # Assets to replace
 
-Every image lives in `public/assets/`. Drop a file in with the name below and it
-appears on the site — **no code changes needed**.
+Every image lives in `public/assets/`.
 
-Until a file exists, the site draws a tidy striped placeholder instead of a
-broken image, so you can add photography a few files at a time.
+**The site currently ships with generated artwork, not photography.** Every slot
+listed below already has an illustrated `.svg` drawn in the EMBER palette, so
+the prototype looks art-directed while the real photographs are being shot.
+Those files are produced by `node scripts/generate-artwork.mjs` — you never edit
+them by hand, and once real photos land you can delete the script.
 
-All files are `.jpg`. Use `.webp` if you prefer — just update the matching
-`image` value in the data file, which is the only place the name appears.
+## Replacing one with a real photograph
+
+1. Drop your photo into the same folder, keeping the base name — e.g.
+   `public/assets/images/products/burger-classic.jpg`.
+2. Change the extension in the one place the name appears, the matching `image`
+   value in `src/data/*.js`:
+   `image: '/assets/images/products/burger-classic.svg'` →
+   `...burger-classic.jpg`.
+
+That is the whole job. Nothing else references the filename. Do them a few at a
+time — the ones you have not replaced keep their artwork.
+
+`.jpg` and `.webp` both work. If a file is ever missing entirely, the site draws
+a warm placeholder panel rather than a broken image.
 
 **Keep every photo in a category the same crop and distance.** A grid of dishes
 shot from the same angle is most of what makes a food site look professional.
@@ -18,7 +32,7 @@ shot from the same angle is most of what makes a food site look professional.
 
 | File | Size | Where it appears | What it should show |
 | --- | --- | --- | --- |
-| `hero-main.jpg` | 1600 × 1200 (4:3) | Homepage hero, right-hand side | Your single best-looking dish, shot close and warm. A card overlaps the bottom-left corner, so keep that area quiet. |
+| `hero-main.svg` | 1600 × 1200 (4:3) | Homepage hero, right-hand side | Your single best-looking dish, shot close and warm. A card overlaps the bottom-left corner, so keep that area quiet. |
 
 ## Products — `public/assets/images/products/`
 
@@ -26,71 +40,71 @@ shot from the same angle is most of what makes a food site look professional.
 The dish centred on a plain, uncluttered background. Tags sit over the
 bottom-left corner and a heart over the top-right, so leave those corners calm.
 
-**Burgers** — `burger-double-stack.jpg`, `burger-classic.jpg`,
-`burger-smoky-bbq.jpg`, `burger-fiery-crunch.jpg`, `burger-mushroom-swiss.jpg`,
-`burger-halloumi.jpg`, `burger-signature.jpg`
+**Burgers** — `burger-double-stack.svg`, `burger-classic.svg`,
+`burger-smoky-bbq.svg`, `burger-fiery-crunch.svg`, `burger-mushroom-swiss.svg`,
+`burger-halloumi.svg`, `burger-signature.svg`
 
-**Chicken** — `chicken-crispy-strips.jpg`, `chicken-hot-wings.jpg`,
-`chicken-popcorn.jpg`, `chicken-grilled-quarter.jpg`,
-`chicken-crispy-fillets.jpg`, `chicken-bucket-8.jpg`
+**Chicken** — `chicken-crispy-strips.svg`, `chicken-hot-wings.svg`,
+`chicken-popcorn.svg`, `chicken-grilled-quarter.svg`,
+`chicken-crispy-fillets.svg`, `chicken-bucket-8.svg`
 
-**Meals** — `meal-crispy-strips.jpg`, `meal-burger-combo.jpg`,
-`meal-grilled-chicken.jpg`, `meal-wings.jpg`, `meal-double-stack.jpg`,
-`meal-two-piece.jpg`, `meal-veggie.jpg`
+**Meals** — `meal-crispy-strips.svg`, `meal-burger-combo.svg`,
+`meal-grilled-chicken.svg`, `meal-wings.svg`, `meal-double-stack.svg`,
+`meal-two-piece.svg`, `meal-veggie.svg`
 
-**Pizza** — `pizza-margherita.jpg`, `pizza-pepperoni.jpg`,
-`pizza-bbq-chicken.jpg`, `pizza-four-cheese.jpg`, `pizza-spicy-beef.jpg`
+**Pizza** — `pizza-margherita.svg`, `pizza-pepperoni.svg`,
+`pizza-bbq-chicken.svg`, `pizza-four-cheese.svg`, `pizza-spicy-beef.svg`
 
-**Sandwiches** — `sandwich-crispy-chicken.jpg`, `sandwich-grilled-wrap.jpg`,
-`sandwich-fiery-chicken.jpg`, `sandwich-steak-melt.jpg`, `sandwich-club.jpg`
+**Sandwiches** — `sandwich-crispy-chicken.svg`, `sandwich-grilled-wrap.svg`,
+`sandwich-fiery-chicken.svg`, `sandwich-steak-melt.svg`, `sandwich-club.svg`
 
-**Sides** — `side-fries.jpg`, `side-loaded-fries.jpg`, `side-onion-rings.jpg`,
-`side-coleslaw.jpg`, `side-mashed-potato.jpg`, `side-garlic-bread.jpg`
+**Sides** — `side-fries.svg`, `side-loaded-fries.svg`, `side-onion-rings.svg`,
+`side-coleslaw.svg`, `side-mashed-potato.svg`, `side-garlic-bread.svg`
 
-**Desserts** — `dessert-chocolate-cake.jpg`, `dessert-cheesecake.jpg`,
-`dessert-brownie-sundae.jpg`, `dessert-cookie.jpg`, `dessert-ice-cream.jpg`
+**Desserts** — `dessert-chocolate-cake.svg`, `dessert-cheesecake.svg`,
+`dessert-brownie-sundae.svg`, `dessert-cookie.svg`, `dessert-ice-cream.svg`
 
-**Drinks** — `drink-cola.jpg`, `drink-orange.jpg`, `drink-lemon-mint.jpg`,
-`drink-mango-smoothie.jpg`, `drink-iced-tea.jpg`, `drink-water.jpg`,
-`drink-coffee.jpg`
+**Drinks** — `drink-cola.svg`, `drink-orange.svg`, `drink-lemon-mint.svg`,
+`drink-mango-smoothie.svg`, `drink-iced-tea.svg`, `drink-water.svg`,
+`drink-coffee.svg`
 
-**Family meals** — `family-feast-bucket.jpg`, `family-burger-box.jpg`,
-`family-mixed-grill.jpg`, `family-pizza-night.jpg`
+**Family meals** — `family-feast-bucket.svg`, `family-burger-box.svg`,
+`family-mixed-grill.svg`, `family-pizza-night.svg`
 
 ## Categories — `public/assets/images/categories/`
 
 **600 × 600 (square)** — the small round-cornered thumbnails on the homepage.
 One clear, tightly cropped dish per category.
 
-`category-featured.jpg`, `category-meals.jpg`, `category-burgers.jpg`,
-`category-chicken.jpg`, `category-pizza.jpg`, `category-sandwiches.jpg`,
-`category-sides.jpg`, `category-desserts.jpg`, `category-drinks.jpg`,
-`category-family.jpg`
+`category-featured.svg`, `category-meals.svg`, `category-burgers.svg`,
+`category-chicken.svg`, `category-pizza.svg`, `category-sandwiches.svg`,
+`category-sides.svg`, `category-desserts.svg`, `category-drinks.svg`,
+`category-family.svg`
 
 ## Offers — `public/assets/images/offers/`
 
 **1200 × 750 (16:10 landscape)** — homepage offer strip and the `/offers` page.
 A dark badge sits in the top-left corner, so keep that area free of detail.
 
-`offer-family-feast.jpg`, `offer-bogo-burger.jpg`, `offer-first-order.jpg`,
-`offer-free-delivery.jpg`, `offer-pizza-night.jpg`, `offer-student-lunch.jpg`
+`offer-family-feast.svg`, `offer-bogo-burger.svg`, `offer-first-order.svg`,
+`offer-free-delivery.svg`, `offer-pizza-night.svg`, `offer-student-lunch.svg`
 
 ## Restaurant — `public/assets/images/restaurant/`
 
 | File | Size | Where it appears | What it should show |
 | --- | --- | --- | --- |
-| `restaurant-kitchen.jpg` | 1200 × 750 | Homepage story band | The kitchen or grill in action. |
-| `restaurant-interior.jpg` | 1200 × 750 | About page, "How it started" | The dining room, ideally with people in it. |
-| `restaurant-grill.jpg` | 800 × 800 | About page photo strip | A cook working the grill. |
-| `restaurant-team.jpg` | 800 × 800 | About page photo strip | The team before service. |
-| `restaurant-bakery.jpg` | 800 × 800 | About page photo strip | Bread, buns, or prep work. |
-| `restaurant-counter.jpg` | 1200 × 1600 (3:4) | Login page side panel | The order counter, shot vertically. Text is overlaid, so keep it calm. |
-| `restaurant-dining.jpg` | 1200 × 1600 (3:4) | Sign-up page side panel | Guests eating, shot vertically. Text is overlaid. |
+| `restaurant-kitchen.svg` | 1200 × 750 | Homepage story band | The kitchen or grill in action. |
+| `restaurant-interior.svg` | 1200 × 750 | About page, "How it started" | The dining room, ideally with people in it. |
+| `restaurant-grill.svg` | 800 × 800 | About page photo strip | A cook working the grill. |
+| `restaurant-team.svg` | 800 × 800 | About page photo strip | The team before service. |
+| `restaurant-bakery.svg` | 800 × 800 | About page photo strip | Bread, buns, or prep work. |
+| `restaurant-counter.svg` | 1200 × 1600 (3:4) | Login page side panel | The order counter, shot vertically. Text is overlaid, so keep it calm. |
+| `restaurant-dining.svg` | 1200 × 1600 (3:4) | Sign-up page side panel | Guests eating, shot vertically. Text is overlaid. |
 
 **Branch photos** — 1200 × 750, one per branch on the Locations page. Names come
 from `src/data/branches.js`:
-`branch-zamalek.jpg`, `branch-new-cairo.jpg`, `branch-maadi.jpg`,
-`branch-sheikh-zayed.jpg`, `branch-heliopolis.jpg`, `branch-alexandria.jpg`
+`branch-zamalek.svg`, `branch-new-cairo.svg`, `branch-maadi.svg`,
+`branch-sheikh-zayed.svg`, `branch-heliopolis.svg`, `branch-alexandria.svg`
 
 ## Logo — `public/assets/logo/`
 
@@ -107,8 +121,18 @@ that file to change it.
 
 ---
 
-## Checking what is still missing
+## Checking your progress
 
-Run `npm run dev` and browse the site. Anything still showing a striped
-placeholder has no file yet. The menu page is the fastest way to spot gaps —
-it shows every product at once.
+Run `npm run dev` and open `/menu` — it shows every product at once, so it is
+the fastest way to see which dishes are still on generated artwork and which
+have real photography.
+
+## Regenerating the artwork
+
+```bash
+node scripts/generate-artwork.mjs   # all 82 images
+node scripts/generate-app-icon.mjs  # the 512x512 home-screen icon
+```
+
+Both are build-time scripts with no dependencies. Nothing in the running app
+imports them.
