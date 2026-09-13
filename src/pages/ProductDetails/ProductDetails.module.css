@@ -152,6 +152,6 @@
   /* Keep the photo in view while the options list scrolls. */
   .mediaColumn {
     position: sticky;
-    top: calc(var(--navbar-height) + var(--space-5));
+    top: calc(var(--navbar-offset) + var(--space-5));
   }
 }

@@ -33,12 +33,39 @@ export function Navbar() {
   const activeOrderType = getOrderType(orderType)
   const isOverHero = location.pathname === '/'
 
-  // Drop a shadow once the page moves, so the bar separates from the content.
+  /**
+   * Compact the bar once the page moves.
+   *
+   * The two thresholds are deliberate: compacting and expanding at the same
+   * scroll position makes the bar flicker when someone rests mid-gesture, so
+   * it shrinks at 24px and only grows back at 6px.
+   *
+   * The flag is mirrored onto <html> because `--navbar-offset` lives there —
+   * that is what lets the menu's category bar and every sticky sidebar keep
+   * hugging the header as it shrinks, without each of them knowing why.
+   */
   useEffect(() => {
-    const handleScroll = () => setHasScrolled(window.scrollY > 8)
+    const COMPACT_BELOW = 24
+    const EXPAND_ABOVE = 6
+    let isCompact = false
+
+    const handleScroll = () => {
+      const y = window.scrollY
+      const next = isCompact ? y > EXPAND_ABOVE : y > COMPACT_BELOW
+      if (next === isCompact) return
+
+      isCompact = next
+      setHasScrolled(next)
+      document.documentElement.dataset.navCompact = String(next)
+    }
+
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      delete document.documentElement.dataset.navCompact
+    }
   }, [])
 
   // Any navigation closes the mobile menu.
@@ -53,73 +80,79 @@ export function Navbar() {
         data-scrolled={hasScrolled}
         data-solid={!isOverHero}
       >
-        <div className={`page-container ${styles.inner}`}>
-          <button
-            type="button"
-            className={styles.hamburger}
-            onClick={() => setIsMobileMenuOpen(true)}
-            aria-label="Open menu"
-            aria-expanded={isMobileMenuOpen}
-          >
-            <Icon name="menu" size={24} />
-          </button>
+        {/* The <header> reserves a constant height; only this bar inside it
+            resizes, so compacting never shifts the page behind it. */}
+        <div className={styles.bar}>
+          <div className={`page-container ${styles.inner}`}>
+            <button
+              type="button"
+              className={styles.hamburger}
+              onClick={() => setIsMobileMenuOpen(true)}
+              aria-label="Open menu"
+              aria-expanded={isMobileMenuOpen}
+            >
+              <Icon name="menu" size={24} />
+            </button>
 
-          <Logo />
+            <span className={styles.brand}>
+              <Logo />
+            </span>
 
-          <nav className={styles.links} aria-label="Main">
-            {primaryNavLinks.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                end={link.to === '/'}
-                className={({ isActive }) =>
-                  isActive ? `${styles.link} ${styles.linkActive}` : styles.link
-                }
+            <nav className={styles.links} aria-label="Main">
+              {primaryNavLinks.map((link) => (
+                <NavLink
+                  key={link.to}
+                  to={link.to}
+                  end={link.to === '/'}
+                  className={({ isActive }) =>
+                    isActive ? `${styles.link} ${styles.linkActive}` : styles.link
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              ))}
+            </nav>
+
+            <div className={styles.actions}>
+              <button
+                type="button"
+                className={styles.orderTypeChip}
+                onClick={() => setIsOrderTypeModalOpen(true)}
               >
-                {link.label}
-              </NavLink>
-            ))}
-          </nav>
+                <Icon name={activeOrderType.icon} size={17} />
+                <span>{activeOrderType.label}</span>
+                <Icon name="chevronDown" size={15} />
+              </button>
 
-          <div className={styles.actions}>
-            <button
-              type="button"
-              className={styles.orderTypeChip}
-              onClick={() => setIsOrderTypeModalOpen(true)}
-            >
-              <Icon name={activeOrderType.icon} size={17} />
-              <span>{activeOrderType.label}</span>
-              <Icon name="chevronDown" size={15} />
-            </button>
-
-            {isLoggedIn && !isLoyaltyLoading && (
-              <NavLink to="/rewards" className={styles.pointsChip} title="Ember Rewards">
-                <Icon name="gift" size={16} />
-                <span>{formatPoints(balance)}</span>
-                <span className="visually-hidden">points</span>
-              </NavLink>
-            )}
-
-            <NavLink to={isLoggedIn ? '/account' : '/login'} className={styles.iconButton}>
-              <Icon name="user" size={21} />
-              <span className={styles.accountLabel}>
-                {isLoggedIn ? user.firstName : 'Log in'}
-              </span>
-            </NavLink>
-
-            <button
-              type="button"
-              className={styles.cartButton}
-              onClick={openCart}
-              aria-label={`Open basket, ${itemCount} item${itemCount === 1 ? '' : 's'}`}
-            >
-              <Icon name="cart" size={21} />
-              {itemCount > 0 && (
-                <span key={itemCount} className={styles.cartBadge}>
-                  {itemCount}
-                </span>
+              {isLoggedIn && !isLoyaltyLoading && (
+                <NavLink to="/rewards" className={styles.pointsChip} title="Ember Rewards">
+                  <Icon name="gift" size={16} />
+                  <span>{formatPoints(balance)}</span>
+                  <span className="visually-hidden">points</span>
+                </NavLink>
               )}
-            </button>
+
+              <NavLink to={isLoggedIn ? '/account' : '/login'} className={styles.iconButton}>
+                <Icon name="user" size={21} />
+                <span className={styles.accountLabel}>
+                  {isLoggedIn ? user.firstName : 'Log in'}
+                </span>
+              </NavLink>
+
+              <button
+                type="button"
+                className={styles.cartButton}
+                onClick={openCart}
+                aria-label={`Open basket, ${itemCount} item${itemCount === 1 ? '' : 's'}`}
+              >
+                <Icon name="cart" size={21} />
+                {itemCount > 0 && (
+                  <span key={itemCount} className={styles.cartBadge}>
+                    {itemCount}
+                  </span>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </header>

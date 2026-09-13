@@ -147,7 +147,7 @@
 /* Legal ------------------------------------------------------------------ */
 .legal {
   max-width: 70ch;
-  scroll-margin-top: calc(var(--navbar-height) + var(--space-5));
+  scroll-margin-top: calc(var(--navbar-offset) + var(--space-5));
 }
 
 .legal p {

@@ -6,7 +6,7 @@
 /* Sticks under the navbar on the menu page. */
 .sticky {
   position: sticky;
-  top: var(--navbar-height);
+  top: var(--navbar-offset);
   z-index: calc(var(--z-sticky) - 1);
   padding-block: var(--space-3);
   border-bottom: 1px solid var(--color-border);

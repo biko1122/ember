@@ -1,21 +1,39 @@
+/**
+ * The header reserves a constant height and never changes size itself — only
+ * the bar inside it does. Resizing a sticky element that is still in flow
+ * would shove every page down by the difference the moment it compacted, and
+ * near the threshold that shove can re-trigger the scroll handler and flicker.
+ * Keeping the outer box fixed removes both problems.
+ */
 .navbar {
   position: sticky;
   top: 0;
   z-index: var(--z-sticky);
-  border-bottom: 1px solid transparent;
-  transition: background-color var(--transition-base), border-color var(--transition-base),
-    backdrop-filter var(--transition-base);
+  height: var(--navbar-height);
+  /* The gap under the compact bar belongs to the page, not the header. */
+  pointer-events: none;
 }
 
-/* Transparent over the hero, frosted once the page moves. */
-.navbar[data-scrolled='true'] {
+.bar {
+  pointer-events: auto;
+  height: 100%;
+  border-bottom: 1px solid transparent;
+  transition: height var(--transition-base) var(--ease-out),
+    background-color var(--transition-base), border-color var(--transition-base),
+    box-shadow var(--transition-base), backdrop-filter var(--transition-base);
+}
+
+/* Transparent over the hero, frosted and shorter once the page moves. */
+.navbar[data-scrolled='true'] .bar {
+  height: var(--navbar-height-compact);
   background-color: rgba(16, 14, 13, 0.82);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px) saturate(140%);
   border-bottom-color: var(--color-border);
+  box-shadow: var(--shadow-md);
 }
 
 /* Inner pages have no hero behind the bar, so it is always solid there. */
-.navbar[data-solid='true'] {
+.navbar[data-solid='true'] .bar {
   background-color: var(--color-background);
   border-bottom-color: var(--color-border);
 }
@@ -24,7 +42,19 @@
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  min-height: var(--navbar-height);
+  height: 100%;
+}
+
+/* The brand shrinks a little with the bar, rather than sitting oversized in
+   it. Scaling from the left keeps it pinned to the page gutter. */
+.brand {
+  display: inline-flex;
+  transform-origin: left center;
+  transition: transform var(--transition-base) var(--ease-out);
+}
+
+.navbar[data-scrolled='true'] .brand {
+  transform: scale(0.88);
 }
 
 /* Hamburger — mobile only ------------------------------------------------ */
@@ -145,7 +175,14 @@
   border-radius: var(--radius-pill);
   color: var(--color-ink);
   background-color: var(--color-surface-alt);
-  transition: background-color var(--transition-fast);
+  transition: background-color var(--transition-fast),
+    width var(--transition-base) var(--ease-out), height var(--transition-base) var(--ease-out);
+}
+
+/* The one element tall enough to notice if it did not come down with the bar. */
+.navbar[data-scrolled='true'] .cartButton {
+  width: 40px;
+  height: 40px;
 }
 
 .cartButton:hover {

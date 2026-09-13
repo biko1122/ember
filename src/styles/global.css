@@ -106,12 +106,27 @@
 
   /* Layout */
   --page-width: 1240px;
+
+  /* The header reserves this much space at all times, so nothing on the page
+     moves when the bar compacts. Layout that sits *behind* the header — the
+     hero, the auth panels — measures against this one. */
   --navbar-height: 76px;
+  /* How tall the visible bar shrinks to once the page is scrolled. */
+  --navbar-height-compact: 60px;
+  /* Where the bar currently ends. Anything that sticks *below* the header
+     follows this, so it keeps hugging the bar as it shrinks. */
+  --navbar-offset: var(--navbar-height);
 
   --z-sticky: 100;
   --z-drawer: 200;
   --z-modal: 300;
   --z-toast: 400;
+}
+
+/* The Navbar mirrors its compact state onto <html>, so every sticky element
+   below the header follows it without having to know the header exists. */
+:root[data-nav-compact='true'] {
+  --navbar-offset: var(--navbar-height-compact);
 }
 
 /* 2. RESET --------------------------------------------------------------- */
@@ -203,28 +218,63 @@ p { text-wrap: pretty; }
   color: var(--color-on-primary);
 }
 
-/* Warm scrollbars, so the browser chrome does not sit cold against the page. */
-* {
-  scrollbar-color: var(--color-border-strong) transparent;
-}
+/* Scrollbars -------------------------------------------------------------
+   Warm, so the browser chrome never sits cold against the page. The thumb
+   rests as a raised warm neutral and lights up to the brand orange on hover,
+   which matches how every other control on the site behaves.
 
+   The gap around the thumb is a transparent border plus `background-clip`
+   rather than a border painted in the page colour — that way the same rule
+   looks right over a card or a drawer, not just over the page background. */
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--color-border-strong);
-  border: 3px solid var(--color-background);
+  background-image: linear-gradient(
+    180deg,
+    var(--color-surface-high) 0%,
+    var(--color-border-strong) 100%
+  );
+  background-clip: padding-box;
+  border: 3px solid transparent;
   border-radius: var(--radius-pill);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-muted);
+  background-image: linear-gradient(180deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-image: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary) 100%);
+}
+
+/* Where a vertical and a horizontal bar meet. */
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+/**
+ * Firefox has no ::-webkit-scrollbar, so it gets the standard two-colour form
+ * instead — flatter, but warm and in-theme.
+ *
+ * This is deliberately scoped rather than applied to everything: the moment
+ * `scrollbar-color` is set, Chromium ignores every ::-webkit-scrollbar rule
+ * above it and falls back to a default 15px bar. Scoping the fallback to
+ * browsers that cannot parse the pseudo-element keeps each engine on the best
+ * styling it actually supports.
+ */
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-color: var(--color-border-strong) transparent;
+    scrollbar-width: thin;
+  }
 }
 
 /* 4. LAYOUT HELPERS ------------------------------------------------------ */
