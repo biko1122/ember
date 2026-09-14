@@ -1,87 +1,65 @@
-.bar {
-  background-color: var(--color-surface-deep);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.inner {
+/* Header trigger --------------------------------------------------------- */
+.trigger {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
-  min-height: 58px;
-  padding-block: var(--space-2);
-}
-
-/* Where the order is going ----------------------------------------------- */
-.location {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  min-width: 0;
+  gap: var(--space-2);
+  max-width: 15rem;
   padding: var(--space-2) var(--space-3);
-  margin-left: calc(var(--space-3) * -1);
   border-radius: var(--radius-md);
   text-align: left;
   transition: background-color var(--transition-fast);
 }
 
-.location:hover {
+.trigger:hover {
   background-color: var(--color-surface-alt);
 }
 
-.locationPin {
+.triggerPin,
+.triggerChevron {
   flex-shrink: 0;
   color: var(--color-primary);
 }
 
-.locationText {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
+/* Below the widest bar the control keeps only its pin, so the four right-hand
+   items still fit without any of them wrapping. */
+.triggerText,
+.triggerChevron {
+  display: none;
 }
 
-.locationLabel {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-family: var(--font-display);
+.triggerLabel {
+  font-size: var(--text-xs);
+  line-height: 1.2;
+  color: var(--color-muted);
+}
+
+.triggerValue {
+  overflow: hidden;
   font-size: var(--text-sm);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: var(--color-ink);
 }
 
-.change {
-  font-family: var(--font-body);
-  font-size: var(--text-xs);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--color-primary);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+@media (min-width: 1080px) {
+  .triggerText {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .triggerChevron {
+    display: block;
+  }
 }
 
-.changeChevron {
-  display: none;
-  flex-shrink: 0;
-  color: var(--color-primary);
-}
-
-.locationHint {
-  font-size: var(--text-xs);
-  color: var(--color-muted);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* Delivery / Pickup / Dine in -------------------------------------------- */
+/* Delivery / Pickup / Dine in, inside the picker ------------------------- */
 .modes {
   display: flex;
   gap: var(--space-1);
-  flex-shrink: 0;
+  margin-bottom: var(--space-4);
   padding: 4px;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -201,46 +179,10 @@
   border-radius: var(--radius-pill);
 }
 
-/**
- * On a phone the strip stays a single row.
- *
- * Stacking it was the obvious move, but the header gives this slot a fixed
- * height and clips it — a second row simply disappeared. Keeping one row and
- * dropping the hint line fits the same 58px, and the address is still there in
- * the picker.
- */
-@media (max-width: 720px) {
-  .inner {
-    gap: var(--space-3);
-  }
-
-  /* The location keeps enough room for the branch name; the tab group gives
-     way and scrolls inside itself instead of squashing it to one letter. */
-  .location {
-    flex: 1 1 auto;
-    min-width: 5.5rem;
-    margin-left: 0;
-    padding-inline: var(--space-2);
-  }
-
-  .locationHint,
-  .change {
-    display: none;
-  }
-
-  .changeChevron {
-    display: block;
-  }
-
-  .locationLabel {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
+/* The tab group is the one thing in the picker that can outgrow a phone, so
+   it scrolls inside itself rather than squashing three labels to one letter. */
+@media (max-width: 480px) {
   .modes {
-    flex: 0 1 auto;
-    min-width: 0;
     overflow-x: auto;
     scrollbar-width: none;
   }

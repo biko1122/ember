@@ -35,3 +35,18 @@
 .light .name {
   color: var(--color-ink);
 }
+
+/* Header wordmark --------------------------------------------------------
+   A fixed 68px slot so the bar's left cluster measures the same whatever the
+   brand name is, and red rather than white — with the ember shape gone, the
+   colour is what has to carry the brand. */
+.wordmark {
+  width: 68px;
+}
+
+.wordmark.dark .name,
+.wordmark.light .name {
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  color: var(--color-primary);
+}

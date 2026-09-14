@@ -2,20 +2,24 @@ import { useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { Logo } from '@/components/Logo/Logo'
 import { Icon } from '@/components/Icon/Icon'
-import { Modal } from '@/components/Modal/Modal'
-import { OrderTypeSelector } from '@/components/OrderTypeSelector/OrderTypeSelector'
 import { MobileMenu } from '@/components/Navbar/MobileMenu'
 import { LocationBar } from '@/components/LocationBar/LocationBar'
+import { LanguageSwitcher } from '@/components/LanguageSwitcher/LanguageSwitcher'
 import { useCart } from '@/context/CartContext'
 import { useAuth } from '@/context/AuthContext'
-import { useLoyalty } from '@/context/LoyaltyContext'
-import { formatPoints } from '@/components/Loyalty/Loyalty'
-import { primaryNavLinks } from '@/data/navigation'
-import { getOrderType } from '@/data/orderTypes'
+import { orderTypes } from '@/data/orderTypes'
 import styles from './Navbar.module.css'
 
 /**
  * Sticky site header.
+ *
+ * One row, two clusters: the menu button, the wordmark and the order-type tabs
+ * on the left, everything else pushed right, and the space between them simply
+ * left empty. Both clusters are inset well away from the screen edges, so on a
+ * wide monitor the bar reads as one centred band rather than two far-apart
+ * corners. Navigation lives entirely behind the menu button at every width — a
+ * bar that shows links on a desktop and hides them on a phone has to be learned
+ * twice.
  *
  * On the homepage it floats transparently over the hero photograph and only
  * gains a frosted background once you scroll. Every other page has no hero, so
@@ -23,15 +27,12 @@ import styles from './Navbar.module.css'
  */
 export function Navbar() {
   const location = useLocation()
-  const { itemCount, openCart, orderType } = useCart()
+  const { itemCount, openCart, orderType, setOrderType } = useCart()
   const { user, isLoggedIn } = useAuth()
-  const { balance, isLoading: isLoyaltyLoading } = useLoyalty()
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isOrderTypeModalOpen, setIsOrderTypeModalOpen] = useState(false)
   const [hasScrolled, setHasScrolled] = useState(false)
 
-  const activeOrderType = getOrderType(orderType)
   const isOverHero = location.pathname === '/'
 
   /**
@@ -84,65 +85,47 @@ export function Navbar() {
         {/* The <header> reserves a constant height; only this bar inside it
             resizes, so compacting never shifts the page behind it. */}
         <div className={styles.bar}>
-          <div className={styles.locationSlot}>
-            <LocationBar />
-          </div>
-
-          <div className={`page-container ${styles.inner}`}>
-            <button
-              type="button"
-              className={styles.hamburger}
-              onClick={() => setIsMobileMenuOpen(true)}
-              aria-label="Open menu"
-              aria-expanded={isMobileMenuOpen}
-            >
-              <Icon name="menu" size={24} />
-            </button>
-
-            <span className={styles.brand}>
-              <Logo />
-            </span>
-
-            <nav className={styles.links} aria-label="Main">
-              {primaryNavLinks.map((link) => (
-                <NavLink
-                  key={link.to}
-                  to={link.to}
-                  end={link.to === '/'}
-                  className={({ isActive }) =>
-                    isActive ? `${styles.link} ${styles.linkActive}` : styles.link
-                  }
-                >
-                  {link.label}
-                </NavLink>
-              ))}
-            </nav>
-
-            <div className={styles.actions}>
+          <div className={styles.inner}>
+            <div className={styles.lead}>
               <button
                 type="button"
-                className={styles.orderTypeChip}
-                onClick={() => setIsOrderTypeModalOpen(true)}
+                className={styles.hamburger}
+                onClick={() => setIsMobileMenuOpen(true)}
+                aria-label="Open menu"
+                aria-expanded={isMobileMenuOpen}
               >
-                <Icon name={activeOrderType.icon} size={17} />
-                <span>{activeOrderType.label}</span>
-                <Icon name="chevronDown" size={15} />
+                <Icon name="menu" size={26} />
               </button>
 
-              {isLoggedIn && !isLoyaltyLoading && (
-                <NavLink to="/rewards" className={styles.pointsChip} title="Ember Rewards">
-                  <Icon name="gift" size={16} />
-                  <span>{formatPoints(balance)}</span>
-                  <span className="visually-hidden">points</span>
-                </NavLink>
-              )}
+              <span className={styles.brand}>
+                <Logo variant="wordmark" />
+              </span>
 
-              <NavLink to={isLoggedIn ? '/account' : '/login'} className={styles.iconButton}>
-                <Icon name="user" size={21} />
-                <span className={styles.accountLabel}>
-                  {isLoggedIn ? user.firstName : 'Log in'}
-                </span>
-              </NavLink>
+              {/* How the order arrives changes prices and delivery times, so it
+                  sits with the brand rather than among the account controls.
+                  Narrow bars drop it — the menu panel carries the same tabs. */}
+              <div className={styles.modes} role="radiogroup" aria-label="Order type">
+                {orderTypes.map((type) => (
+                  <button
+                    key={type.id}
+                    type="button"
+                    role="radio"
+                    aria-checked={type.id === orderType}
+                    className={styles.mode}
+                    data-selected={type.id === orderType}
+                    onClick={() => setOrderType(type.id)}
+                  >
+                    <Icon name={type.icon} size={17} />
+                    <span>{type.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className={styles.actions}>
+              <LocationBar />
+
+              <LanguageSwitcher />
 
               <button
                 type="button"
@@ -157,23 +140,19 @@ export function Navbar() {
                   </span>
                 )}
               </button>
+
+              <NavLink to={isLoggedIn ? '/account' : '/login'} className={styles.iconButton}>
+                <Icon name="user" size={21} />
+                <span className={styles.accountLabel}>
+                  {isLoggedIn ? user.firstName : 'Log in'}
+                </span>
+              </NavLink>
             </div>
           </div>
         </div>
       </header>
 
       <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
-
-      <Modal
-        isOpen={isOrderTypeModalOpen}
-        onClose={() => setIsOrderTypeModalOpen(false)}
-        title="How would you like your order?"
-      >
-        <div className={styles.orderTypeModalBody}>
-          <h2 className={styles.orderTypeModalTitle}>How would you like your order?</h2>
-          <OrderTypeSelector layout="stacked" onSelect={() => setIsOrderTypeModalOpen(false)} />
-        </div>
-      </Modal>
     </>
   )
 }

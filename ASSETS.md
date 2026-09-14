@@ -32,7 +32,17 @@ shot from the same angle is most of what makes a food site look professional.
 
 | File | Size | Where it appears | What it should show |
 | --- | --- | --- | --- |
-| `hero-main.svg` | 1600 × 1200 (4:3) | Homepage hero, right-hand side | Your single best-looking dish, shot close and warm. A card overlaps the bottom-left corner, so keep that area quiet. |
+| `hero-main.svg` | 1600 × 1200 (4:3) | Full-bleed hero background | Your single best-looking dish, shot close and warm. A card overlaps the bottom-left corner, so keep that area quiet. |
+| `slide-*.svg` | 1200 × 900 (4:3) | Homepage banner, one per slide in `src/data/heroSlides.js` | One dish, cut out on a transparent background — the banner paints its own colour behind it. Fill the frame; a photo on a solid backdrop will read as a card pasted onto the banner. |
+
+## Promo cards — `public/assets/images/promo/`
+
+**1200 × 900 (4:3)** — one per card in `src/data/promoCards.js` that uses the
+`split` or `plain` layout. Same treatment as the hero slides: one dish, cut out
+on a transparent background. Cards using the `overlay` layout point at an
+ordinary photograph instead — usually one already in `products/` or
+`restaurant/` — and the card lays its own scrim over it, so anything in the
+lower two thirds of the frame will be dimmed under the headline.
 
 ## Products — `public/assets/images/products/`
 

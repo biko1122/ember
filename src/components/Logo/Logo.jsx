@@ -6,18 +6,30 @@ import styles from './Logo.module.css'
  * The brand mark: a drawn ember shape plus the restaurant name from
  * config/restaurant.js. Change the name there and it updates everywhere.
  *
+ * `variant="wordmark"` drops the ember shape and leaves the name alone, in
+ * brand red, sized to the fixed slot the site header reserves for it. The
+ * full lockup is still what the menu panel and the footer use.
+ *
  * To use a real logo file instead, swap the <svg> below for:
  *   <img src="/assets/logo/logo-mark.svg" alt="" className={styles.mark} />
  */
-export function Logo({ tone = 'dark', showTagline = false }) {
+export function Logo({ tone = 'dark', showTagline = false, variant = 'full' }) {
+  const isWordmark = variant === 'wordmark'
+
   return (
-    <Link to="/" className={`${styles.logo} ${styles[tone]}`} aria-label={`${restaurant.name} home`}>
-      <svg className={styles.mark} viewBox="0 0 32 32" aria-hidden="true">
-        <path
-          d="M16 3c2 4.2 1.2 6.9-.9 9.2-2.3 2.6-4 4.4-4 7.6A5 5 0 0 0 16 25a5 5 0 0 0 5-5.4c0-1.5-.5-2.7-1.3-3.8 3 1.2 5 4.3 5 7.8C24.7 28 20.8 31 16 31S7.3 28 7.3 23.6c0-3.7 1.8-6.2 4-8.7C14.1 11.5 16.8 8.3 16 3Z"
-          fill="currentColor"
-        />
-      </svg>
+    <Link
+      to="/"
+      className={`${styles.logo} ${styles[tone]} ${isWordmark ? styles.wordmark : ''}`}
+      aria-label={`${restaurant.name} home`}
+    >
+      {!isWordmark && (
+        <svg className={styles.mark} viewBox="0 0 32 32" aria-hidden="true">
+          <path
+            d="M16 3c2 4.2 1.2 6.9-.9 9.2-2.3 2.6-4 4.4-4 7.6A5 5 0 0 0 16 25a5 5 0 0 0 5-5.4c0-1.5-.5-2.7-1.3-3.8 3 1.2 5 4.3 5 7.8C24.7 28 20.8 31 16 31S7.3 28 7.3 23.6c0-3.7 1.8-6.2 4-8.7C14.1 11.5 16.8 8.3 16 3Z"
+            fill="currentColor"
+          />
+        </svg>
+      )}
 
       <span className={styles.text}>
         <span className={styles.name}>{restaurant.name}</span>

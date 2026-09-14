@@ -1,0 +1,114 @@
+/**
+ * The in-page basket.
+ *
+ * It is built to stay on screen while the menu scrolls past it: the panel
+ * itself is sticky, it never grows past the viewport, and the line list is the
+ * only part that scrolls — so the total and the checkout button are always
+ * where you left them.
+ *
+ * `--cart-panel-top` is set by whichever page uses the panel, because only the
+ * page knows what else is stuck above it.
+ */
+.panel {
+  --cart-panel-top: var(--navbar-offset);
+
+  position: sticky;
+  top: var(--cart-panel-top);
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - var(--cart-panel-top) - var(--space-5));
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-lg);
+}
+
+.title svg {
+  color: var(--color-primary);
+}
+
+.count {
+  display: grid;
+  place-items: center;
+  min-width: 26px;
+  height: 26px;
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+/* Empty ------------------------------------------------------------------- */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-5);
+  text-align: center;
+}
+
+.emptyIcon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-1);
+  border-radius: var(--radius-pill);
+  color: var(--color-primary);
+  background-color: var(--color-primary-soft);
+}
+
+.emptyTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.emptyHint {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+/* Lines ------------------------------------------------------------------- */
+.lines {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  /* Scrolling to the end of the basket must not start scrolling the menu
+     behind it — that is how you lose your place in both. */
+  overscroll-behavior: contain;
+  padding-inline: var(--space-4);
+}
+
+.footer {
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-surface-alt);
+}
+
+.minimumNotice {
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-danger);
+  text-align: center;
+}

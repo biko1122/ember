@@ -4,6 +4,7 @@ import { PageHeader } from '@/components/PageHeader/PageHeader'
 import { SearchBar } from '@/components/SearchBar/SearchBar'
 import { CategoryNavigation } from '@/components/CategoryNavigation/CategoryNavigation'
 import { ProductGrid } from '@/components/ProductGrid/ProductGrid'
+import { CartPanel } from '@/components/CartPanel/CartPanel'
 import { EmptyState } from '@/components/EmptyState/EmptyState'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import { useDebouncedValue } from '@/hooks/useDebouncedValue'
@@ -17,6 +18,12 @@ import styles from './Menu.module.css'
  *
  * The category and the search term live in the URL (?category=burgers&q=cheese)
  * so a filtered menu can be linked to and survives a refresh.
+ *
+ * This is the one page where the basket is a column rather than a drawer.
+ * Ordering here is repetitive — add, keep browsing, add again — and a basket
+ * you have to open to check is a basket nobody checks. There is no room for it
+ * on a narrow screen, so below the breakpoint it is gone and the header's cart
+ * button opens the drawer exactly as before.
  */
 export function Menu() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -79,41 +86,49 @@ export function Menu() {
       />
 
       <div className={`page-container ${styles.results}`}>
-        <div className={styles.toolbar}>
-          <p className={styles.count}>
-            {visibleItems.length} {visibleItems.length === 1 ? 'item' : 'items'}
-          </p>
+        <div className={styles.layout}>
+          <aside className={styles.basket}>
+            <CartPanel />
+          </aside>
 
-          <div className={styles.sort}>
-            <label htmlFor="menu-sort" className={styles.sortLabel}>
-              Sort by
-            </label>
-            <select
-              id="menu-sort"
-              className={styles.sortSelect}
-              value={sortId}
-              onChange={(event) => setSortId(event.target.value)}
-            >
-              {SORT_OPTIONS.map((option) => (
-                <option key={option.id} value={option.id}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+          <div className={styles.main}>
+            <div className={styles.toolbar}>
+              <p className={styles.count}>
+                {visibleItems.length} {visibleItems.length === 1 ? 'item' : 'items'}
+              </p>
+
+              <div className={styles.sort}>
+                <label htmlFor="menu-sort" className={styles.sortLabel}>
+                  Sort by
+                </label>
+                <select
+                  id="menu-sort"
+                  className={styles.sortSelect}
+                  value={sortId}
+                  onChange={(event) => setSortId(event.target.value)}
+                >
+                  {SORT_OPTIONS.map((option) => (
+                    <option key={option.id} value={option.id}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {visibleItems.length > 0 ? (
+              <ProductGrid items={visibleItems} />
+            ) : (
+              <EmptyState
+                icon="search"
+                title="Nothing matched that search"
+                description={`We could not find anything for “${debouncedQuery}”. Try a different word, or browse a category.`}
+                actionLabel="Clear search"
+                onAction={() => updateParam('q', '')}
+              />
+            )}
           </div>
         </div>
-
-        {visibleItems.length > 0 ? (
-          <ProductGrid items={visibleItems} />
-        ) : (
-          <EmptyState
-            icon="search"
-            title="Nothing matched that search"
-            description={`We could not find anything for “${debouncedQuery}”. Try a different word, or browse a category.`}
-            actionLabel="Clear search"
-            onAction={() => updateParam('q', '')}
-          />
-        )}
       </div>
     </>
   )

@@ -19,7 +19,7 @@ import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { frame, seeded } from './artwork-kit.mjs'
+import { cutout, frame, seeded } from './artwork-kit.mjs'
 import {
   place,
   burger,
@@ -50,6 +50,7 @@ const SQUARE = { width: 600, height: 600 } // category thumbnails
 const GALLERY = { width: 800, height: 800 } // About page photo strip
 const PORTRAIT = { width: 1200, height: 1600 } // login / signup side panels
 const HERO = { width: 1600, height: 1200 } // homepage hero
+const SLIDE = { width: 1200, height: 900 } // hero slider — one dish per slide
 
 /* -- Dish renderers, by key ------------------------------------------------ */
 const DISHES = {
@@ -185,6 +186,28 @@ const OFFERS = {
   'offer-student-lunch': ['mealTray', { main: 'chicken' }, 28],
 }
 
+/**
+ * Hero slider — one dish per slide, drawn as a cut-out so it sits on the
+ * slide's own gradient. Keys match the `image` paths in data/heroSlides.js;
+ * adding a slide there means adding a line here.
+ */
+const HERO_SLIDES = {
+  'slide-family-feast': ['familyBox', { kind: 'bucket' }],
+  'slide-double-stack': ['burger', { double: true }],
+  'slide-hot-wings': ['friedChicken', { shape: 'wing', count: 5 }],
+  'slide-pizza-night': ['pizza', { topping: 'pepperoni' }],
+  'slide-crispy-strips': ['mealTray', { main: 'chicken' }],
+}
+
+/**
+ * Promotional cards — same cut-out treatment as the hero slides, at the size
+ * a card needs. Keys match the `image` paths in data/promoCards.js.
+ */
+const PROMO_CARDS = {
+  'promo-rewards': ['sundae', {}],
+  'promo-family': ['familyBox', { kind: 'grill' }],
+}
+
 /** Rooms — the restaurant itself. */
 const ROOMS = {
   'restaurant-kitchen': ['kitchen', WIDE],
@@ -247,6 +270,23 @@ for (const [name, [kind, options, hue]] of Object.entries(OFFERS)) {
   )
   const inner = offerBanner(random, WIDE.width, WIDE.height, { accent: hue, art })
   write(`assets/images/offers/${name}.svg`, frame(WIDE.width, WIDE.height, name, inner, { hue, glow: 0.2 }))
+}
+
+// Hero slides — no ground behind them; the banner supplies its own.
+for (const [name, [kind, options]] of Object.entries(HERO_SLIDES)) {
+  const art = renderDish(name, [kind, options])
+  // Bigger than a card would take it: on the banner the dish is the subject,
+  // not an illustration next to a price.
+  const inner = place(art, SLIDE.width / 2, SLIDE.height * 0.5, dishScale(kind, SLIDE) * 1.45)
+  write(`assets/images/hero/${name}.svg`, cutout(SLIDE.width, SLIDE.height, name, inner))
+}
+
+// Promo cards — cut-outs again, a little smaller in frame than a hero slide
+// so the card's own headline keeps the lead.
+for (const [name, [kind, options]] of Object.entries(PROMO_CARDS)) {
+  const art = renderDish(name, [kind, options])
+  const inner = place(art, SLIDE.width / 2, SLIDE.height * 0.5, dishScale(kind, SLIDE) * 1.5)
+  write(`assets/images/promo/${name}.svg`, cutout(SLIDE.width, SLIDE.height, name, inner))
 }
 
 // Rooms.

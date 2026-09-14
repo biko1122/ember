@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { AppImage } from '@/components/AppImage/AppImage'
 import { Button } from '@/components/Button/Button'
 import { Icon } from '@/components/Icon/Icon'
@@ -42,13 +42,42 @@ export function ProductDetails() {
 /** Split out so `key` resets the option state when the product changes. */
 function ProductDetailsContent({ item }) {
   const addToCart = useAddToCart()
-  const { selections, selectOption, isSelected, quantity, setQuantity, totalPrice } =
+  const navigate = useNavigate()
+  const location = useLocation()
+  const { selections, selectOption, isSelected, quantity, setQuantity, totalPrice, reset } =
     useProductSelections(item)
 
   useDocumentTitle(item.name, item.description)
 
   const discount = calculateDiscountPercentage(item.price, item.oldPrice)
   const relatedItems = getRelatedItems(item)
+
+  /**
+   * Add, then leave — the same thing the quick customizer does when it closes
+   * itself on a desktop.
+   *
+   * On a phone there is no customizer: tapping a card opens this whole page,
+   * so without this, adding an item leaves you parked on the item you just
+   * ordered, with your own choices still on screen, and the way back to the
+   * menu is the browser's back button. The toast lives above the router, so
+   * the confirmation still arrives after the page has gone.
+   *
+   * Going *back* rather than pushing the menu keeps the history honest: the
+   * item page does not stay in the stack for the back button to return to.
+   * `location.key` is 'default' only when this page is the first entry — a
+   * shared link, or a new tab — and then there is nothing to go back to, so we
+   * send them to the category this item came from instead.
+   */
+  const handleAdd = () => {
+    addToCart(item, selections, quantity)
+    reset()
+
+    if (location.key === 'default') {
+      navigate(`/menu?category=${item.category}`)
+    } else {
+      navigate(-1)
+    }
+  }
 
   return (
     <>
@@ -102,11 +131,7 @@ function ProductDetailsContent({ item }) {
 
             <div className={styles.addRow}>
               <QuantitySelector quantity={quantity} onChange={setQuantity} />
-              <Button
-                size="lg"
-                fullWidth
-                onClick={() => addToCart(item, selections, quantity)}
-              >
+              <Button size="lg" fullWidth onClick={handleAdd}>
                 Add to basket · {formatPrice(totalPrice)}
               </Button>
             </div>

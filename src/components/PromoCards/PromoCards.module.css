@@ -1,0 +1,333 @@
+/**
+ * Promotional cards.
+ *
+ * Three compositions, one system. Whatever a card's `data-layout`, it keeps
+ * the same radius, the same type scale, the same buttons and the same hover
+ * behaviour as the rest of the site — only the arrangement and the weight of
+ * the artwork change.
+ */
+.section {
+  padding-block: var(--space-7);
+}
+
+.header {
+  margin-bottom: var(--space-5);
+}
+
+.eyebrow {
+  margin-bottom: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.sectionTitle {
+  font-size: var(--text-2xl);
+}
+
+/**
+ * Two to a row wherever a card can hold 380px, one below that — which puts the
+ * switch at about a tablet held upright. `auto-fit` rather than a fixed
+ * `1fr 1fr` means the phone case needs no media query, and `min()` stops the
+ * track from demanding 380px on a 360px screen, which is what would push the
+ * grid wider than the page.
+ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
+  gap: var(--space-5);
+}
+
+/* The card ---------------------------------------------------------------- */
+.card {
+  --card-accent: var(--color-primary);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 320px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-surface);
+  transition: transform var(--transition-base) var(--ease-out),
+    border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--card-accent) 46%, transparent);
+  box-shadow: var(--shadow-md);
+}
+
+/* Keyboard users get the same lift, and the focus ring is drawn around the
+   whole card rather than around the button alone. */
+.card:focus-within {
+  transform: translateY(-4px);
+  border-color: var(--card-accent);
+  box-shadow: var(--shadow-md);
+}
+
+.art {
+  position: relative;
+  overflow: hidden;
+}
+
+.image {
+  background-color: transparent;
+  transition: transform 480ms var(--ease-out);
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-6);
+}
+
+.cardEyebrow {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--card-accent);
+}
+
+.cardTitle {
+  font-size: var(--text-2xl);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.description {
+  max-width: 42ch;
+  font-size: var(--text-base);
+  color: var(--color-muted);
+}
+
+.note {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+/**
+ * The button is the card's only link, and this is what makes the rest of the
+ * card clickable with it: the ::after stretches over the whole card, anchored
+ * to `.card` because nothing between them is positioned.
+ *
+ * The trade is that the card's text can no longer be selected with a drag —
+ * the overlay is on top of it. For a promo card whose words exist to be read
+ * rather than copied, a card you can click anywhere is worth more.
+ */
+.cta {
+  margin-top: var(--space-2);
+}
+
+.cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+/* Overlay: the photograph is the card ------------------------------------- */
+.card[data-layout='overlay'] {
+  justify-content: flex-end;
+  border-color: transparent;
+}
+
+.card[data-layout='overlay'] .art {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.card[data-layout='overlay'] .image {
+  height: 100%;
+}
+
+/* The scrim, and the reason the type on these cards is readable at all. It has
+   to be heaviest across the bottom two thirds, because that is where the words
+   are and where a dish photographed on a lit surface is brightest. */
+.card[data-layout='overlay'] .art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      0deg,
+      rgba(10, 9, 8, 0.95) 0%,
+      rgba(10, 9, 8, 0.84) 42%,
+      rgba(10, 9, 8, 0.44) 68%,
+      rgba(10, 9, 8, 0.06) 100%
+    ),
+    linear-gradient(100deg, rgba(10, 9, 8, 0.72) 0%, transparent 62%);
+}
+
+/* Hold the subject in the top half, clear of the type. */
+.card[data-layout='overlay'] .image img {
+  object-position: center 24%;
+}
+
+.card[data-layout='overlay'] .description {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* Split: type on the left, a cut-out dish on the right --------------------- */
+.card[data-layout='split'] {
+  flex-direction: row;
+  align-items: center;
+  background-image: radial-gradient(
+    120% 120% at 100% 50%,
+    color-mix(in srgb, var(--card-accent) 20%, transparent) 0%,
+    transparent 62%
+  );
+}
+
+.card[data-layout='split'] .body {
+  flex: 1 1 58%;
+  min-width: 0;
+}
+
+.card[data-layout='split'] .art {
+  order: 1;
+  flex: 0 1 42%;
+  align-self: stretch;
+  display: grid;
+  place-items: center;
+  padding: var(--space-4);
+}
+
+.card[data-layout='split'] .image {
+  width: 100%;
+  filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.45));
+}
+
+/* Plain: mostly type, with a cut-out tucked into the corner ---------------- */
+.card[data-layout='plain'] {
+  justify-content: flex-end;
+  background-image: radial-gradient(
+    90% 90% at 108% 108%,
+    color-mix(in srgb, var(--card-accent) 16%, transparent) 0%,
+    transparent 60%
+  );
+}
+
+.card[data-layout='plain'] .art {
+  position: absolute;
+  right: calc(var(--space-6) * -1);
+  bottom: calc(var(--space-6) * -1);
+  z-index: -1;
+  width: 58%;
+  max-width: 260px;
+  opacity: 0.9;
+}
+
+.card[data-layout='plain'] .body {
+  max-width: 68%;
+}
+
+/* Tall cards give a row of two a different rhythm on a wide screen. */
+@media (min-width: 900px) {
+  .grid {
+    gap: var(--space-6);
+  }
+
+  .card[data-tall='true'] {
+    min-height: 440px;
+  }
+
+  .card[data-layout='overlay'] .body {
+    padding: var(--space-7) var(--space-6) var(--space-6);
+  }
+}
+
+/* Phone ------------------------------------------------------------------
+   The split card stops being a split — at this width the two halves would be
+   two narrow columns — and becomes the same stack as the others. */
+@media (max-width: 599px) {
+  .card {
+    min-height: 0;
+  }
+
+  /* An overlay card keeps a floor under it: the type has to have a picture to
+     sit on, and a card that shrinks to its text leaves none. */
+  .card[data-layout='overlay'] {
+    min-height: 340px;
+  }
+
+  /* Shorter card, less room between the picture and the words, so the scrim
+     carries more of the work. */
+  .card[data-layout='overlay'] .art::after {
+    background-image: linear-gradient(
+      0deg,
+      rgba(10, 9, 8, 0.97) 0%,
+      rgba(10, 9, 8, 0.93) 50%,
+      rgba(10, 9, 8, 0.58) 76%,
+      rgba(10, 9, 8, 0.1) 100%
+    );
+  }
+
+  .card[data-layout='overlay'] .image img {
+    object-position: center 18%;
+  }
+
+  .card[data-layout='split'] {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .card[data-layout='split'] .art {
+    order: -1;
+    padding: var(--space-5) var(--space-5) 0;
+  }
+
+  .card[data-layout='split'] .image {
+    width: min(58%, 200px);
+    margin-inline: auto;
+  }
+
+  .card[data-layout='plain'] .body {
+    max-width: 100%;
+  }
+
+  .card[data-layout='plain'] .art {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: min(52%, 180px);
+    margin: var(--space-5) auto calc(var(--space-4) * -1);
+  }
+
+  .body {
+    padding: var(--space-5);
+  }
+
+  .cardTitle {
+    font-size: var(--text-xl);
+  }
+}
+
+/* A card that lifts on hover is fine; one that also zooms its photograph is
+   two animations for one gesture, and reduced motion asks for neither. */
+@media (prefers-reduced-motion: reduce) {
+  .card:hover,
+  .card:focus-within {
+    transform: none;
+  }
+
+  .card:hover .image {
+    transform: none;
+  }
+}

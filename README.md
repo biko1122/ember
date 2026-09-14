@@ -84,6 +84,8 @@ ember/
     │   ├── menu.js             Every product
     │   ├── categories.js       Menu categories
     │   ├── offers.js           Deals and banners
+    │   ├── heroSlides.js       The homepage banner, slide by slide
+    │   ├── promoCards.js       The homepage promo grid, card by card
     │   ├── branches.js         Locations, hours, delivery areas
     │   ├── orderTypes.js       Delivery / pickup / dine-in
     │   ├── paymentMethods.js   Mock payment options
@@ -124,7 +126,9 @@ ember/
     │   ├── Button/  Modal/  Icon/  Tag/  FormField/  ChoiceList/
     │   ├── QuantitySelector/  EmptyState/  Toast/  AppImage/
     │   ├── Navbar/  MobileMenu (inside Navbar/)  Footer/  Logo/
-    │   ├── Hero/  SectionHeader/  PageHeader/  AuthLayout/
+    │   ├── LocationBar/  LanguageSwitcher/
+    │   ├── HeroSlider/  PromoCards/  Hero/  SectionHeader/  PageHeader/
+    │   ├── AuthLayout/
     │   ├── OrderTypeSelector/  CategoryNavigation/  CategoryTiles/
     │   ├── ProductCard/  ProductGrid/  ProductModal/  ProductOptions/
     │   ├── FavoriteButton/  SearchBar/  OfferCard/  BranchCard/
@@ -369,9 +373,9 @@ reward catalogue itself is `src/data/loyalty.js`.
   Each one is a drop-in replacement for a real photo at the same path — see
   [ASSETS.md](./ASSETS.md). `<AppImage>` holds the aspect ratio, fades each
   image in once decoded, and still draws a warm panel if a file is missing.
-- **Responsive by layout, not by shrinking.** The navbar collapses to a
-  slide-in menu, the product grid steps 1 → 2 → 3 → 4 columns, checkout stacks,
-  and the basket becomes a full-height drawer.
+- **Responsive by layout, not by shrinking.** Navigation lives behind the menu
+  button at every width, the product grid steps 1 → 2 → 3 → 4 columns, checkout
+  stacks, and the basket becomes a full-height drawer.
 - **Accessibility.** Semantic landmarks, a skip link, labelled form controls
   with `aria-invalid` and linked error messages, visible focus rings, keyboard
   and Escape handling on the modal and drawers, and `prefers-reduced-motion`
@@ -385,3 +389,4 @@ reward catalogue itself is `src/data/loyalty.js`.
   render, so the number and the history that explains it cannot drift apart.
 
 See [ASSETS.md](./ASSETS.md) for the full list of images to add.
+# ember

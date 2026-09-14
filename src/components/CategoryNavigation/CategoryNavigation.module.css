@@ -3,11 +3,13 @@
   background-color: var(--color-background);
 }
 
-/* Sticks under the navbar on the menu page. */
+/* Sticks under the navbar on the menu page. The min-height is what the
+   basket panel measures its own offset against — see --category-bar-height. */
 .sticky {
   position: sticky;
   top: var(--navbar-offset);
   z-index: calc(var(--z-sticky) - 1);
+  min-height: var(--category-bar-height);
   padding-block: var(--space-3);
   border-bottom: 1px solid var(--color-border);
 }

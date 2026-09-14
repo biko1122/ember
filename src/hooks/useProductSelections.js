@@ -28,6 +28,18 @@ export function useProductSelections(item) {
     })
   }
 
+  /**
+   * Back to the defaults, as if the product had just been opened.
+   *
+   * Adding to the basket ends one order of this item, not the visit to it —
+   * whoever adds a large with extra cheese and then adds it again means a
+   * second one, not a second one plus whatever they had left over.
+   */
+  const reset = () => {
+    setSelections(item ? getDefaultSelections(item) : {})
+    setQuantity(1)
+  }
+
   const isSelected = (group, optionId) => {
     const value = selections[group.id]
     return Array.isArray(value) ? value.includes(optionId) : value === optionId
@@ -47,6 +59,7 @@ export function useProductSelections(item) {
     selections,
     selectOption,
     isSelected,
+    reset,
     quantity,
     setQuantity,
     unitPrice,

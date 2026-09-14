@@ -12,13 +12,17 @@ export function ProductGrid({ items }) {
 
   return (
     <>
-      <ul className={styles.grid}>
-        {items.map((item) => (
-          <li key={item.id} className={styles.cell}>
-            <ProductCard item={item} onCustomize={setCustomizingItem} />
-          </li>
-        ))}
-      </ul>
+      {/* The wrapper is the query container the grid measures itself against.
+          An element cannot query its own width, so the grid needs a parent. */}
+      <div className={styles.frame}>
+        <ul className={styles.grid}>
+          {items.map((item) => (
+            <li key={item.id} className={styles.cell}>
+              <ProductCard item={item} onCustomize={setCustomizingItem} />
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <ProductModal item={customizingItem} onClose={() => setCustomizingItem(null)} />
     </>

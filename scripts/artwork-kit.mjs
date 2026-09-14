@@ -143,6 +143,38 @@ export function board(cx, cy, rx, random) {
 }
 
 /**
+ * A dish on nothing: no ground, no vignette, just a pool of warm light behind
+ * the subject and a soft shadow under it.
+ *
+ * The hero slider paints its own gradient and needs the food to sit *on* it,
+ * so a framed rectangle would read as a card pasted over the banner. Because
+ * the background is transparent, the same file works over any slide colour.
+ */
+export function cutout(width, height, seed, inner, { glow = 0.5 } = {}) {
+  const random = seeded(`${seed}-cutout`)
+  const cx = width / 2
+  const cy = height * between(random, 0.48, 0.52)
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}">
+<defs>
+<radialGradient id="keyLight" cx="50%" cy="46%" r="52%">
+<stop offset="0%" stop-color="${hsla(28, 96, 58, glow)}"/>
+<stop offset="46%" stop-color="${hsla(20, 92, 48, glow * 0.42)}"/>
+<stop offset="100%" stop-color="${hsla(18, 90, 40, 0)}"/>
+</radialGradient>
+<radialGradient id="dropShadow" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="${hsla(20, 60, 3, 0.5)}"/>
+<stop offset="100%" stop-color="${hsla(20, 60, 3, 0)}"/>
+</radialGradient>
+</defs>
+<ellipse cx="${n(cx)}" cy="${n(cy)}" rx="${n(width * 0.46)}" ry="${n(height * 0.42)}" fill="url(#keyLight)"/>
+<ellipse cx="${n(cx)}" cy="${n(height * 0.82)}" rx="${n(width * 0.34)}" ry="${n(height * 0.09)}" fill="url(#dropShadow)"/>
+${inner}
+</svg>
+`
+}
+
+/**
  * The shared canvas every image is drawn on: warm gradient ground, a lit pool
  * behind the subject, and a vignette to hold the edges down. Ids inside are
  * fixed because each file is a standalone document loaded through <img>.

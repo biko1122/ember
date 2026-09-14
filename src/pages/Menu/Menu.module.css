@@ -2,6 +2,45 @@
   padding-block: var(--space-5) var(--space-7);
 }
 
+/**
+ * Basket on the left, menu on the right.
+ *
+ * The basket only appears once there is room for a 320px column *and* three
+ * product cards beside it — below that the two would fight, and the drawer is
+ * the better answer anyway. `minmax(0, 1fr)` on the menu side is what stops a
+ * long product name from widening the column and pushing the grid off the page.
+ */
+.layout {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.main {
+  min-width: 0;
+}
+
+.basket {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  .layout {
+    grid-template-columns: 320px minmax(0, 1fr);
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  .basket {
+    display: block;
+  }
+
+  /* The panel sticks below the header *and* the category bar, both of which
+     are already stuck there. */
+  .basket > * {
+    --cart-panel-top: calc(var(--navbar-offset) + var(--category-bar-height) + var(--space-4));
+  }
+}
+
 .toolbar {
   display: flex;
   flex-wrap: wrap;

@@ -109,16 +109,18 @@
 
   /* The header reserves this much space at all times, so nothing on the page
      moves when the bar compacts. Layout that sits *behind* the header — the
-     hero, the auth panels — measures against this one.
-     It is the location strip (58px) plus the navigation row (76px). */
-  --navbar-location-height: 58px;
-  --navbar-row-height: 76px;
-  --navbar-height: calc(var(--navbar-location-height) + var(--navbar-row-height));
-  /* Scrolled, the location strip rolls away and the row itself tightens. */
+     hero, the auth panels — measures against this one. */
+  --navbar-height: 76px;
+  /* Scrolled, the row tightens. */
   --navbar-height-compact: 60px;
   /* Where the bar currently ends. Anything that sticks *below* the header
      follows this, so it keeps hugging the bar as it shrinks. */
   --navbar-offset: var(--navbar-height);
+
+  /* The menu page's category bar sticks directly under the header. Anything
+     that sticks below *it* — the basket panel — measures from here, and the
+     bar itself carries this as a min-height so the two cannot drift apart. */
+  --category-bar-height: 74px;
 
   --z-sticky: 100;
   --z-drawer: 200;

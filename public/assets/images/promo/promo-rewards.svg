@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+<defs>
+<radialGradient id="keyLight" cx="50%" cy="46%" r="52%">
+<stop offset="0%" stop-color="hsl(28 96% 58% / 0.5)"/>
+<stop offset="46%" stop-color="hsl(20 92% 48% / 0.21)"/>
+<stop offset="100%" stop-color="hsl(18 90% 40% / 0)"/>
+</radialGradient>
+<radialGradient id="dropShadow" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="hsl(20 60% 3% / 0.5)"/>
+<stop offset="100%" stop-color="hsl(20 60% 3% / 0)"/>
+</radialGradient>
+</defs>
+<ellipse cx="600" cy="445.08" rx="552" ry="378" fill="url(#keyLight)"/>
+<ellipse cx="600" cy="738" rx="408" ry="81" fill="url(#dropShadow)"/>
+<g transform="translate(600 450) scale(1.68)"><ellipse cx="0" cy="200" rx="190" ry="38" fill="url(#dishShadow)"/><path d="M-118 -60 L118 -60 L86 150 q-86 26 -172 0 z" fill="hsl(200 20% 90% / 0.16)"/><path d="M-118 -60 L-84 -60 L-56 158 q-18 -3 -30 -8 z" fill="hsl(0 0% 100% / 0.24)"/><rect x="-26" y="150" width="52" height="34" fill="hsl(200 20% 90% / 0.18)"/><ellipse cx="0" cy="188" rx="86" ry="20" fill="hsl(200 20% 90% / 0.22)"/><path d="M-110 -56 q34 92 110 92 q76 0 110 -92 z" fill="hsl(30 42% 78%)"/><path d="M-110 -20 q28 30 62 6 q34 34 68 4 q30 26 62 -4 l-14 40 q-92 34 -180 0 z" fill="hsl(22 60% 28%)"/><circle cx="-56" cy="-88" r="72" fill="hsl(28 44% 82%)"/><circle cx="58" cy="-96" r="66" fill="hsl(24 52% 34%)"/><circle cx="0" cy="-142" r="60" fill="hsl(32 40% 88%)"/><path d="M-120 -140 q40 44 118 44 q78 0 118 -44 q-10 60 -118 60 q-108 0 -118 -60 z" fill="hsl(20 62% 26%)" opacity="0.75"/><circle cx="6" cy="-196" r="26" fill="hsl(348 74% 46%)"/><path d="M6 -220 q10 -34 34 -44" stroke="hsl(104 40% 34%)" stroke-width="8" fill="none" stroke-linecap="round"/></g>
+</svg>

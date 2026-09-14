@@ -17,7 +17,6 @@
 .bar {
   pointer-events: auto;
   display: flex;
-  flex-direction: column;
   height: 100%;
   border-bottom: 1px solid transparent;
   transition: height var(--transition-base) var(--ease-out),
@@ -40,27 +39,76 @@
   border-bottom-color: var(--color-border);
 }
 
-/* The location strip rolls away as the bar compacts, leaving just the nav
-   row. It keeps its own background, so it reads as a separate band. */
-.locationSlot {
-  overflow: hidden;
-  height: var(--navbar-location-height);
-  opacity: 1;
-  transition: height var(--transition-base) var(--ease-out),
-    opacity var(--transition-fast);
-}
-
-.navbar[data-scrolled='true'] .locationSlot {
-  height: 0;
-  opacity: 0;
-}
-
+/**
+ * The two clusters lean in towards the middle rather than stranding themselves
+ * in the corners of a wide monitor. The inset that does it is the page
+ * container's own — capped at `--page-width` and centred — so the wordmark
+ * starts on the same line as the page heading below it instead of on a gutter
+ * of the header's own invention. On a phone it bottoms out at the 15px gutter,
+ * where there is nothing to spare.
+ */
 .inner {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
   flex: 1;
-  min-height: 0;
+  width: 100%;
+  max-width: var(--page-width);
+  min-width: 0;
+  margin-inline: auto;
+  padding-inline: 15px;
+}
+
+@media (min-width: 768px) {
+  .inner {
+    padding-inline: var(--space-6);
+  }
+}
+
+/* Left cluster: menu button, wordmark, then the order-type tabs ----------- */
+.lead {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  min-width: 0;
+}
+
+/* Delivery / Pickup / Dine In -------------------------------------------- */
+.modes {
+  display: none;
+  gap: var(--space-1);
+  flex-shrink: 0;
+  margin-left: var(--space-3);
+  padding: 4px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+}
+
+.mode {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-muted);
+  white-space: nowrap;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.mode:hover {
+  color: var(--color-ink);
+}
+
+.mode[data-selected='true'] {
+  color: var(--color-on-primary);
+  background-color: var(--color-primary);
+}
+
+/* The tabs shrink with the bar so the row still reads as one height. */
+.navbar[data-scrolled='true'] .mode {
+  padding-block: var(--space-1);
 }
 
 /* The brand shrinks a little with the bar, rather than sitting oversized in
@@ -75,13 +123,15 @@
   transform: scale(0.88);
 }
 
-/* Hamburger — mobile only ------------------------------------------------ */
+/* The icon is 26px; the button around it is the 44px touch target it needs,
+   pulled back so the bars themselves — not the padding — line up with the
+   15px gutter. */
 .hamburger {
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
-  margin-left: calc(var(--space-2) * -1);
+  width: 44px;
+  height: 44px;
+  margin-left: -9px;
   border-radius: var(--radius-md);
   color: var(--color-ink);
   transition: background-color var(--transition-fast);
@@ -91,73 +141,13 @@
   background-color: var(--color-surface-alt);
 }
 
-/* Desktop links ---------------------------------------------------------- */
-.links {
-  display: none;
-  align-items: center;
-  gap: var(--space-1);
-  margin-left: var(--space-5);
-}
-
-.link {
-  position: relative;
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-md);
-  font-family: var(--font-display);
-  font-size: var(--text-base);
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.72);
-  transition: color var(--transition-fast);
-}
-
-.link:hover {
-  color: var(--color-ink);
-}
-
-.linkActive {
-  color: var(--color-ink);
-}
-
-.linkActive::after {
-  content: '';
-  position: absolute;
-  left: var(--space-3);
-  right: var(--space-3);
-  bottom: 0;
-  height: 2px;
-  border-radius: 2px;
-  background-color: var(--color-primary);
-  box-shadow: 0 0 12px var(--color-primary);
-}
-
-/* Right-hand actions ----------------------------------------------------- */
+/* Right cluster: location, language, basket, log in ---------------------- */
 .actions {
   display: flex;
   align-items: center;
   gap: var(--space-2);
   margin-left: auto;
-}
-
-.orderTypeChip {
-  display: none;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-pill);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--color-ink);
-  transition: border-color var(--transition-fast), background-color var(--transition-fast);
-}
-
-.orderTypeChip svg:first-child {
-  color: var(--color-primary);
-}
-
-.orderTypeChip:hover {
-  border-color: var(--color-primary);
-  background-color: var(--color-primary-soft);
+  padding-left: var(--space-4);
 }
 
 .iconButton {
@@ -225,51 +215,13 @@
   animation: pop 320ms ease;
 }
 
-/* Order-type modal content ---------------------------------------------- */
-.orderTypeModalBody {
-  padding: var(--space-6) var(--space-5) var(--space-5);
-}
-
-.orderTypeModalTitle {
-  margin-bottom: var(--space-4);
-  font-size: var(--text-xl);
-}
-
 /* Breakpoints ------------------------------------------------------------ */
 @media (min-width: 600px) {
   .accountLabel { display: inline; }
 }
 
-@media (min-width: 920px) {
-  .hamburger { display: none; }
-  .links { display: flex; }
-  .orderTypeChip { display: inline-flex; }
-}
-
-/* Points balance, for signed-in members ---------------------------------- */
-.pointsChip {
-  display: none;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-3);
-  font-size: var(--text-sm);
-  font-weight: 700;
-  color: var(--color-secondary);
-  background-color: var(--color-secondary-soft);
-  border: 1px solid rgba(255, 194, 77, 0.28);
-  border-radius: var(--radius-pill);
-  font-variant-numeric: tabular-nums;
-  transition: background-color var(--transition-fast), border-color var(--transition-fast);
-}
-
-.pointsChip:hover {
-  background-color: rgba(255, 194, 77, 0.2);
-  border-color: var(--color-secondary);
-}
-
-/* Only where there is room — the phone shows it in the slide-in menu. */
-@media (min-width: 1024px) {
-  .pointsChip {
-    display: inline-flex;
-  }
+/* Three tabs plus four right-hand controls need a wide bar before they stop
+   crowding the empty middle they are supposed to be leaning into. */
+@media (min-width: 1080px) {
+  .modes { display: flex; }
 }

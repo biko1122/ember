@@ -1,0 +1,465 @@
+/**
+ * The homepage banner.
+ *
+ * Two rules hold the whole thing together:
+ *
+ * 1. Every slide lives in the same CSS grid cell (`grid-area: stack`). The
+ *    banner is therefore always as tall as its tallest slide, so changing
+ *    slide never resizes it and nothing below it moves.
+ * 2. Only colour and transform animate. Nothing here animates a property that
+ *    would make the browser re-lay-out the page.
+ */
+.hero {
+  --slide-accent: var(--color-primary);
+  --hero-pad-top: calc(var(--navbar-height) + var(--space-6));
+
+  position: relative;
+  isolation: isolate;
+  /* The bar floats over this section on the homepage, so the banner starts
+     underneath it and pads its own content clear. */
+  margin-top: calc(var(--navbar-height) * -1);
+  padding-top: var(--hero-pad-top);
+  padding-bottom: var(--space-6);
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-surface-deep);
+}
+
+/* The warm floor the banner always has, whatever is on it. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(70% 90% at 8% 100%, rgba(255, 194, 77, 0.09) 0%, transparent 58%);
+}
+
+/* Slides ----------------------------------------------------------------- */
+.stack {
+  display: grid;
+  grid-template-areas: 'stack';
+  align-items: center;
+}
+
+.slide {
+  position: relative;
+  grid-area: stack;
+  min-width: 0;
+  opacity: 0;
+  visibility: hidden;
+  /* Leaving: fade out, then drop out of the a11y tree and stop taking
+     pointer events. The visibility delay is what keeps the outgoing slide
+     visible for the length of the fade. */
+  transition: opacity var(--transition-base) var(--ease-out),
+    visibility 0s linear var(--transition-base);
+}
+
+.slide[data-active='true'] {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+/**
+ * Each slide carries its own pool of light, in its own accent colour, so the
+ * banner changes colour as the slides cross-fade — one fades out as the next
+ * fades in, with no separate transition to keep in step.
+ *
+ * It is stretched past the slide on every side (and clipped by the banner's
+ * `overflow: hidden`) so the light reaches up behind the floating header
+ * instead of stopping at a visible line.
+ */
+.slide::before {
+  content: '';
+  position: absolute;
+  inset: calc(var(--hero-pad-top) * -1) calc(var(--space-6) * -1) calc(var(--space-8) * -1);
+  z-index: -1;
+  background-image: radial-gradient(
+    58% 82% at 72% 42%,
+    color-mix(in srgb, var(--slide-accent) 26%, transparent) 0%,
+    transparent 68%
+  );
+}
+
+.inner {
+  display: grid;
+  gap: var(--space-5);
+  align-items: center;
+}
+
+/* Copy ------------------------------------------------------------------- */
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  background-color: rgba(255, 255, 255, 0.04);
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.eyebrowDot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-pill);
+  background-color: var(--slide-accent);
+  box-shadow: 0 0 10px var(--slide-accent);
+}
+
+.title {
+  font-size: clamp(2rem, 6vw, 3.6rem);
+  line-height: 1.03;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.description {
+  max-width: 46ch;
+  font-size: var(--text-lg);
+  color: var(--color-muted);
+}
+
+/* Price / offer line ------------------------------------------------------ */
+.offer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.price {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--slide-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.oldPrice {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-muted);
+  text-decoration: line-through;
+}
+
+.priceNote {
+  padding: var(--space-1) var(--space-3);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-1);
+}
+
+/* Artwork ---------------------------------------------------------------- */
+.art {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 300px);
+}
+
+/* The artwork is a cut-out on transparency, so the frame must not draw the
+   surface it normally does under a photograph. */
+.image {
+  background-color: transparent;
+  overflow: visible;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.45));
+}
+
+.badge {
+  position: absolute;
+  top: 12%;
+  left: 2%;
+  z-index: 1;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  background-color: var(--slide-accent);
+  color: var(--color-on-primary);
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-md);
+  transform: rotate(-4deg);
+}
+
+/* Controls --------------------------------------------------------------- */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.arrow {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  color: var(--color-ink);
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(6px);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast),
+    color var(--transition-fast), transform var(--transition-fast);
+}
+
+.arrow:hover {
+  color: var(--color-primary-dark);
+  background-color: var(--color-primary-soft);
+  border-color: var(--color-primary);
+}
+
+.arrow:active {
+  transform: scale(0.94);
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/**
+ * A dot is a tap target first and a marker second: the visible pill is drawn
+ * with ::before, while the button itself stays big enough to hit on a phone.
+ */
+.dot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 32px;
+}
+
+.dot::before {
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(255, 255, 255, 0.28);
+  transition: width var(--transition-base) var(--ease-out),
+    background-color var(--transition-fast);
+}
+
+.dot:hover::before {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.dot[data-active='true']::before {
+  width: 30px;
+  background-color: var(--slide-accent);
+}
+
+/**
+ * The active dot doubles as the auto-play clock: it fills across for exactly
+ * as long as the slide holds. When auto-play is paused — pointer over the
+ * banner, focus inside it, tab in the background, reduced motion — the fill
+ * holds where it is, which is the clearest way to say "this has stopped".
+ */
+.dot[data-active='true']::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 9px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-ink);
+  transform: translate(-50%, -50%);
+  transform-origin: left center;
+  animation: hero-dot-fill var(--autoplay-duration, 7000ms) linear forwards;
+  opacity: 0.85;
+}
+
+.hero[data-paused='true'] .dot[data-active='true']::after {
+  animation-play-state: paused;
+}
+
+@keyframes hero-dot-fill {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+/* Entrance ---------------------------------------------------------------
+   Each part of the active slide arrives just after the one above it. The
+   offset direction follows the way the slider moved, so going back feels
+   like going back. */
+.stack[data-direction='1'] { --enter-x: 44px; }
+.stack[data-direction='-1'] { --enter-x: -44px; }
+
+.slide[data-active='true'] .eyebrow,
+.slide[data-active='true'] .title,
+.slide[data-active='true'] .description,
+.slide[data-active='true'] .offer,
+.slide[data-active='true'] .actions {
+  animation: hero-rise 620ms var(--ease-out) backwards;
+}
+
+.slide[data-active='true'] .title { animation-delay: 60ms; }
+.slide[data-active='true'] .description { animation-delay: 120ms; }
+.slide[data-active='true'] .offer { animation-delay: 180ms; }
+.slide[data-active='true'] .actions { animation-delay: 240ms; }
+
+.slide[data-active='true'] .art {
+  animation: hero-art 760ms var(--ease-out) backwards;
+}
+
+.slide[data-active='true'] .badge {
+  animation: hero-badge 520ms var(--ease-out) 220ms backwards;
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(var(--enter-x, 44px), 8px, 0);
+  }
+}
+
+@keyframes hero-art {
+  from {
+    opacity: 0;
+    transform: translate3d(calc(var(--enter-x, 44px) * 1.4), 0, 0) scale(0.94);
+  }
+}
+
+@keyframes hero-badge {
+  from {
+    opacity: 0;
+    transform: rotate(-4deg) scale(0.6);
+  }
+}
+
+/* Phone ------------------------------------------------------------------
+   The artwork goes above the copy and gives up most of its size, so the
+   headline and the button are what fill the screen. */
+@media (max-width: 767px) {
+  .inner {
+    justify-items: start;
+  }
+
+  .art {
+    order: -1;
+    justify-self: center;
+    width: min(62vw, 240px);
+  }
+
+  .description {
+    font-size: var(--text-base);
+  }
+
+  /* Small artwork, so the flash goes above the food rather than across it. */
+  .badge {
+    top: 0;
+    left: 0;
+    padding: var(--space-1) var(--space-3);
+    font-size: 10px;
+  }
+
+  /* One full-width button reads as one clear instruction; two half-width
+     ones read as a choice nobody asked for. */
+  .actions {
+    width: 100%;
+  }
+
+  .actions > * {
+    flex: 1 1 100%;
+  }
+}
+
+/* Tablet and up ---------------------------------------------------------- */
+@media (min-width: 768px) {
+  .hero {
+    padding-bottom: var(--space-7);
+  }
+
+  .inner {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: var(--space-6);
+    min-height: clamp(360px, 46vh, 520px);
+  }
+
+  .art {
+    width: min(100%, 440px);
+  }
+}
+
+/* Desktop: the arrows leave the row and sit against the banner edges, with
+   the dots centred underneath. */
+@media (min-width: 1024px) {
+  .hero {
+    padding-bottom: var(--space-6);
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    /* The banner's top padding clears the floating header, which pushes its
+       box centre above the centre of the slide. Half the header height puts
+       the arrows back on the food. */
+    transform: translateY(calc(-50% + var(--navbar-height) / 2));
+    width: 52px;
+    height: 52px;
+  }
+
+  .arrowPrevious { left: var(--space-4); }
+  .arrowNext { right: var(--space-4); }
+
+  .arrow:active {
+    transform: translateY(calc(-50% + var(--navbar-height) / 2)) scale(0.94);
+  }
+}
+
+@media (min-width: 1400px) {
+  .arrowPrevious { left: var(--space-6); }
+  .arrowNext { right: var(--space-6); }
+}
+
+/**
+ * Reduced motion: global.css already flattens the durations, but the entrance
+ * animations start from opacity 0 and a translate, and a 0.01ms animation can
+ * still flash. Dropping them entirely is calmer. The slider also stops
+ * advancing on its own — that is decided in the component.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .slide[data-active='true'] .eyebrow,
+  .slide[data-active='true'] .title,
+  .slide[data-active='true'] .description,
+  .slide[data-active='true'] .offer,
+  .slide[data-active='true'] .actions,
+  .slide[data-active='true'] .art,
+  .slide[data-active='true'] .badge,
+  .dot[data-active='true']::after {
+    animation: none;
+  }
+
+  .dot[data-active='true']::after {
+    display: none;
+  }
+}

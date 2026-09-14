@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Responsive navigation</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- A skip link is the cheapest accessibility win there is: it lets a
+         keyboard user jump the whole nav instead of tabbing through it on
+         every page. -->
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <nav class="nav" aria-label="Main">
+        <a class="nav__brand" href="#">EMBER</a>
+
+        <!-- The button is outside the panel it controls, so it stays reachable
+             when the panel is closed. aria-controls points at the panel's id;
+             aria-expanded is the state, and script.js keeps it truthful. -->
+        <button
+          class="nav__toggle"
+          type="button"
+          id="nav-toggle"
+          aria-controls="nav-panel"
+          aria-expanded="false"
+        >
+          <span class="nav__toggle-bars" aria-hidden="true"></span>
+          <span class="visually-hidden">Open menu</span>
+        </button>
+
+        <!-- One list, styled two ways: a row on a wide screen, a slide-in
+             panel on a narrow one. Duplicating the links into a separate
+             mobile menu would mean two sets of markup to keep in step, and
+             two copies of every link in the accessibility tree. -->
+        <div class="nav__panel" id="nav-panel" data-open="false">
+          <button class="nav__close" type="button" aria-label="Close menu">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
+
+          <ul class="nav__list">
+            <li><a class="nav__link" href="#" aria-current="page">Menu</a></li>
+            <li><a class="nav__link" href="#">Offers</a></li>
+            <li><a class="nav__link" href="#">Rewards</a></li>
+            <li><a class="nav__link" href="#">Branches</a></li>
+            <li><a class="nav__link" href="#">About</a></li>
+          </ul>
+
+          <a class="nav__cta" href="#">Order now</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Outside the nav, because it covers the page rather than belonging to
+         the menu. Hidden from assistive technology: it is decoration plus a
+         second way to close, and Escape already does that. -->
+    <div class="nav__backdrop" data-open="false" aria-hidden="true"></div>
+
+    <main id="main" class="main">
+      <h1>Responsive navigation</h1>
+      <p>
+        Resize the window across 768px to see the menu change shape. On a narrow
+        screen the links collapse behind the button in the corner; on a wide one
+        they sit in a row and the button takes itself away.
+      </p>
+    </main>
+
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
