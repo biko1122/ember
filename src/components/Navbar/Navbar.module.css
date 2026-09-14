@@ -16,6 +16,8 @@
 
 .bar {
   pointer-events: auto;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   border-bottom: 1px solid transparent;
   transition: height var(--transition-base) var(--ease-out),
@@ -38,11 +40,27 @@
   border-bottom-color: var(--color-border);
 }
 
+/* The location strip rolls away as the bar compacts, leaving just the nav
+   row. It keeps its own background, so it reads as a separate band. */
+.locationSlot {
+  overflow: hidden;
+  height: var(--navbar-location-height);
+  opacity: 1;
+  transition: height var(--transition-base) var(--ease-out),
+    opacity var(--transition-fast);
+}
+
+.navbar[data-scrolled='true'] .locationSlot {
+  height: 0;
+  opacity: 0;
+}
+
 .inner {
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  height: 100%;
+  flex: 1;
+  min-height: 0;
 }
 
 /* The brand shrinks a little with the bar, rather than sitting oversized in

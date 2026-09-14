@@ -5,6 +5,7 @@ import { Icon } from '@/components/Icon/Icon'
 import { Modal } from '@/components/Modal/Modal'
 import { OrderTypeSelector } from '@/components/OrderTypeSelector/OrderTypeSelector'
 import { MobileMenu } from '@/components/Navbar/MobileMenu'
+import { LocationBar } from '@/components/LocationBar/LocationBar'
 import { useCart } from '@/context/CartContext'
 import { useAuth } from '@/context/AuthContext'
 import { useLoyalty } from '@/context/LoyaltyContext'
@@ -83,6 +84,10 @@ export function Navbar() {
         {/* The <header> reserves a constant height; only this bar inside it
             resizes, so compacting never shifts the page behind it. */}
         <div className={styles.bar}>
+          <div className={styles.locationSlot}>
+            <LocationBar />
+          </div>
+
           <div className={`page-container ${styles.inner}`}>
             <button
               type="button"

@@ -109,9 +109,12 @@
 
   /* The header reserves this much space at all times, so nothing on the page
      moves when the bar compacts. Layout that sits *behind* the header — the
-     hero, the auth panels — measures against this one. */
-  --navbar-height: 76px;
-  /* How tall the visible bar shrinks to once the page is scrolled. */
+     hero, the auth panels — measures against this one.
+     It is the location strip (58px) plus the navigation row (76px). */
+  --navbar-location-height: 58px;
+  --navbar-row-height: 76px;
+  --navbar-height: calc(var(--navbar-location-height) + var(--navbar-row-height));
+  /* Scrolled, the location strip rolls away and the row itself tightens. */
   --navbar-height-compact: 60px;
   /* Where the bar currently ends. Anything that sticks *below* the header
      follows this, so it keeps hugging the bar as it shrinks. */
